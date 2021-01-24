@@ -83,13 +83,14 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
  
     var url = req.body.wechat;
     var arr = url.split("/");
-    var flen = arr.length-7;
+    var flen = arr.length-6;
     var name = arr[3];
     var base = arr[4];
     var path = "";
     for(var i=0;i<flen;i++){
-      path = arr[i+7]+"/";
+      path += arr[i+7]+"/";
     }
+ 
     var upath = "https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path;
     res.send(resolv(url,upath));
  
@@ -99,13 +100,14 @@ app.get('/s', function(req, res){
  
     var url = req.query.b;
     var arr = url.split("/");
-    var flen = arr.length-7;
+    var flen = arr.length-6;
     var name = arr[3];
     var base = arr[4];
     var path = "";
     for(var i=0;i<flen;i++){
-      path = arr[i+7]+"/";
+      path += arr[i+7]+"/";
     }
+  console.log(path);
     var upath = "https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path;
     res.send(resolv(url,upath));
 
