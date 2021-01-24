@@ -83,7 +83,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
  
     var url = req.body.wechat;
     var arr = url.split("/");
-    var flen = arr.length-6;
+    var flen = arr.length-7;
     var name = arr[3];
     var base = arr[4];
     var path = "";
@@ -100,7 +100,7 @@ app.get('/s', function(req, res){
  
     var url = req.query.b;
     var arr = url.split("/");
-    var flen = arr.length-6;
+    var flen = arr.length-7;
     var name = arr[3];
     var base = arr[4];
     var path = "";
