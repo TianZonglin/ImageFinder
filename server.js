@@ -25,9 +25,7 @@ var offline = false;
 
 
 function CheckImgExists(imgurl) {
-     
     var s = imgurl.match(/http(s):\/\/.*?(gif|png|jpeg|svg|jpg)/gi);
- 
     if(s==null) return false;
   else return true;
  
@@ -35,7 +33,6 @@ function CheckImgExists(imgurl) {
 
 
 function resolv(url,p) {
-
     var response = '';
     var timeout = 10000;
     try { response = request(url, { timeout: timeout, dataType: 'xml' }); } 
@@ -50,26 +47,15 @@ function resolv(url,p) {
             fatalError: function (e) {}
         }
     }).parseFromString(response.data.toString());
-
     var items = xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
- 
-
-  
-  
     var list=[];
-    
     for (var i in items) {
-         
         var parser = new Dom().parseFromString(items[i].toString());
         var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
-    
- 
         if(CheckImgExists(p+jpgs)){
           list.push(p+jpgs);
         }
-
     }
-
     return list;
 }
 
@@ -80,9 +66,16 @@ function resolv(url,p) {
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
+
+
+function jugeUrl(zoom) {
+    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true) return true;
+    else return false;
+} 
+
 app.get("/", (request, response) => {
-    var url = request.query.b;
-    if(url.indexOf("github.com")>0 && jugeUrl(url)){
+    var url = request.query.s;
+    if(url != null && url.indexOf("github.com")>0 && jugeUrl(url)){
       var arr = url.split("/");
       var flen = arr.length-7;
       var name = arr[3];
@@ -119,16 +112,14 @@ app.get("/", (request, response) => {
           html += '    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b></footer>';
           html += '  </body>';
           html += '</html>';
-      
         response.send(html);
-      
     }else{
       response.sendFile(__dirname + "/views/index.html");
     }
 });
 
+
 app.post('/fuckqq', urlencodedParser, function (req, res) {
-    
     var url = req.body.wechat;
     var arr = url.split("/");
     var flen = arr.length-7;
@@ -138,7 +129,6 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     for(var i=0;i<flen;i++){
       path += arr[i+7]+"/";
     }
-    
     var upath = "https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path;
     var list = resolv(url,upath);
     res.send(list);
@@ -146,60 +136,16 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+url+"','"+list.length+"','"+new Date().getTime()+"','"+name+"','"+"https://github.com/"+name+".png"+"')");
       
     }
-  
-    
- 
 })
 
+
+
 app.get('/init', function(req, res){
- 
     db.all("select ex1,ex2,size,url,ctime,count(url),max(ctime) from CList group by ex1;", (err, row) => {
       res.send(row);
     });  
-  
-    
-
 })
 
-function jugeUrl(zoom) {
-    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true) return true;
-    else return false;
-} 
- 
-function reset() {
-    $("#wechat").removeAttr("readonly");
-    $('#spacex').removeAttr('disabled');
-    $('#google').hide();
-} 
-function firethehall(wechat,o) {
-    const i="https://github.com/";
-    $("#pictures").html("");
-    $("#wechat").attr("readonly","readonly");
-    $('#spacex').attr('disabled','disabled');
-    $('#google').show();
-    if(wechat.indexOf(i.substr(8))>0 && jugeUrl(wechat)){
-      $.ajax({
-        type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
-        success: function(facebook){
-          var xiaomi = 0;
-          facebook.forEach(function(mac){
-            setTimeout(function() {  
-              $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
-            }, (++xiaomi)*100);
-            if(xiaomi != 0){reset(); }
-          }); 
-          const oppo = wechat.split("/")[3];
-          if(JSON.stringify(o).indexOf(wechat)<0)
-            $("#avat").append(`<img class="avat" src="${i+oppo}.png" title="${oppo}" alt="${wechat}">`);
-          if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
-        }
-      });
-    }else{
-      alert("地址格式错误！");reset();$("#wechat").focus();
-    }
-} 
-
- 
 
 
 // listen for requests :)
