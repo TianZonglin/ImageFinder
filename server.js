@@ -81,8 +81,60 @@ function resolv(url,p) {
 app.use(express.static("public"));
 
 app.get("/", (request, response) => {
-  
-  response.sendFile(__dirname + "/views/index.html");
+    var url = request.query.b;
+    if(url.indexOf("github.com")>0 && jugeUrl(url)){
+      var arr = url.split("/");
+      var flen = arr.length-7;
+      var name = arr[3];
+      var base = arr[4];
+      var path = "";
+      for(var i=0;i<flen;i++){
+        path += arr[i+7]+"/";
+      }
+      var upath = "https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path;
+      var list = resolv(url,upath);
+      
+      
+      
+      
+      
+      
+      
+      
+['<!DOCTYPE html>',
+'<html lang="en">',
+'  <head>',
+'    <meta charset="utf-8">',
+'    <meta http-equiv="X-UA-Compatible" content="IE=edge">',
+'    <meta name="viewport" content="width=device-width, initial-scale=1">',
+'    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>',
+'    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" ></script>',
+'    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />',
+'    <title>偷偷瞄！</title>',
+'    <link id="favicon" rel="icon" href="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/fc.ico" type="image/x-icon">',
+'    <link rel="stylesheet" href="/style.css">',
+'    <script src="/script.js" defer></script>',
+'  </head>',
+'  <body>',
+'    <main>',
+'      <section class="pictures" id="pictures"></section>',
+'    </main>',
+'    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b></footer>',
+'  </body>',
+'</html>',
+].join("");
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    }else{
+      response.sendFile(__dirname + "/views/index.html");
+    }
 });
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
@@ -157,28 +209,7 @@ function firethehall(wechat,o) {
     }
 } 
 
-app.get('/s', function(req, res){
-    var url = req.query.b;
-    if(url.indexOf("github.com")>0 && jugeUrl(url)){
-      var arr = url.split("/");
-      var flen = arr.length-7;
-      var name = arr[3];
-      var base = arr[4];
-      var path = "";
-      for(var i=0;i<flen;i++){
-        path += arr[i+7]+"/";
-      }
-      var upath = "https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path;
-      var list = resolv(url,upath);
-    }else{
-      
-      
-    }
-
-
-    firethehall(req.query.b); 
-    
-})
+ 
 
 
 // listen for requests :)
