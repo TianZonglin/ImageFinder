@@ -9,7 +9,7 @@ function reset() {
     $('#google').hide();
 } 
 
-function firethehall(wechat,o) {
+function firethehole(wechat,o) {
     const i="https://github.com/";
     $("#pictures").html("");
     $("#wechat").attr("readonly","readonly");
@@ -24,7 +24,7 @@ function firethehall(wechat,o) {
             setTimeout(function() {  
               $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
             }, (++xiaomi)*100);
-            if(xiaomi != 0){reset(); }
+            if(xiaomi != 0){reset(); headsup();}
           }); 
           const oppo = wechat.split("/")[3];
           if(JSON.stringify(o).indexOf(wechat)<0)
@@ -37,9 +37,16 @@ function firethehall(wechat,o) {
     }
 } 
 
+function headsup() {
+    fetch("/payoff", {})
+      .then(res => res.json()).then(vivo => {
+        console.log(vivo);
+      });
+}
+
 $(function(){
-      var o;
-      fetch("/init", {})
+      var o; headsup();
+      fetch("/birth", {})
         .then(res => res.json()).then(vivo => {
           o = vivo;
           for (var mix in vivo) {
@@ -49,11 +56,11 @@ $(function(){
         });
       $(document).on("click",".avat",function(event){
           $("#wechat").val(this.alt);
-          firethehall(this.alt,o);
+          firethehole(this.alt,o);
       });
       $('#spacex').click(function(){
           var wechat = $("#wechat").val();  
-          firethehall(wechat,o);
+          firethehole(wechat,o);
       })
       $(".fancybox").fancybox();
       $("#pictures").on("focusin", function(){

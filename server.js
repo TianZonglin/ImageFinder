@@ -145,16 +145,16 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
 
 
 
-app.get('/init', function(req, res){
+app.get('/birth', function(req, res){
     db.all("select ex1,ex2,size,url,ctime,count(url),max(ctime) from CList group by ex1;", (err, row) => {
       res.send(row);
     });  
 })
 
 
-app.get('/init', function(req, res){
+app.get('/payoff', function(req, res){
     db.all("select max(id) from CList;", (err, row) => {
-      console.log(row);
+      res.send(row);
     });  
 })
 
