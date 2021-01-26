@@ -152,6 +152,12 @@ app.get('/init', function(req, res){
 })
 
 
+app.get('/init', function(req, res){
+    db.all("select max(id) from CList;", (err, row) => {
+      console.log(row);
+    });  
+})
+
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
@@ -201,3 +207,4 @@ if(0){
 //console.log(format(new Date().getTime())); 
   
 
+ 
