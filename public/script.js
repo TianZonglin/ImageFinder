@@ -7,7 +7,6 @@ function reset() {
     $("#wechat").removeAttr("readonly");
     $('#spacex').removeAttr('disabled');
     $('#google').hide();
-    $("#wechat").focus();
 } 
 
 function firethehall(wechat,o) {
@@ -20,7 +19,6 @@ function firethehall(wechat,o) {
       $.ajax({
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         success: function(facebook){
-          console.log("say goodbye !!"); 
           var xiaomi = 0;
           facebook.forEach(function(mac){
             setTimeout(function() {  
