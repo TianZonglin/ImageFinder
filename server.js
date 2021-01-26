@@ -116,6 +116,10 @@ app.get("/", (request, response) => {
     }else{
       response.sendFile(__dirname + "/views/index.html");
     }
+    if(list.length){
+      db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+url+"','"+list.length+"','"+new Date().getTime()+"','"+name+"','"+"https://github.com/"+name+".png"+"')");
+      
+    }
 });
 
 
