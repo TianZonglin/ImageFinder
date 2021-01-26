@@ -28,12 +28,12 @@ function firethehall(wechat,o) {
           }); 
           const oppo = wechat.split("/")[3];
           if(JSON.stringify(o).indexOf(wechat)<0)
-            $("#avat").append(`<img class="avat" src="${i+oppo}.png" title="${oppo}">`);
-          if(xiaomi == 0){alert("未解析到任何图片！");reset();}
+            $("#avat").append(`<img class="avat" src="${i+oppo}.png" title="${oppo}" alt="${wechat}">`);
+          if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
         }
       });
     }else{
-      alert("地址格式错误！");reset();
+      alert("地址格式错误！");reset();$("#wechat").focus();
     }
 } 
 
