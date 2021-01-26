@@ -9,7 +9,8 @@ html{
 }
 
 .img {
-  height: 100px;
+  max-height: 100px;
+  max-width: 100%;
   width:auto;
   margin:0px 10px 10px 0px;
   border-radius: 10px;
@@ -38,7 +39,7 @@ html{
 
 body {
   font-family: sans-serif;
-  margin: 2em 2em;
+  margin: 1.5em 1.5em;
 }
 
 h1 {
