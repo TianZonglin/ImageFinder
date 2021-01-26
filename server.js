@@ -119,7 +119,66 @@ app.get('/init', function(req, res){
 
 })
 
+function jugeUrl(zoom) {
+    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true) return true;
+    else return false;
+} 
+ 
+function reset() {
+    $("#wechat").removeAttr("readonly");
+    $('#spacex').removeAttr('disabled');
+    $('#google').hide();
+} 
+function firethehall(wechat,o) {
+    const i="https://github.com/";
+    $("#pictures").html("");
+    $("#wechat").attr("readonly","readonly");
+    $('#spacex').attr('disabled','disabled');
+    $('#google').show();
+    if(wechat.indexOf(i.substr(8))>0 && jugeUrl(wechat)){
+      $.ajax({
+        type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
+        success: function(facebook){
+          var xiaomi = 0;
+          facebook.forEach(function(mac){
+            setTimeout(function() {  
+              $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
+            }, (++xiaomi)*100);
+            if(xiaomi != 0){reset(); }
+          }); 
+          const oppo = wechat.split("/")[3];
+          if(JSON.stringify(o).indexOf(wechat)<0)
+            $("#avat").append(`<img class="avat" src="${i+oppo}.png" title="${oppo}" alt="${wechat}">`);
+          if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
+        }
+      });
+    }else{
+      alert("地址格式错误！");reset();$("#wechat").focus();
+    }
+} 
 
+app.get('/s', function(req, res){
+    var url = req.query.b;
+    if(url.indexOf("github.com")>0 && jugeUrl(url)){
+      var arr = url.split("/");
+      var flen = arr.length-7;
+      var name = arr[3];
+      var base = arr[4];
+      var path = "";
+      for(var i=0;i<flen;i++){
+        path += arr[i+7]+"/";
+      }
+      var upath = "https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path;
+      var list = resolv(url,upath);
+    }else{
+      
+      
+    }
+
+
+    firethehall(req.query.b); 
+    
+})
 
 
 // listen for requests :)
