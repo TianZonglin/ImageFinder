@@ -18,6 +18,19 @@ html{
    -webkit-box-shadow: 10px 10px 10px rgba(0,0,0,.5);
 }
 
+.avat {
+  height: 40px;
+  border: 2px solid #998857;
+  cursor:pointer;
+  border-radius: 25em;
+  margin-bottom: 4px;
+  margin-right:8px;
+  box-shadow: 3px 2px 3px rgba(0,0,0,.5);
+  /*考虑浏览器兼容性*/
+  -moz-box-shadow: 3px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 3px 2px 3px rgba(0,0,0,.5);
+}
+
 .fancybox {
   padding: 0px;
 }
@@ -52,6 +65,7 @@ input {
   width: 100%;
   background-color: beige;
   border-radius: 20px;
+  outline:none;
 }
 
 .form button {
@@ -63,6 +77,7 @@ input {
   line-height: 1.4em;
   padding: 0.25em 1em;
   max-width: 20ch;
+  outline:none;
 }
 
 .form button:hover {
