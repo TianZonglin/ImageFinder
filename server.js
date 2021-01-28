@@ -129,7 +129,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var url = req.body.wechat;
   
     var path = "",list;
-    if(url.indexOf("tree/master")||url.indexOf("tree/main")){console.log(url);
+    if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
       var arr = url.split("/");
       var flen = arr.length-7;
       var name = arr[3];
@@ -145,13 +145,13 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       var name = arr[3];
       var base = arr[4];
       for(var i=0;i<flen;i++){
-        path += arr[i+5]+"/";
+        path += "/"+arr[i+5];
       } 
-      list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/master/"+path);
-      console.log("https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/master/"+path);
+      list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/master"+path);
+      console.log(list.length);
       if(list.length){res.send(list);}
       else{
-        list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/main/"+path);
+        list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/main"+path);
         res.send(list);
       }
     }

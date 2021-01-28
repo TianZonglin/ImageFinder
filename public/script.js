@@ -24,7 +24,8 @@ function firethehole(wechat,o) {
             setTimeout(function() {  
               $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
             }, (++xiaomi)*100);
-            if(xiaomi != 0){reset(); headsup();}
+            if(xiaomi != 0){reset(); //headsup();
+            }
           }); 
           const oppo = wechat.split("/")[3];
           if(JSON.stringify(o).indexOf(wechat)<0)
@@ -37,15 +38,15 @@ function firethehole(wechat,o) {
     }
 } 
 
-function headsup() {
-    fetch("/payoff", {})
-      .then(res => res.json()).then(vivo => {
-        console.log(vivo);
-      });
-}
+//function headsup() {
+//    fetch("/payoff", {})
+//      .then(res => res.json()).then(vivo => {
+//        console.log(vivo);
+//      });
+//}
 
 $(function(){
-      var o; headsup();
+      var o; //headsup();
       fetch("/birth", {})
         .then(res => res.json()).then(vivo => {
           o = vivo;
