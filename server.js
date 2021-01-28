@@ -22,7 +22,15 @@ var offline = false;
 
 
 
-
+function jugeUrl(zoom) {
+    const i="https://github.com/";
+    var flag = 0;
+    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
+       && zoom.indexOf(i.substr(8))>0){flag = 1;} 
+    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
+    return flag;
+} 
+ 
 
 function CheckImgExists(imgurl) {
     var s = imgurl.match(/http(s):\/\/.*?(gif|png|jpeg|svg|jpg)/gi);
@@ -30,6 +38,55 @@ function CheckImgExists(imgurl) {
   else return true;
  
 }
+
+
+
+function fullparse(url){
+    var Component;
+    var parseURL = [];
+    if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
+      var arr = url.split("/");
+      var flen = arr.length-7;
+      var name = arr[3];
+      var base = arr[4];
+      for(var i=0;i<flen;i++){
+        path += arr[i+7]+"/";
+      } 
+      return {"parseURL":parseURL.push(url),"jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,"name":name,"url":url};
+    }else{
+      var surl = "";
+      var arr = url.split("/");
+      var flen = arr.length-5;
+      var name = arr[3];
+      var base = arr[4];
+      for(var i=0;i<5;i++){
+        surl += arr[i]+"/";
+      } 
+      surl += "^#";
+      for(var i=0;i<flen;i++){
+        path += "/"+arr[i+5];
+      } 
+      surl += path;
+      console.log(surl);
+      parseURL.push(surl.replace("^#","tree/master"));
+      parseURL.push(surl.replace("^#","tree/main")); 
+      return {"parseURL":parseURL,"jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/","name":name,"url":url};
+    }
+}  
+
+
+
+function getComponent(url){
+    var mark = jugeUrl(url);
+    var Component;
+    var parseURL = [];
+    if(mark==1){
+      return fullparse(url);
+    }else if(mark==2){
+      return fullparse("https://github.com"+url);
+    }
+}
+
 
 
 function resolv(url,p) {
@@ -62,20 +119,14 @@ function resolv(url,p) {
 
 
 
+
+
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
 
-function jugeUrl(zoom) {
-    const i="https://github.com/";
-    var flag = 0;
-    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
-       && zoom.indexOf(i.substr(8))>0){flag = 1;} 
-    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
-    return flag;
-} 
- 
+
 
 app.get("/", (request, response) => {
     var url = request.query.s;
@@ -132,101 +183,16 @@ app.get("/", (request, response) => {
 //https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
 
 
-function getComponent(url){
-    var mark = jugeUrl(url);
-    var Component;
-    var parseURL = [];
-    if(mark==1){
-      if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
-        var arr = url.split("/");
-        var flen = arr.length-7;
-        var name = arr[3];
-        var base = arr[4];
-        for(var i=0;i<flen;i++){
-          path += arr[i+7]+"/";
-        } 
-        Component={"parseURL":parseURL.push(url),"jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path};
-         
-      }else{
-        var surl = "";
-        var arr = url.split("/");
-        var flen = arr.length-5;
-        var name = arr[3];
-        var base = arr[4];
-        for(var i=0;i<5;i++){
-          surl += arr[i]+"/";
-        } 
-        surl += "^#";
-        for(var i=0;i<flen;i++){
-          path += "/"+arr[i+5];
-
-        } 
-        surl += path;
-        console.log(surl);
-        var s1 = surl.replace("^#","tree/master");
-        var s2 = surl.replace("^#","tree/main"); 
-        list = resolv(s1,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
-        if(list.length){res.send(list);}
-        else{
-          list = resolv(s2,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
-          res.send(list);
-        }
-        
-        
-        
-    }else if(mark==2){
-      
-    }
-}
 
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
-
-
-  
-  
-    var path = "",list;
-    if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
-      var arr = url.split("/");
-      var flen = arr.length-7;
-      var name = arr[3];
-      var base = arr[4];
-      for(var i=0;i<flen;i++){
-        path += arr[i+7]+"/";
-      } 
-      list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path);
-      res.send(list);
-    }else{
-      var surl = "";
-      var arr = url.split("/");
-      var flen = arr.length-5;
-      var name = arr[3];
-      var base = arr[4];
-      for(var i=0;i<5;i++){
-        surl += arr[i]+"/";
-      } 
-      surl += "^#";
-      for(var i=0;i<flen;i++){
-        path += "/"+arr[i+5];
-        
-      } 
-      surl += path;
-      console.log(surl);
-      var s1 = surl.replace("^#","tree/master");
-      var s2 = surl.replace("^#","tree/main"); 
-      list = resolv(s1,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
-      if(list.length){res.send(list);}
-      else{
-        list = resolv(s2,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
-        res.send(list);
-      }
-    }
- 
+    var cp = getComponent(url);
+    var list = resolv(cp.praseURL,cp.jsdURL);
+    res.send(list);
     if(list.length){
-      db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+url+"','"+list.length+"','"+new Date().getTime()+"','"+name+"','"+"https://github.com/"+name+".png"+"')");
-      
+      db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
     }
 })
 
