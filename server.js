@@ -53,7 +53,8 @@ function fullparse(url){
       for(var i=0;i<flen;i++){
         path += arr[i+7]+"/";
       } 
-      return {"parseURL":parseURL.push(url),
+      parseURL.push(url);
+      return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,
               "name":name,"url":url};
     }else{
@@ -114,7 +115,6 @@ function getXML(parseURL){
  
 function resolv(parseURL,jsdURL) {
     var list=[];
-  console.log(">> "+parseURL.length);
     for (var i in parseURL) {
       var items = getXML(parseURL[i]);
       if(i == 0 && items.length>0){
@@ -140,12 +140,7 @@ function resolv(parseURL,jsdURL) {
       }
     }
 }
-
-
-var cp = getComponent("https://github.com/zonelyn/mian/bed");
-resolv(cp.praseURL,cp.jsdURL);
-
-
+ 
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
@@ -215,7 +210,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
     var cp = getComponent(url);
-    var list = resolv(cp.praseURL,cp.jsdURL);
+    var list = resolv(cp.parseURL,cp.jsdURL);
     res.send(list);
     if(list.length){
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
