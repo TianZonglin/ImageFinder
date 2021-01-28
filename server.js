@@ -127,7 +127,7 @@ app.get("/", (request, response) => {
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
-    var path = "",upath = "",list;
+    var path = "",list;
     if(url.indexOf("tree/master")||url.indexOf("tree||main")){
       var arr = url.split("/");
       var flen = arr.length-7;
@@ -136,7 +136,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       for(var i=0;i<flen;i++){
         path += arr[i+7]+"/";
       } 
-      list = resolv("https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,upath);
+      list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path);
       res.send(list);
     }else{
       var arr = url.split("/");
@@ -146,13 +146,15 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       for(var i=0;i<flen;i++){
         path += arr[i+5]+"/";
       } 
-      upath = "https://cdn.jsdelivr.net/gh/"+name+"/master/mian/"+path;
+      list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/master/"+path);
+      console.log("https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/master/"+path);
+      if(list.length){res.send(list);}
+      else{
+        list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/main/"+path);
+        res.send(list);
+      }
     }
-
  
-  console.log(upath);
-    var list = resolv(url,upath);
-    res.send(list);
     if(list.length){
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+url+"','"+list.length+"','"+new Date().getTime()+"','"+name+"','"+"https://github.com/"+name+".png"+"')");
       
