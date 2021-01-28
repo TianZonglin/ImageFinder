@@ -127,8 +127,9 @@ app.get("/", (request, response) => {
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
+  
     var path = "",list;
-    if(url.indexOf("tree/master")||url.indexOf("tree||main")){
+    if(url.indexOf("tree/master")||url.indexOf("tree/main")){console.log(url);
       var arr = url.split("/");
       var flen = arr.length-7;
       var name = arr[3];
