@@ -149,16 +149,18 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
         surl += arr[i]+"/";
       } 
       surl += "^#";
-      for(var i=5;i<flen;i++){
-        path += "/"+arr[i];
+      for(var i=0;i<flen;i++){
+        path += "/"+arr[i+5];
+        
       } 
       surl += path;
+      console.log(surl);
       var s1 = surl.replace("^#","tree/master");
       var s2 = surl.replace("^#","tree/main"); 
-      list = resolv(s1.slice(0,-1),"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path);
+      list = resolv(s1,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
       if(list.length){res.send(list);}
       else{
-        list = resolv(s2,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path);
+        list = resolv(s2,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
         res.send(list);
       }
     }
