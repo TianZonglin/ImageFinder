@@ -67,11 +67,15 @@ function resolv(url,p) {
 app.use(express.static("public"));
 
 
-
 function jugeUrl(zoom) {
-    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true) return true;
-    else return false;
+    const i="https://github.com/";
+    var flag = 0;
+    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
+       && zoom.indexOf(i.substr(8))>0){flag = 1;} 
+    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
+    return flag;
 } 
+ 
 
 app.get("/", (request, response) => {
     var url = request.query.s;
@@ -125,18 +129,62 @@ app.get("/", (request, response) => {
 
 
 
-https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
+//https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
+
+
+function getComponent(url){
+    var mark = jugeUrl(url);
+    var Component;
+    var parseURL = [];
+    if(mark==1){
+      if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
+        var arr = url.split("/");
+        var flen = arr.length-7;
+        var name = arr[3];
+        var base = arr[4];
+        for(var i=0;i<flen;i++){
+          path += arr[i+7]+"/";
+        } 
+        Component={"parseURL":parseURL.push(url),"jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path};
+         
+      }else{
+        var surl = "";
+        var arr = url.split("/");
+        var flen = arr.length-5;
+        var name = arr[3];
+        var base = arr[4];
+        for(var i=0;i<5;i++){
+          surl += arr[i]+"/";
+        } 
+        surl += "^#";
+        for(var i=0;i<flen;i++){
+          path += "/"+arr[i+5];
+
+        } 
+        surl += path;
+        console.log(surl);
+        var s1 = surl.replace("^#","tree/master");
+        var s2 = surl.replace("^#","tree/main"); 
+        list = resolv(s1,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
+        if(list.length){res.send(list);}
+        else{
+          list = resolv(s2,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/");
+          res.send(list);
+        }
+        
+        
+        
+    }else if(mark==2){
+      
+    }
+}
 
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
-    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(url) == true
-       && url.indexOf(i.substr(8))>0){flag = 1;} 
-    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
-  
-  
-  
+
+
   
   
     var path = "",list;
