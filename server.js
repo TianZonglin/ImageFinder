@@ -35,7 +35,7 @@ function jugeUrl(zoom) {
 function CheckImgExists(imgurl) {
     var s = imgurl.match(/http(s):\/\/.*?(gif|png|jpeg|svg|jpg)/gi);
     if(s==null) return false;
-  else return true;
+    else return true;
  
 }
 
@@ -70,7 +70,6 @@ function fullparse(url){
         path += "/"+arr[i+5];
       } 
       surl += path;
-      console.log(surl);
       parseURL.push(surl.replace("^#","tree/master"));
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
@@ -93,56 +92,58 @@ function getComponent(url){
 }
 
 function getXML(parseURL){
-  var response = '';
-  var timeout = 10000;
-  try { response = request(parseURL, { timeout: timeout, dataType: 'xml' }); } 
-  catch (err) { offline = true; }
-  if (offline) {
-      return { list: [], next: "" };
-  }
-  var doc = new Dom({ 
-      errorHandler: {
-          warning: function (e) {},
-          error: function (e) {},
-          fatalError: function (e) {}
+    var response = '';
+    var timeout = 10000;
+    try { response = request(parseURL, { timeout: timeout, dataType: 'xml' }); } 
+    catch (err) { offline = true; }
+    if (offline) {
+        return { list: [], next: "" };
+    }
+    var doc = new Dom({ 
+        errorHandler: {
+            warning: function (e) {},
+            error: function (e) {},
+            fatalError: function (e) {}
+        }
+    }).parseFromString(response.data.toString());
+    return xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
+}
+
+
+
+ 
+function resolv(parseURL,jsdURL) {
+    var list=[];
+  console.log(">> "+parseURL.length);
+    for (var i in parseURL) {
+      var items = getXML(parseURL[i]);
+      if(i == 0 && items.length>0){
+        for (var i in items) {
+            var parser = new Dom().parseFromString(items[i].toString());
+            var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
+            if(CheckImgExists(jsdURL+jpgs)){
+              list.push(jsdURL+jpgs);
+            }
+        }
+        console.log("part1 > "+list.length);
+        return list;
+      }else if(i == 1){ 
+        for (var i in items) {
+            var parser = new Dom().parseFromString(items[i].toString());
+            var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
+            if(CheckImgExists(jsdURL+jpgs)){
+              list.push(jsdURL+jpgs);
+            }
+        }
+        console.log("part2 > "+list.length);
+        return list;
       }
-  }).parseFromString(response.data.toString());
-  return xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
+    }
 }
 
 
 var cp = getComponent("https://github.com/zonelyn/mian/bed");
- console.log(cp);//resolv(cp.praseURL,cp.jsdURL));
- 
-function resolv(parseURL,jsdURL) {
-  var list=[];
-  for (var i in parseURL) {
-    var items = getXML(parseURL[i]);
-    if(items.length>0){
-
-      for (var i in items) {
-          var parser = new Dom().parseFromString(items[i].toString());
-          var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
-          if(CheckImgExists(jsdURL+jpgs)){
-            list.push(jsdURL+jpgs);
-          }
-      }
-      return list;
-    }else{
-      for (var i in items) {
-          var parser = new Dom().parseFromString(items[i].toString());
-          var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
-          if(CheckImgExists(jsdURL+jpgs)){
-            list.push(jsdURL+jpgs);
-          }
-      }
-      return list;
-    }
-  }
-}
-
-
-
+resolv(cp.praseURL,cp.jsdURL);
 
 
 
