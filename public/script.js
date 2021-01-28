@@ -1,7 +1,10 @@
+const i="https://github.com/";
 function jugeUrl(zoom) {
-    var flag = false;
-    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true) flag = true;
-    else return false;
+    
+    var flag = 0;
+    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
+       && zoom.indexOf(i.substr(8))>0){flag = 1;} 
+    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=4){flag = 2;} 
 } 
  
 function reset() {
@@ -11,12 +14,14 @@ function reset() {
 } 
 
 function firethehole(wechat,o) {
-    const i="https://github.com/";
+    
     $("#pictures").html("");
     $("#wechat").attr("readonly","readonly");
     $('#spacex').attr('disabled','disabled');
     $('#google').show();
-    if(jugeUrl(wechat)){
+    if(wechat.substr(-1)=="/"){wechat = wechat.slice(0,-1);}
+  
+    if(>0){
       $.ajax({
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         success: function(facebook){
@@ -35,6 +40,7 @@ function firethehole(wechat,o) {
         }
       });
     }else{
+      if()
       alert("地址格式错误！");reset();$("#wechat").focus();
     }
 } 
