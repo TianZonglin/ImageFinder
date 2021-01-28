@@ -124,6 +124,10 @@ app.get("/", (request, response) => {
 });
 
 
+
+https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
+
+
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
