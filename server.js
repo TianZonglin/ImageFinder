@@ -131,6 +131,13 @@ https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
+    if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(url) == true
+       && url.indexOf(i.substr(8))>0){flag = 1;} 
+    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
+  
+  
+  
+  
   
     var path = "",list;
     if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
