@@ -42,7 +42,7 @@ function firethehole(wechat,o) {
         }
       });
     }else{
-      if(mark==0) alert("地址格式错误，请检查！");
+      if(mark==0) alert("格式错误，请按页面底部规则检查！");
       reset();$("#wechat").focus();
       
     }
