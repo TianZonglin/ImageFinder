@@ -140,18 +140,25 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path);
       res.send(list);
     }else{
+      var surl = "";
       var arr = url.split("/");
       var flen = arr.length-5;
       var name = arr[3];
       var base = arr[4];
-      for(var i=0;i<flen;i++){
-        path += "/"+arr[i+5];
+      for(var i=0;i<5;i++){
+        surl += arr[i]+"/";
       } 
-      list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/master"+path);
-      console.log(list.length);
+      surl += "^#";
+      for(var i=5;i<flen;i++){
+        path += "/"+arr[i];
+      } 
+      surl += path;
+      var s1 = surl.replace("^#","tree/master");
+      var s2 = surl.replace("^#","tree/main"); 
+      list = resolv(s1.slice(0,-1),"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path);
       if(list.length){res.send(list);}
       else{
-        list = resolv(url,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/tree/main"+path);
+        list = resolv(s2,"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path);
         res.send(list);
       }
     }
