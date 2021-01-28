@@ -4,7 +4,8 @@ function jugeUrl(zoom) {
     var flag = 0;
     if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
        && zoom.indexOf(i.substr(8))>0){flag = 1;} 
-    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=4){flag = 2;} 
+    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
+    return flag;
 } 
  
 function reset() {
@@ -21,7 +22,8 @@ function firethehole(wechat,o) {
     $('#google').show();
     if(wechat.substr(-1)=="/"){wechat = wechat.slice(0,-1);}
   
-    if(>0){
+    var mark = jugeUrl(wechat);console.log(mark);
+    if(mark>0){
       $.ajax({
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         success: function(facebook){
@@ -40,8 +42,9 @@ function firethehole(wechat,o) {
         }
       });
     }else{
-      if()
-      alert("地址格式错误！");reset();$("#wechat").focus();
+      if(mark==0) alert("地址格式错误，请检查！");
+      reset();$("#wechat").focus();
+      
     }
 } 
 
