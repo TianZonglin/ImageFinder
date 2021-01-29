@@ -141,8 +141,13 @@ function resolv(parseURL,jsdURL) {
         for (var i in items) {
             var parser = new Dom().parseFromString(items[i].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
-            if(CheckImgExists(jsdURL+jpgs)){
-              list.push(jsdURL+jpgs);
+            var p = jsdURL+jpgs;
+            if(CheckImgExists(p)){
+              list.push(p);
+            }else{
+              if(!(p).split(".").length>0){
+                folder.push(p);
+              }
             }
         }
         console.log("part1 > "+list.length);
@@ -151,12 +156,17 @@ function resolv(parseURL,jsdURL) {
         for (var i in items) {
             var parser = new Dom().parseFromString(items[i].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
-            if(CheckImgExists(jsdURL+jpgs)){
-              list.push(jsdURL+jpgs);
+            var p = jsdURL+jpgs;
+            if(CheckImgExists(p)){
+              list.push(p);
+            }else{
+              if(!(p).split(".").length>0){
+                folder.push(p);
+              }
             }
         }
         console.log("part2 > "+list.length);
-        return list;
+        return {"list":list,"folder":folder};
       }
     }
 }
@@ -204,8 +214,8 @@ app.get("/", (request, response) => {
           html += '  </body>';
           html += '</html>';
           response.send(html);
-          if(list.length){
-            db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
+          if(list.list.length){
+            db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
           }
     }else{
       response.sendFile(__dirname + "/views/index.html");
@@ -224,8 +234,8 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
     var list = resolv(cp.parseURL,cp.jsdURL);
     res.send(list);
-    if(list.length){
-      db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
+    if(list.list.length){
+      db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
     }
 })
 
