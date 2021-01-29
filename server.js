@@ -39,7 +39,7 @@ function jugeUrl(zoom) {
  
 
 function CheckImgExists(imgurl) {
-    var s = imgurl.match(/http(s):\/\/.*?(gif|png|jpeg|svg|jpg)/gi);
+    var s = imgurl.match(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
     if(s==null) return false;
     else return true;
  
