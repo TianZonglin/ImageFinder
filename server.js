@@ -166,7 +166,7 @@ app.use(express.static("public"));
 
 
 
-app.get("/44", (request, response) => {
+app.get("/", (request, response) => {
     var url = request.query.s;
     if(url != null && url.indexOf("github.com")>0 && jugeUrl(url)){
       var arr = url.split("/");
@@ -269,7 +269,7 @@ function format(date){
     var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
     var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
     var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
-    return Y+M+D+h+m+s;
+    return Y+M+D+h+m+s; 
 }
 
 
