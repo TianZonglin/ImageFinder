@@ -1,7 +1,6 @@
 const COMA="https://github.com/";
 const COMB="https://cdn.jsdelivr.net/";
 const COMC="https://gitee.com/";
-
 function jugeUrl(zoom) {
     var flag = 0;
     if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
@@ -9,22 +8,16 @@ function jugeUrl(zoom) {
     else if(zoom.indexOf(COMA)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
     return flag;
 } 
- 
 function reset() {
     $("#wechat").removeAttr("readonly");
     $('#spacex').removeAttr('disabled');
     $('#google').hide();
 } 
-
 function firethehole(wechat,o) {
-    
-    
-    $("#pictures").html("");
     $("#wechat").attr("readonly","readonly");
     $('#spacex').attr('disabled','disabled');
     $('#google').show();
     if(wechat.substr(-1)=="/"){wechat = wechat.slice(0,-1);}
-  
     var mark = jugeUrl(wechat);//console.log(mark);
     if(mark>0){
       $.ajax({
@@ -32,17 +25,15 @@ function firethehole(wechat,o) {
         success: function(facebook){
           var huawei = facebook.folder;
           var honor = facebook.list;
-          
           var redmi = 0;
           $("#folders").html("");  
           huawei.forEach(function(win){
-            setTimeout(function() {  console.log(facebook.url);
-                                
+            setTimeout(function() {  console.log(facebook.url);                 
               $("#folders").append(`<div class="fold" title="${facebook.url+"/"+win}">${win}</div>`); 
             }, (++redmi)*200);
           }); 
-          
           var xiaomi = 0;
+          $("#pictures").html("");
           honor.forEach(function(mac){
             setTimeout(function() {  
               $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
@@ -60,43 +51,31 @@ function firethehole(wechat,o) {
     }else{
       if(mark==0) alert("格式错误，请按页面底部规则检查！");
       reset();$("#wechat").focus();
-      
     }
 } 
-
-//function headsup() {
-//    fetch("/payoff", {})
-//      .then(res => res.json()).then(vivo => {
-//        console.log(vivo);
-//      });
-//}
-
 $(function(){
-      var o; //headsup();
-      fetch("/birth", {})
-        .then(res => res.json()).then(vivo => {
-          o = vivo;
-          for (var mix in vivo) {
-            //console.log(vivo[mix]);
-              $("#avat").append(`<img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
-          }
-        });
-      $(document).on("click",".avat",function(event){
-          $("#wechat").val(this.id);
-          firethehole(this.id,o);
+    var o; //headsup();
+    fetch("/birth", {})
+      .then(res => res.json()).then(vivo => { o = vivo;
+        for (var mix in vivo) {
+            $("#avat").append(`<img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
+        }
       });
-      $(document).on("click",".fold",function(event){
-      
-          $("#wechat").val(this.title);
-          firethehole(this.title,o);
-      });
-      $('#spacex').click(function(){
-          var wechat = $("#wechat").val();  
-          firethehole(wechat,o);
-      })
-      $(".fancybox").fancybox();
-      $("#pictures").on("focusin", function(){
-         $("a.fancybox").fancybox({}); 
-      });  
-  })
+    $(document).on("click",".avat",function(event){
+        $("#wechat").val(this.id);
+        firethehole(this.id,o);
+    });
+    $(document).on("click",".fold",function(event){
+        $("#wechat").val(this.title);
+        firethehole(this.title,o);
+    });
+    $('#spacex').click(function(){
+        var wechat = $("#wechat").val();  
+        firethehole(wechat,o);
+    })
+    $(".fancybox").fancybox();
+    $("#pictures").on("focusin", function(){
+       $("a.fancybox").fancybox({}); 
+    });  
+})
  
