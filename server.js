@@ -7,9 +7,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
  
 
 
-
+//https://gitee.commmmmmmm/W4j1e/pic/raw/master/img/js.jpg
 //https://cdn.jsdelivr.net/gh/TianZongn/tuchuang/Cache_32799f853a0e21fe..jpg
-//https://cdn.jsdelivr.net/gh/Daibi-mua/jsdelivr@1.3/az.jpg
+//     https:   /   /   cdn.jsdelivr.net   /   gh   /   Daibi-mua   /   jsdelivr@1.3   /   az.jpg
 //https://gitee.com/W4j1e/pic/raw/master/img/js.jpg
 //https://gitee.com/xaoxuu/cdn-assets/raw/master/blog/2019-0829a@2x.jpg
 
