@@ -255,20 +255,25 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     if(url.indexOf("cdn.jsdelivr.net/")>0){
       url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
     }
-    var cp = getComponent(url);
-  try{
-    var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-    
-    if(list.list==null&&list.folder==null)return res.send({"msg":"没有子目录且未发现图片资源！"});
-    return res.send(list);
-    
-    if(list.list.length){  
-      db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
+    if(url.indexOf("cdn.jsdelivr.net/")>0){
+      url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
     }
-  }catch(e){
-    
-    return res.send({"msg":e.message});
-  }
+    var cp = getComponent(url);
+    try{
+      var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+
+      if(list.list==null&&list.folder==null){
+        return res.send({"msg":"没有子目录且未发现图片资源！"});
+      }
+      return res.send(list);
+
+      if(list.list.length){  
+        db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
+      }
+    }catch(e){
+
+      return res.send({"msg":e.message});
+    }
     
 
 })
