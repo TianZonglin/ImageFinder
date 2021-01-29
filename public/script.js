@@ -1,11 +1,12 @@
-const i="https://github.com/";
-const j="https://gitee.com/";
+const COMA="https://github.com/";
+const COMB="https://cdn.jsdelivr.net/";
+const COMC="https://gitee.com/";
+
 function jugeUrl(zoom) {
-    
     var flag = 0;
     if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
-       && (zoom.indexOf(i.substr(8))>0||zoom.indexOf(j.substr(8))>0)){flag = 1;} 
-    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
+       && (zoom.indexOf(COMA.substr(8))>0||zoom.indexOf(COMB.substr(8))>0||zoom.indexOf(COMC.substr(8))>0)){flag = 1;} 
+    else if(zoom.indexOf(COMA)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
     return flag;
 } 
  
@@ -38,7 +39,7 @@ function firethehole(wechat,o) {
           }); 
           const oppo = wechat.split("/")[3];
           if(JSON.stringify(o).indexOf(wechat)<0)
-            $("#avat").append(`<img class="avat" src="${i+oppo}.png" title="${oppo}" alt="${wechat}">`);
+            $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" alt="${wechat}">`);
           if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
         }
       });
