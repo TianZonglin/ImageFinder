@@ -143,6 +143,7 @@ function resolv(parseURL,jsdURL,url) {
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
+              console.log("ppppppp: ",p);
               list.push(p);
             }else{
               if(jpgs.split(".").length==1&&jpgs!=""){
@@ -153,6 +154,7 @@ function resolv(parseURL,jsdURL,url) {
         console.log("part1 > "+list.length);
         return {"list":list,"folder":folder,"url":url};
       }else if(i == 1){ 
+        
         for (var i in items) {
             var parser = new Dom().parseFromString(items[i].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
