@@ -96,7 +96,7 @@ function fullparse(url){
     }
 }  
 
-const http = require('http');
+
 
 function getComponent(url){
   
@@ -115,7 +115,9 @@ function getXML(parseURL){
     console.log("XML =>"+parseURL);
     var response = '';
     var timeout = 5000;
-    try { response = request(parseURL, { timeout: timeout, dataType: 'xml' }); } 
+    try { 
+      response = request(parseURL, { timeout: timeout, dataType: 'xml' }); 
+    } 
     catch (err) { offline = true; }
     if (offline) {
         return { list: [], next: "" };
@@ -130,9 +132,7 @@ function getXML(parseURL){
     return xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
 }
 
-request.on('timeout', () => {
-    request.abort();
-});
+
 
  
 function resolv(parseURL,jsdURL,url) {
@@ -238,7 +238,7 @@ app.get("/", (request, response) => {
  
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
-    
+    req.setTimeout(5000);
     var url = req.body.wechat;
     if(url.indexOf("cdn.jsdelivr.net/")>0){
       url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
@@ -279,9 +279,7 @@ const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
-
-
-
+ 
 
 
 function format(date){
