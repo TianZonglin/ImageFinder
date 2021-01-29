@@ -53,7 +53,7 @@ function fullparse(url){
     var Component;
     var parseURL = [];
     var arr = url.split("/"),flen=0,ix=0;
-  console.log(arr);
+  
     if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
     if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
       flen = arr.length-7-ix;
@@ -91,7 +91,7 @@ function fullparse(url){
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/",
-              "name":name,"url":url.replace("https://cdn.jsdelivr.net/",COMA)};
+              "name":name,"url":url.replace("https://cdn.jsdelivr.net/","https://cdn.jsdelivr.net/gh/")};
     }
 }  
 
@@ -166,7 +166,7 @@ app.use(express.static("public"));
 
 
 
-app.get("/", (request, response) => {
+app.get("/44", (request, response) => {
     var url = request.query.s;
     if(url != null && url.indexOf("github.com")>0 && jugeUrl(url)){
       var arr = url.split("/");
@@ -220,9 +220,7 @@ app.get("/", (request, response) => {
 
 //https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
 
-var cp = getComponent("https://cdn.jsdelivr.net/XIADENGMA/IMGBED/image/mailhead.jpg");
-console.log(cp);
-
+ 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
