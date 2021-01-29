@@ -160,14 +160,14 @@ function resolv(parseURL,jsdURL,url) {
               }
             }
         }
-        console.log("part1 > "+list.length);
-        if(!list.length) break;
+        console.log("part1 > list "+list.length);
+        console.log("part1 > folder "+folder.length);
+        if(!list.length&&!folder.length) break;
         return {"list":list,"folder":folder,"url":url};
       }else if(i == 1){ 
         if(items.msg!=null) return items;
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
-            if(parser==null) break;
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
@@ -179,6 +179,8 @@ function resolv(parseURL,jsdURL,url) {
             }
         }
         console.log("part2 > "+list.length);
+        console.log("part2 > folder "+folder.length);
+        if(!list.length&&!folder.length) break;
         return {"list":list,"folder":folder,"url":jsdURL};
       }
     }
@@ -256,8 +258,8 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
   try{
     var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-    console.log(list.folder);
-    if(list.list==null&&list.folder==null)res.send({"msg":"没有子目录且未发现图片资源！"});
+    
+    if(list.list==null&&list.folder==null)return res.send({"msg":"没有子目录且未发现图片资源！"});
     return res.send(list);
     
     if(list.list.length){  
