@@ -24,7 +24,7 @@ function firethehole(wechat,o,x) {
         type: "post",url: "/fuckqq",data: {"wechat":decodeURI(wechat)},dataType: "json",
         timeout:100000,
         success: function(facebook){
-          console.log(facebook);
+          //console.log(facebook);
           if(facebook.msg==null){
             var huawei = facebook.folder;
             var honor = facebook.list;
