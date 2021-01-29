@@ -8,10 +8,10 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 
-
-https://cdn.jsdelivr.net/gh/Daibi-mua/cdn2@ee4423e6b367300d9bba8b89502e40b9564bc2a6/2021/01/24/10e207018e0f0c3bfe5176030d9e56d8@.png
-https://gitee.com/W4j1e/pic/raw/master/img/js.jpg
-https://gitee.com/xaoxuu/cdn-assets/raw/master/blog/2019-0829a@2x.jpg
+//https://cdn.jsdelivr.net/gh/TianZongn/tuchuang/Cache_32799f853a0e21fe..jpg
+//https://cdn.jsdelivr.net/gh/Daibi-mua/jsdelivr@1.3/az.jpg
+//https://gitee.com/W4j1e/pic/raw/master/img/js.jpg
+//https://gitee.com/xaoxuu/cdn-assets/raw/master/blog/2019-0829a@2x.jpg
 
 
 
