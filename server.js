@@ -96,7 +96,7 @@ function fullparse(url){
     }
 }  
 
-
+const http = require('http');
 
 function getComponent(url){
   
@@ -130,7 +130,9 @@ function getXML(parseURL){
     return xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
 }
 
-
+request.on('timeout', () => {
+    request.abort();
+});
 
  
 function resolv(parseURL,jsdURL,url) {
