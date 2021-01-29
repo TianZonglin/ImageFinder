@@ -103,9 +103,8 @@ a{
 .folders>div{
     font-size: 12px;
     font-weight: 600;
-    max-width: 120px;
-    min-width: 100px;
-    height: 70px;
+    width: 130px;
+    height: 60px;
     display: inline-flex;
     margin-right: 10px;
     margin-bottom: 5px;
@@ -119,4 +118,5 @@ a{
     /* white-space: revert; */
     word-break: break-all;
     overflow: hidden;
+  cursor:pointer;
 }
