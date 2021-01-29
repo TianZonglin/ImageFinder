@@ -1,9 +1,10 @@
 const i="https://github.com/";
+const j="https://gitee.com/";
 function jugeUrl(zoom) {
     
     var flag = 0;
     if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
-       && zoom.indexOf(i.substr(8))>0){flag = 1;} 
+       && (zoom.indexOf(i.substr(8))>0||zoom.indexOf(j.substr(8))>0)){flag = 1;} 
     else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
     return flag;
 } 
