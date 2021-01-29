@@ -35,7 +35,7 @@ function firethehole(wechat,o) {
           var redmi = 0;
           huawei.forEach(function(win){
             setTimeout(function() {  
-              $("#folders").append(`<div>${win}</div>`); 
+              $("#folders").append(`<div class="fold" title="${facebook.url+win}">${win}</div>`); 
             }, (++redmi)*200);
           }); 
           
@@ -81,6 +81,11 @@ $(function(){
       $(document).on("click",".avat",function(event){
           $("#wechat").val(this.id);
           firethehole(this.id,o);
+      });
+      $(document).on("click",".fold",function(event){
+        console.log(this.title);
+          $("#wechat").val(this.title);
+          //firethehole(this.id,o);
       });
       $('#spacex').click(function(){
           var wechat = $("#wechat").val();  

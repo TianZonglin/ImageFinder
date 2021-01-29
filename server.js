@@ -87,7 +87,7 @@ function fullparse(url){
         path += "/"+arr[i+5];
       } 
       surl += path;
-      console.log(name);
+      console.log(url);
       parseURL.push(surl.replace("^#","tree/master"));
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
