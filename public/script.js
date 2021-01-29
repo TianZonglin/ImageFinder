@@ -27,10 +27,10 @@ function firethehole(wechat,o,x) {
           var honor = facebook.list;
           var redmi = 0;
           $("#folders").html("");
-          if(x==2){$("#folders").append(`<div class="fold" title="${wechat}">[返回上层]</div>`); }
+          if(x==2){$("#folders").append(`<div class="fold" title="${o}">[返回上层]</div>`); }
           huawei.forEach(function(win){
             setTimeout(function() {      
-              $("#folders").append(`<div class="fold" title="${facebook.url+"/"+win}">${win}</div>`); 
+              $("#folders").append(`<div class="fold" title="${facebook.url+"/"+win}" id="${facebook.url}">${win}</div>`); 
             }, (++redmi)*200);
           }); 
           var xiaomi = 0;
@@ -44,9 +44,14 @@ function firethehole(wechat,o,x) {
           }); 
           const oppo = wechat.split("/")[3];
           if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
-          if(JSON.stringify(o).indexOf(wechat)<0)
-            $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" id="${wechat}">`);
-          if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
+          if(x!=2){
+            if(JSON.stringify(o).indexOf(wechat)<0)
+              $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" id="${wechat}">`);
+          }
+          if(xiaomi == 0){
+            $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
+            reset();$("#wechat").focus();
+          }//alert("未解析到任何图片！");
         }
       });
     }else{
@@ -68,7 +73,7 @@ $(function(){
     });
     $(document).on("click",".fold",function(event){
         $("#wechat").val(this.title);
-        firethehole(this.title,o,2);
+        firethehole(this.title,this.id,2);
     });
     $('#spacex').click(function(){
         var wechat = $("#wechat").val();  
