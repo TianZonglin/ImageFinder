@@ -21,7 +21,7 @@ function firethehole(wechat,o,x) {
     var mark = jugeUrl(wechat);//console.log(mark);
     if(mark>0){
       $.ajax({
-        type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
+        type: "post",url: "/fuckqq",data: {"wechat":decodeURI(wechat)},dataType: "json",
         timeout:100000,
         success: function(facebook){
           console.log(facebook);
@@ -59,7 +59,7 @@ function firethehole(wechat,o,x) {
             }//alert("未解析到任何图片！");
           }else{
             alert(facebook.msg);
-            location.reload(true);
+            reset();$("#wechat").focus();
           }
         },
         error : function(xhr,textStatus){
