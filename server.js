@@ -109,14 +109,17 @@ function getComponent(url){
       return fullparse("https://github.com"+url);
     }
 }
-
+var request = require('sync-request');
 function getXML(parseURL){
   var offline;
     console.log("XML =>"+parseURL);
     var response = '';
     var timeout = 10000;
     try { 
-      response = request(parseURL, { timeout: timeout, dataType: 'xml' }); 
+      
+      response = request('GET', 'http://example.com');
+      console.log(request.getBody());
+      //response = request(parseURL, { timeout: timeout, dataType: 'xml' })   
     } 
     catch (err) { 
        console.log(err);
@@ -145,8 +148,8 @@ function resolv(parseURL,jsdURL,url) {
       var items = getXML(parseURL[i]);
      
       if(i == 0 && items.length>0){
-        for (var i in items) {
-            var parser = new Dom().parseFromString(items[i].toString());
+        for (var e in items) {
+            var parser = new Dom().parseFromString(items[e].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
@@ -162,8 +165,8 @@ function resolv(parseURL,jsdURL,url) {
         return {"list":list,"folder":folder,"url":url};
       }else if(i == 1){ 
         
-        for (var i in items) {
-            var parser = new Dom().parseFromString(items[i].toString());
+        for (var e in items) {
+            var parser = new Dom().parseFromString(items[e].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
