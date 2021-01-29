@@ -121,8 +121,7 @@ function getXML(parseURL){
       //response = request(parseURL, { timeout: timeout, dataType: 'xml' })   
     } 
     catch (err) { 
-      console.log(err);
-      return { list: ["error"]}
+      return {"msg":err.message.split(/[\n]/)[0].slice(0,-1).replace(parseURL,"this query")}
     }
     var doc = new Dom({    
         errorHandler: {
@@ -142,7 +141,7 @@ function resolv(parseURL,jsdURL,url) {
     var folder=[];
     for (var i in parseURL) {
       var items = getXML(parseURL[i]);
-     
+      if(items.msg!=null) return 
       if(i == 0 && items.length>0){
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
