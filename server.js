@@ -145,13 +145,13 @@ function resolv(parseURL,jsdURL) {
             if(CheckImgExists(p)){
               list.push(p);
             }else{
-              if(!(p).split(".").length>0){
-                folder.push(p);
+              if(jpgs.split(".").length==1){
+                folder.push(jpgs);
               }
             }
         }
         console.log("part1 > "+list.length);
-        return list;
+        return {"list":list,"folder":jpgs,"url":jsdURL};
       }else if(i == 1){ 
         for (var i in items) {
             var parser = new Dom().parseFromString(items[i].toString());
@@ -160,13 +160,13 @@ function resolv(parseURL,jsdURL) {
             if(CheckImgExists(p)){
               list.push(p);
             }else{
-              if(!(p).split(".").length>0){
-                folder.push(p);
+              if(jpgs.split(".").length==1){
+                folder.push(jpgs);
               }
             }
         }
         console.log("part2 > "+list.length);
-        return {"list":list,"folder":folder};
+        return {"list":list,"folder":jpgs,"url":jsdURL};
       }
     }
 }
