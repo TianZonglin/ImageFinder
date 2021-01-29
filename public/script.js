@@ -33,7 +33,7 @@ function firethehole(wechat,o,x) {
               var xt="/";
               if(facebook.url.slice(-1)=="/")xt="";
               $("#folders").append(`<div class="fold" title="${facebook.url+xt+win}" id="${facebook.url}">${win}</div>`); 
-            }, (++redmi)*30);
+            }, (++redmi)*20);
           }); 
           var xiaomi = 0;
           $("#pictures").html("");
@@ -54,6 +54,12 @@ function firethehole(wechat,o,x) {
             $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
             reset();$("#wechat").focus();
           }//alert("未解析到任何图片！");
+        },
+        error:function (e) {
+        //返回500错误 或者其他 http状态码错误时 需要在error 回调函数中处理了 并且返回的数据还不能直接alert，需要使用
+        //$.parseJSON 进行转译    res.msg 是自己组装的错误信息通用变量  
+              var res = $.parseJSON(e.responseText);
+              layer.msg(res.msg);
         }
       });
     }else{
