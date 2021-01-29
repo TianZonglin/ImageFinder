@@ -65,6 +65,7 @@ function fullparse(url){
         path += arr[i+7]+"/";
       } 
       parseURL.push(url);
+      
       return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,
               "name":name,"url":url};
@@ -86,7 +87,7 @@ function fullparse(url){
         path += "/"+arr[i+5];
       } 
       surl += path;
-      
+      console.log(name);
       parseURL.push(surl.replace("^#","tree/master"));
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
@@ -280,7 +281,8 @@ if(0){
   db.all("SELECT count(id) from Seeds", (err, row) => {console.log("count > "+JSON.stringify(row));});
 }
 if(0){
-  db.run("DELETE FROM CList WHERE url='https://github.com/zhangdo-sheva/imgbed/tree/main/upload'");
+  //db.run("DELETE FROM CList WHERE url='https://github.com/zhangdo-sheva/imgbed/tree/main/upload'");
+  db.run("DELETE FROM CList WHERE ex1='gh'");
 }
 if(0){
   //db.run("INSERT INTO CList (url,size,ctime) VALUES ('https://github.com/zonelyn/bed','20','"+new Date().getTime()+"')");
