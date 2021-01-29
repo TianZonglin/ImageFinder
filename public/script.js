@@ -29,8 +29,11 @@ function firethehole(wechat,o) {
       $.ajax({
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         success: function(facebook){
+          var huawei = facebook.folder;
+          console.log(huawei);
+          var honor = facebook.list;
           var xiaomi = 0;
-          facebook.forEach(function(mac){
+          honor.forEach(function(mac){
             setTimeout(function() {  
               $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
             }, (++xiaomi)*100);
