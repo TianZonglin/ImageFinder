@@ -42,7 +42,6 @@ function CheckImgExists(imgurl) {
     var s = imgurl.match(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
     if(s==null) return false;
     else return true;
- 
 }
 
 
@@ -112,15 +111,16 @@ function getComponent(url){
 }
 
 function getXML(parseURL){
+  var offline;
     console.log("XML =>"+parseURL);
     var response = '';
-    var timeout = 10000;
+    var timeout = 5000;
     try { response = request(parseURL, { timeout: timeout, dataType: 'xml' }); } 
     catch (err) { offline = true; }
     if (offline) {
         return { list: [], next: "" };
     }
-    var doc = new Dom({ 
+    var doc = new Dom({    
         errorHandler: {
             warning: function (e) {},
             error: function (e) {},
@@ -223,12 +223,12 @@ app.get("/", (request, response) => {
           html += '    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b></footer>';
           html += '  </body>';
           html += '</html>';
-          response.send(html);
+          return response.send(html);
           if(list.list.length){
             db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
           }
     }else{
-      response.sendFile(__dirname + "/views/index.html");
+      return response.sendFile(__dirname + "/views/index.html");
     }
 
 });
@@ -244,13 +244,13 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
   try{
     var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-    res.send(list);
+    return res.send(list);
     
     if(list.list.length){  
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
     }
   }catch(e){
-    res.send({"msg":"查询频率过高！Github已限制对该地址的访问，如需查询请稍后继续。"});
+    return res.send({"msg":"查询频率过高！Github已限制对该地址的访问，如需查询请稍后继续。"});
   }
     
 
@@ -260,14 +260,14 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
 
 app.get('/birth', function(req, res){
     db.all("select ex1,ex2,size,url,ctime,count(url),max(ctime) from CList group by ex1;", (err, row) => {
-      res.send(row);
+      return res.send(row);
     });  
 })
 
 
 app.get('/payoff', function(req, res){
     db.all("select max(id) from CList;", (err, row) => {
-      res.send(row);
+      return res.send(row);
     });  
 })
 
