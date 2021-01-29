@@ -21,8 +21,8 @@ function firethehole(wechat,o,x) {
     var mark = jugeUrl(wechat);//console.log(mark);
     if(mark>0){
       $.ajax({
-        type: "post",url: "/fuckqq",data: {"wechat":decodeURI(wechat)},dataType: "json",
-        timeout:100000,
+        type: "post",url: "/fuckqq",
+        data: {"wechat":decodeURI(wechat)},dataType: "json",
         success: function(facebook){
           //console.log(facebook);
           if(facebook.msg==null){
@@ -44,8 +44,7 @@ function firethehole(wechat,o,x) {
               setTimeout(function() {  
                 $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
               }, (++xiaomi)*100);
-              if(xiaomi != 0){reset(); //headsup();
-              }
+              if(xiaomi != 0){reset(); }
             }); 
             var oppo = wechat.split("/")[3];
             if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
@@ -61,12 +60,7 @@ function firethehole(wechat,o,x) {
             alert(facebook.msg);
             reset();$("#wechat").focus();
           }
-        },
-        error : function(xhr,textStatus){
-          console.log(xhr,textStatus);
-           //alert("Github长时间(10s)未响应，终止！");
-           //location.reload(true);
-        }
+        },error : function(xhr,textStatus){console.log(xhr,textStatus);}
       });
     }else{
       if(mark==0) alert("格式错误，请按页面底部规则检查！");
