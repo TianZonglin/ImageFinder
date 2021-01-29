@@ -112,7 +112,7 @@ function getComponent(url){
 var request2 = require('sync-request');
 function getXML(parseURL){
   var offline;
-    console.log("XML =>"+parseURL);
+    console.log("XML => "+parseURL);
     var response = '';
     try { 
       
@@ -256,7 +256,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
   try{
     var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-    console.log(list);
+    console.log("list.length > ",list.length);
     return res.send(list);
     
     if(list.list.length){  
