@@ -8,8 +8,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 //https://gitee.commmmmmmm/W4j1e/pic/raw/master/img/js.jpg
-//https://cdn.jsdelivr.net/gh/TianZongn/tuchuang/Cache_32799f853a0e21fe..jpg
-//     https:   /   /   cdn.jsdelivr.net   /   gh   /   Daibi-mua   /   jsdelivr@1.3   /   az.jpg
+//https://cdn.jsdelivr.net/Tongn/ngg/Cache_32799f853a0e21fe..jpg
+//https://cdn.jsdelivr.net/gh/Daibi-mua/jsdelivr@1.3/az.jpg
 //https://gitee.com/W4j1e/pic/raw/master/img/js.jpg
 //https://gitee.com/xaoxuu/cdn-assets/raw/master/blog/2019-0829a@2x.jpg
 
@@ -52,6 +52,8 @@ function fullparse(url){
       var flen = arr.length-7;
       var name = arr[3];
       var base = arr[4];
+      if(url.indexOf("cdn.jsdelivr.net/")>0 
+         && base.indexOf("@")>0 ){base}
       for(var i=0;i<flen;i++){
         path += arr[i+7]+"/";
       } 
@@ -211,6 +213,9 @@ app.get("/", (request, response) => {
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
     var url = req.body.wechat;
+    if(url.indexOf("cdn.jsdelivr.net/")>0){
+      url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
+    }
     var cp = getComponent(url);
     var list = resolv(cp.parseURL,cp.jsdURL);
     res.send(list);
