@@ -143,7 +143,7 @@ function resolv(parseURL,jsdURL,url) {
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
-              console.log("ppppppp: ",p);
+              //console.log("ppppppp: ",p);
               list.push(p);
             }else{
               if(jpgs.split(".").length==1&&jpgs!=""){
@@ -241,11 +241,18 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
     }
     var cp = getComponent(url);
+  try{
     var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
     res.send(list);
+    
     if(list.list.length){  
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
     }
+  }catch(e){
+    res.send({"msg":"查询频率过高！请稍后继续。"});
+  }
+    
+
 })
 
 
