@@ -27,7 +27,7 @@ function firethehole(wechat,o,x) {
           var honor = facebook.list;
           var redmi = 0;
           $("#folders").html("");
-          if(x==2){$("#folders").append(`<div class="fold" title="${1}">[返回上层]</div>`); }
+          if(x==2&&wechat.split("/").length>5){$("#folders").append(`<div class="fold" title="${wechat.replace("/"+wechat.split("/")[wechat.split("/").length-1],"")}">[返回上层]</div>`); }
           huawei.forEach(function(win){
             setTimeout(function() {      
               $("#folders").append(`<div class="fold" title="${facebook.url+"/"+win}" id="${facebook.url}">${win}</div>`); 
