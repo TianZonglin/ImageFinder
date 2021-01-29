@@ -238,7 +238,7 @@ app.get("/", (request, response) => {
  
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
-    req.setTimeout(5000);
+ 
     var url = req.body.wechat;
     if(url.indexOf("cdn.jsdelivr.net/")>0){
       url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
