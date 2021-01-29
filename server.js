@@ -65,7 +65,7 @@ function fullparse(url){
         path += arr[i+7]+"/";
       } 
       parseURL.push(url);
-      
+
       return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,
               "name":name,"url":url};
@@ -81,7 +81,7 @@ function fullparse(url){
         if(base.indexOf("@")>0 ){base = base.split("@")[0];}
         surl = COMA+name+"/"+base+"/";
       }
-         
+
       surl += "^#";
       for(var i=0;i<flen;i++){
         path += "/"+arr[i+5];
@@ -92,7 +92,8 @@ function fullparse(url){
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/",
-              "name":name,"url":url.replace("https://cdn.jsdelivr.net/","https://cdn.jsdelivr.net/gh/")};
+              "name":name,"url":url.replace("https://cdn.jsdelivr.net/","https://cdn.jsdelivr.net/gh/")
+      };
     }
 }  
 

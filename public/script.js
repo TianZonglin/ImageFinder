@@ -38,7 +38,7 @@ function firethehole(wechat,o) {
             }
           }); 
           const oppo = wechat.split("/")[3];
-          if
+          if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
           if(JSON.stringify(o).indexOf(wechat)<0)
             $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" alt="${wechat}">`);
           if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
