@@ -206,12 +206,14 @@ app.get("/", (request, response) => {
           html += '  </head>';
           html += '  <body>';
           html += '    <main>';
-          html += '      <section class="pictures" id="pictures">';
+          html +=       '<section class="folders" id="folders">';
           list.folder.forEach(function(win){
               var xt="/";
               if(list.url.slice(-1)=="/")xt="";
               html += `<div class="fold" title="${list.url+xt+win}" id="${list.url}">${win}</div>`; 
-          }); 
+          });    
+          html +=       '</section><br>';
+          html += '      <section class="pictures" id="pictures">';
           list.list.forEach(function(mac){
             html += `<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`; 
           }); 
