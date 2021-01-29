@@ -140,8 +140,9 @@ function resolv(parseURL,jsdURL,url) {
     var list=[];
     var folder=[];
     for (var i in parseURL) {
+      console.log(111111111111111111111111);
       var items = getXML(parseURL[i]);
-      if(items.msg!=null) return 
+      
       if(i == 0 && items.length>0){
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
@@ -159,7 +160,7 @@ function resolv(parseURL,jsdURL,url) {
         console.log("part1 > "+list.length);
         return {"list":list,"folder":folder,"url":url};
       }else if(i == 1){ 
-        
+        if(items.msg!=null) return items;
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
