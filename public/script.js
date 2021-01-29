@@ -30,8 +30,15 @@ function firethehole(wechat,o) {
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         success: function(facebook){
           var huawei = facebook.folder;
-          console.log(huawei);
           var honor = facebook.list;
+          
+          var redmi = 0;
+          huawei.forEach(function(win){
+            setTimeout(function() {  
+              $("#folders").append(`<div>${win}</div>`); 
+            }, (++redmi)*200);
+          }); 
+          
           var xiaomi = 0;
           honor.forEach(function(mac){
             setTimeout(function() {  
