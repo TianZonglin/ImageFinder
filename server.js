@@ -87,7 +87,7 @@ function fullparse(url){
         path += "/"+arr[i+5];
       } 
       surl += path;
-      console.log(url.replace("https://cdn.jsdelivr.net/","https://cdn.jsdelivr.net/gh/"));
+      
       parseURL.push(surl.replace("^#","tree/master"));
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
@@ -112,6 +112,7 @@ function getComponent(url){
 }
 
 function getXML(parseURL){
+    console.log("XML =>"+parseURL);
     var response = '';
     var timeout = 10000;
     try { response = request(parseURL, { timeout: timeout, dataType: 'xml' }); } 
@@ -249,7 +250,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
     }
   }catch(e){
-    res.send({"msg":"查询频率过高！请稍后继续。"});
+    res.send({"msg":"查询频率过高！Github已限制对该地址的访问，如需查询请稍后继续。"});
   }
     
 
