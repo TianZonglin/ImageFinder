@@ -21,7 +21,8 @@ function firethehole(wechat,o,x) {
     var mark = jugeUrl(wechat);//console.log(mark);
     if(mark>0){
       $.ajax({
-        type: "post",url: "/fuckqq",data: {"wechat":encodeURI(wechat)},dataType: "json",
+        type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
+        timeout:100000,
         success: function(facebook){
           if(facebook.msg==null){
             var huawei = facebook.folder;
@@ -59,10 +60,10 @@ function firethehole(wechat,o,x) {
             alert(facebook.msg);
           }
         },
-        complete: function (XMLHttpRequest, textStatus) {
-            if(textStatus == 'timeout'){
-                alert("终止，Github未响应该请求！");
-            }
+        error : function(xhr,textStatus){
+          console.log(xhr,textStatus);
+           //alert("Github长时间(10s)未响应，终止！");
+           //location.reload(true);
         }
       });
     }else{
