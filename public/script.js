@@ -29,8 +29,10 @@ function firethehole(wechat,o,x) {
           $("#folders").html("");
           if(x==2&&wechat.split("/").length>5){$("#folders").append(`<div class="fold" title="${wechat.replace("/"+wechat.split("/")[wechat.split("/").length-1],"")}">[返回上层]</div>`); }
           huawei.forEach(function(win){
-            setTimeout(function() {      
-              $("#folders").append(`<div class="fold" title="${facebook.url+"/"+win}" id="${facebook.url}">${win}</div>`); 
+            setTimeout(function() {    
+              var xt="/";
+              if(facebook.url.slice(-1)=="/")xt="";
+              $("#folders").append(`<div class="fold" title="${facebook.url+xt+win}" id="${facebook.url}">${win}</div>`); 
             }, (++redmi)*200);
           }); 
           var xiaomi = 0;
@@ -42,7 +44,7 @@ function firethehole(wechat,o,x) {
             if(xiaomi != 0){reset(); //headsup();
             }
           }); 
-          const oppo = wechat.split("/")[3];
+          var oppo = wechat.split("/")[3];
           if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
           if(x!=2){
             if(JSON.stringify(o).indexOf(wechat)<0)

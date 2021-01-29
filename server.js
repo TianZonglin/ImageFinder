@@ -236,7 +236,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
     var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
     res.send(list);
-    if(list.list.length){
+    if(list.list.length){  
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
     }
 })
