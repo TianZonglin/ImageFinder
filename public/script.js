@@ -21,7 +21,7 @@ function firethehole(wechat,o,x) {
     var mark = jugeUrl(wechat);//console.log(mark);
     if(mark>0){
       $.ajax({
-        type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
+        type: "post",url: "/fuckqq",data: {"wechat":encodeURI(wechat)},dataType: "json",
         success: function(facebook){
           if(facebook.msg==null){
             var huawei = facebook.folder;
@@ -49,7 +49,7 @@ function firethehole(wechat,o,x) {
             if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
             if(x!=2){
               if(JSON.stringify(o).indexOf(wechat)<0)
-                $("#avat").append(`<img class="avat" src="${COMA+".cnpmjs.org/"+oppo}.png" title="${oppo}" id="${wechat}">`);
+                $("#avat").append(`<img class="avat" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
             }
             if(xiaomi == 0){
               $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
@@ -58,6 +58,11 @@ function firethehole(wechat,o,x) {
           }else{
             alert(facebook.msg);
           }
+        },
+        complete: function (XMLHttpRequest, textStatus) {
+            if(textStatus == 'timeout'){
+                alert("终止，Github未响应该请求！");
+            }
         }
       });
     }else{
@@ -70,7 +75,7 @@ $(function(){
     fetch("/birth", {})
       .then(res => res.json()).then(vivo => { o = vivo;
         for (var mix in vivo) {
-            $("#avat").append(`<img class="avat" src="${vivo[mix].ex2.replace("github.com","github.com.cnpmjs.org")}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
+            $("#avat").append(`<img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
         }
       });
     $(document).on("click",".avat",function(event){$("#wechat").val(this.id);firethehole(this.id,o,1);});
