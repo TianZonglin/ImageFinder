@@ -87,7 +87,7 @@ function fullparse(url){
         path += "/"+arr[i+5];
       } 
       surl += path;
-      console.log(url);
+      console.log(url.replace("https://cdn.jsdelivr.net/","https://cdn.jsdelivr.net/gh/"));
       parseURL.push(surl.replace("^#","tree/master"));
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
@@ -132,7 +132,7 @@ function getXML(parseURL){
 
 
  
-function resolv(parseURL,jsdURL) {
+function resolv(parseURL,jsdURL,url) {
     var list=[];
     var folder=[];
     for (var i in parseURL) {
@@ -151,7 +151,7 @@ function resolv(parseURL,jsdURL) {
             }
         }
         console.log("part1 > "+list.length);
-        return {"list":list,"folder":folder,"url":jsdURL};
+        return {"list":list,"folder":folder,"url":url};
       }else if(i == 1){ 
         for (var i in items) {
             var parser = new Dom().parseFromString(items[i].toString());
@@ -186,7 +186,7 @@ app.get("/", (request, response) => {
         url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
       }
       var cp = getComponent(url);
-      var list = resolv(cp.parseURL,cp.jsdURL);
+      var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
       var html = "";   
           html += '<!DOCTYPE html>';
           html += '<html lang="en">';
@@ -232,7 +232,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
     }
     var cp = getComponent(url);
-    var list = resolv(cp.parseURL,cp.jsdURL);
+    var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
     res.send(list);
     if(list.list.length){
       db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
