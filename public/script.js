@@ -1,6 +1,6 @@
-const COMA="https://github.com/";
+const COMA="https://github.com";
 const COMB="https://cdn.jsdelivr.net/";
-const COMC="https://gitee.com/";
+const COMC="https://gitee.com";
 function jugeUrl(zoom) {
     var flag = 0;
     if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
@@ -49,7 +49,7 @@ function firethehole(wechat,o,x) {
             if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
             if(x!=2){
               if(JSON.stringify(o).indexOf(wechat)<0)
-                $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" id="${wechat}">`);
+                $("#avat").append(`<img class="avat" src="${COMA+".cnpmjs.org/"+oppo}.png" title="${oppo}" id="${wechat}">`);
             }
             if(xiaomi == 0){
               $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
@@ -70,21 +70,12 @@ $(function(){
     fetch("/birth", {})
       .then(res => res.json()).then(vivo => { o = vivo;
         for (var mix in vivo) {
-            $("#avat").append(`<img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
+            $("#avat").append(`<img class="avat" src="${vivo[mix].ex2.replace("github.com","github.com.cnpmjs.org")}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
         }
       });
-    $(document).on("click",".avat",function(event){
-        $("#wechat").val(this.id);
-        firethehole(this.id,o,1);
-    });
-    $(document).on("click",".fold",function(event){
-        $("#wechat").val(this.title);
-        firethehole(this.title,o,2);
-    });
-    $('#spacex').click(function(){
-        var wechat = $("#wechat").val();  
-        firethehole(wechat,o,0);
-    })
+    $(document).on("click",".avat",function(event){$("#wechat").val(this.id);firethehole(this.id,o,1);});
+    $(document).on("click",".fold",function(event){$("#wechat").val(this.title);firethehole(this.title,o,2);});
+    $('#spacex').click(function(){var wechat = $("#wechat").val();firethehole(wechat,o,0);});
     $(".fancybox").fancybox();
     $("#pictures").on("focusin", function(){
        $("a.fancybox").fancybox({}); 
