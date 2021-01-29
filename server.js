@@ -164,21 +164,13 @@ function resolv(parseURL,jsdURL) {
 app.use(express.static("public"));
 
 
-
-
-app.get("/", (request, response) => {
-    var url = request.query.s;
-    if(url != null && url.indexOf("github.com")>0 && jugeUrl(url)){
-      var arr = url.split("/");
-      var flen = arr.length-7;
-      var name = arr[3];
-      var base = arr[4];
-      var path = "";
-      for(var i=0;i<flen;i++){
-        path += arr[i+7]+"/";
+app.get('/:url', function (req, res) {
+      var url = req.params.url;
+      if(url.indexOf("cdn.jsdelivr.net/")>0){
+        url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
       }
-      var upath = "https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path;
-      var list = resolv(url,upath);
+      var cp = getComponent(url);
+      var list = resolv(cp.parseURL,cp.jsdURL);
       var html = "";   
           html += '<!DOCTYPE html>';
           html += '<html lang="en">';
@@ -205,15 +197,14 @@ app.get("/", (request, response) => {
           html += '    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b></footer>';
           html += '  </body>';
           html += '</html>';
-        response.send(html);
+        res.send(html);
         if(list.length){
-          db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+url+"','"+list.length+"','"+new Date().getTime()+"','"+name+"','"+"https://github.com/"+name+".png"+"')");
-
+          db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
         }
-    }else{
-      response.sendFile(__dirname + "/views/index.html");
-    }
+});
 
+app.get("/", (request, response) => {
+    response.sendFile(__dirname + "/views/index.html");
 });
 
 
