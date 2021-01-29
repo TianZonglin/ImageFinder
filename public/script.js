@@ -40,7 +40,7 @@ function firethehole(wechat,o) {
           const oppo = wechat.split("/")[3];
           if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
           if(JSON.stringify(o).indexOf(wechat)<0)
-            $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" alt="${wechat}">`);
+            $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" id="${wechat}">`);
           if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
         }
       });
@@ -65,12 +65,12 @@ $(function(){
           o = vivo;
           for (var mix in vivo) {
             //console.log(vivo[mix]);
-              $("#avat").append(`<img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" alt="${vivo[mix].url}">`);
+              $("#avat").append(`<img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
           }
         });
       $(document).on("click",".avat",function(event){
-          $("#wechat").val(this.alt);
-          firethehole(this.alt,o);
+          $("#wechat").val(this.id);
+          firethehole(this.id,o);
       });
       $('#spacex').click(function(){
           var wechat = $("#wechat").val();  
