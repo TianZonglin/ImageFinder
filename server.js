@@ -134,6 +134,7 @@ function getXML(parseURL){
  
 function resolv(parseURL,jsdURL) {
     var list=[];
+    var folder=[];
     for (var i in parseURL) {
       var items = getXML(parseURL[i]);
       if(i == 0 && items.length>0){
