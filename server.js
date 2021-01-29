@@ -130,7 +130,9 @@ function getXML(parseURL){
             fatalError: function (e) {}
         }
     }).parseFromString(response);
-    return xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
+    var s = xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
+    if(s.length>0) return s;
+    else return {"msg":"Can't find any images."}
 }
 
 
@@ -140,14 +142,15 @@ function resolv(parseURL,jsdURL,url) {
     var list=[];
     var folder=[];
     for (var i in parseURL) {
-      console.log(111111111111111111111111);
+      
       var items = getXML(parseURL[i]);
       
-      if(i == 0 && items.length>0){
+      if(i == 0){
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
+            if(jpgs==null)
             if(CheckImgExists(p)){
               //console.log("ppppppp: ",p);
               list.push(p);
@@ -159,8 +162,8 @@ function resolv(parseURL,jsdURL,url) {
         }
         console.log("part1 > "+list.length);
         return {"list":list,"folder":folder,"url":url};
-      }else if(i == 1){ 
-        if(items.msg!=null) return items;
+      }else if(i == 1){ console.log(111111111111111111111111);
+        
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
@@ -175,6 +178,8 @@ function resolv(parseURL,jsdURL,url) {
         }
         console.log("part2 > "+list.length);
         return {"list":list,"folder":folder,"url":jsdURL};
+      }else{
+        if(items.msg!=null) return items;
       }
     }
 }
