@@ -24,7 +24,7 @@ function firethehole(wechat,o) {
     $('#google').show();
     if(wechat.substr(-1)=="/"){wechat = wechat.slice(0,-1);}
   
-    var mark = jugeUrl(wechat);console.log(mark);
+    var mark = jugeUrl(wechat);//console.log(mark);
     if(mark>0){
       $.ajax({
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
@@ -38,6 +38,7 @@ function firethehole(wechat,o) {
             }
           }); 
           const oppo = wechat.split("/")[3];
+          if
           if(JSON.stringify(o).indexOf(wechat)<0)
             $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" alt="${wechat}">`);
           if(xiaomi == 0){alert("未解析到任何图片！");reset();$("#wechat").focus();}
