@@ -256,7 +256,8 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
   try{
     var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-    console.log("list.length > ",list.length);
+    console.log(list.folder);
+    if(list.list==null&&list.folder==null)res.send({"msg":"没有子目录且未发现图片资源！"});
     return res.send(list);
     
     if(list.list.length){  
@@ -264,7 +265,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     }
   }catch(e){
     
-    return res.send({"msg":"查询频率过高！Github已限制对该地址的访问，如需查询请稍后继续。"});
+    return res.send({"msg":e.message});
   }
     
 
