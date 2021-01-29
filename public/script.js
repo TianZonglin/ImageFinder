@@ -13,7 +13,7 @@ function reset() {
     $('#spacex').removeAttr('disabled');
     $('#google').hide();
 } 
-function firethehole(wechat,o) {
+function firethehole(wechat,o,x) {
     $("#wechat").attr("readonly","readonly");
     $('#spacex').attr('disabled','disabled');
     $('#google').show();
@@ -26,9 +26,10 @@ function firethehole(wechat,o) {
           var huawei = facebook.folder;
           var honor = facebook.list;
           var redmi = 0;
-          $("#folders").html("");  
+          $("#folders").html("");
+          if(x==2){$("#folders").append(`<div class="fold" title="${wechat}">[返回上层]</div>`); }
           huawei.forEach(function(win){
-            setTimeout(function() {  console.log(facebook.url);                 
+            setTimeout(function() {      
               $("#folders").append(`<div class="fold" title="${facebook.url+"/"+win}">${win}</div>`); 
             }, (++redmi)*200);
           }); 
@@ -63,15 +64,15 @@ $(function(){
       });
     $(document).on("click",".avat",function(event){
         $("#wechat").val(this.id);
-        firethehole(this.id,o);
+        firethehole(this.id,o,1);
     });
     $(document).on("click",".fold",function(event){
         $("#wechat").val(this.title);
-        firethehole(this.title,o);
+        firethehole(this.title,o,2);
     });
     $('#spacex').click(function(){
         var wechat = $("#wechat").val();  
-        firethehole(wechat,o);
+        firethehole(wechat,o,0);
     })
     $(".fancybox").fancybox();
     $("#pictures").on("focusin", function(){
