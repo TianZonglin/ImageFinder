@@ -109,24 +109,20 @@ function getComponent(url){
       return fullparse("https://github.com"+url);
     }
 }
-var request = require('sync-request');
+var request2 = require('sync-request');
 function getXML(parseURL){
   var offline;
     console.log("XML =>"+parseURL);
     var response = '';
-    var timeout = 10000;
     try { 
       
-      response = request('GET', 'http://example.com');
-      console.log(request.getBody());
+      response = request2('GET', parseURL).getBody().toString();
+      console.log("response-size > "+ response.length);
       //response = request(parseURL, { timeout: timeout, dataType: 'xml' })   
     } 
     catch (err) { 
-       console.log(err);
-      offline = true; 
-    }
-    if (offline) {
-        return { list: [], next: "" };
+      console.log(err);
+      return { list: ["error"]}
     }
     var doc = new Dom({    
         errorHandler: {
@@ -134,7 +130,7 @@ function getXML(parseURL){
             error: function (e) {},
             fatalError: function (e) {}
         }
-    }).parseFromString(response.data.toString());
+    }).parseFromString(response);
     return xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
 }
 
