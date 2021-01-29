@@ -24,14 +24,18 @@ var offline = false;
 
 
 
+const COMA="https://github.com/";
+const COMB="https://cdn.jsdelivr.net/";
+const COMC="https://gitee.com/";
+
 function jugeUrl(zoom) {
-    const i="https://github.com/";
     var flag = 0;
     if (new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/).test(zoom) == true
-       && zoom.indexOf(i.substr(8))>0){flag = 1;} 
-    else if(zoom.indexOf(i)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
+       && (zoom.indexOf(COMA.substr(8))>0||zoom.indexOf(COMB.substr(8))>0||zoom.indexOf(COMC.substr(8))>0)){flag = 1;} 
+    else if(zoom.indexOf(COMA)<0 && zoom.substr(0,1)=="/" && zoom.split('/').length>=3){flag = 2;} 
     return flag;
 } 
+ 
  
 
 function CheckImgExists(imgurl) {
@@ -49,6 +53,7 @@ function fullparse(url){
     var Component;
     var parseURL = [];
     var arr = url.split("/"),flen=0,ix=0;
+  console.log(arr);
     if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
     if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
       flen = arr.length-7-ix;
@@ -68,11 +73,14 @@ function fullparse(url){
       flen = arr.length-5-ix;
       var name = arr[3];
       var base = arr[4];
-      if(url.indexOf("cdn.jsdelivr.net/")>0 
-         && base.indexOf("@")>0 ){base = base.split("@")[0];}
       for(var i=0;i<5;i++){
         surl += arr[i]+"/";
       } 
+      if(url.indexOf("cdn.jsdelivr.net/")>0 ){
+        if(base.indexOf("@")>0 ){base = base.split("@")[0];}
+        surl = COMA+name+"/"+base+"/";
+      }
+         
       surl += "^#";
       for(var i=0;i<flen;i++){
         path += "/"+arr[i+5];
@@ -83,15 +91,15 @@ function fullparse(url){
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/",
-              "name":name,"url":url};
+              "name":name,"url":url.replace("https://cdn.jsdelivr.net/",COMA)};
     }
 }  
 
 
 
 function getComponent(url){
-  console.log((url));  
-    var mark = jugeUrl(url); 
+  
+    var mark = jugeUrl(url);  
     var Component;
     var parseURL = [];  
     if(mark==1){
@@ -212,7 +220,8 @@ app.get("/", (request, response) => {
 
 //https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
 
-var cp = getComponent("https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg");
+var cp = getComponent("https://cdn.jsdelivr.net/XIADENGMA/IMGBED/image/mailhead.jpg");
+console.log(cp);
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
