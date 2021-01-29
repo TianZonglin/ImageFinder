@@ -167,8 +167,8 @@ app.use(express.static("public"));
 
 
 app.get("/", (request, response) => {
-      var url = request.query.x;
-      if(url != null && url.indexOf("github.com")>0 && jugeUrl(url)){
+    var url = request.query.x;
+    if(url != null){
       if(url.indexOf("cdn.jsdelivr.net/")>0){
         url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
       }
