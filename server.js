@@ -78,7 +78,7 @@ function fullparse(url){
       } 
       if(url.indexOf("cdn.jsdelivr.net/")>0 ){
         if(base.indexOf("@")>0 ){base = base.split("@")[0];}
-        surl = COMA+name+"/"+base+"/";
+        surl = COMA+"/"+name+"/"+base+"/";
       }
 
       surl += "^#";
