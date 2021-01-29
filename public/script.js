@@ -23,38 +23,41 @@ function firethehole(wechat,o,x) {
       $.ajax({
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         success: function(facebook){
-          if（）
-          var huawei = facebook.folder;
-          var honor = facebook.list;
-          var redmi = 0;
-          $("#folders").html("");
-          if(x==2&&wechat.split("/").length>5){$("#folders").append(`<div class="fold" title="${wechat.replace("/"+wechat.split("/")[wechat.split("/").length-1],"")}">[返回上层]</div>`); }
-          huawei.forEach(function(win){
-            setTimeout(function() {    
-              var xt="/";
-              if(facebook.url.slice(-1)=="/")xt="";
-              $("#folders").append(`<div class="fold" title="${facebook.url+xt+win}" id="${facebook.url}">${win}</div>`); 
-            }, (++redmi)*20);
-          }); 
-          var xiaomi = 0;
-          $("#pictures").html("");
-          honor.forEach(function(mac){
-            setTimeout(function() {  
-              $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
-            }, (++xiaomi)*100);
-            if(xiaomi != 0){reset(); //headsup();
+          if(facebook.msg==null){
+            var huawei = facebook.folder;
+            var honor = facebook.list;
+            var redmi = 0;
+            $("#folders").html("");
+            if(x==2&&wechat.split("/").length>5){$("#folders").append(`<div class="fold" title="${wechat.replace("/"+wechat.split("/")[wechat.split("/").length-1],"")}">[返回上层]</div>`); }
+            huawei.forEach(function(win){
+              setTimeout(function() {    
+                var xt="/";
+                if(facebook.url.slice(-1)=="/")xt="";
+                $("#folders").append(`<div class="fold" title="${facebook.url+xt+win}" id="${facebook.url}">${win}</div>`); 
+              }, (++redmi)*20);
+            }); 
+            var xiaomi = 0;
+            $("#pictures").html("");
+            honor.forEach(function(mac){
+              setTimeout(function() {  
+                $("#pictures").append(`<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`); 
+              }, (++xiaomi)*100);
+              if(xiaomi != 0){reset(); //headsup();
+              }
+            }); 
+            var oppo = wechat.split("/")[3];
+            if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
+            if(x!=2){
+              if(JSON.stringify(o).indexOf(wechat)<0)
+                $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" id="${wechat}">`);
             }
-          }); 
-          var oppo = wechat.split("/")[3];
-          if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
-          if(x!=2){
-            if(JSON.stringify(o).indexOf(wechat)<0)
-              $("#avat").append(`<img class="avat" src="${COMA+oppo}.png" title="${oppo}" id="${wechat}">`);
+            if(xiaomi == 0){
+              $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
+              reset();$("#wechat").focus();
+            }//alert("未解析到任何图片！");
+          }else{
+            alert(facebook.msg);
           }
-          if(xiaomi == 0){
-            $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
-            reset();$("#wechat").focus();
-          }//alert("未解析到任何图片！");
         }
       });
     }else{
