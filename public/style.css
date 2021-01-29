@@ -101,15 +101,20 @@ a{
   }
 
 .folders>div{
+  font-size:12px;
   width:100px;
   height:50px;
   display:inline-block;
   margin-right:10px;
   margin-bottom:10px;
   border-radius: 10px;
-  background-color: #a2946a;
+  background-color: #b99427;
    box-shadow: 5px 5px 5px rgba(0,0,0,.5);
    /*考虑浏览器兼容性*/
    -moz-box-shadow: 5px 5px 5px rgba(0,0,0,.5);
    -webkit-box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+  color: #5b4b1b;
+  padding: 10px;
+  white-space: nowrap;
+ 
 }
