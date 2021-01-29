@@ -44,16 +44,18 @@ function CheckImgExists(imgurl) {
 
 
 function fullparse(url){
+  
     var path="";
     var Component;
     var parseURL = [];
+    var arr = url.split("/"),flen=0,ix=0;
+    if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
     if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
-      var arr = url.split("/");
-      var flen = arr.length-7;
+      flen = arr.length-7-ix;
       var name = arr[3];
       var base = arr[4];
       if(url.indexOf("cdn.jsdelivr.net/")>0 
-         && base.indexOf("@")>0 ){base}
+         && base.indexOf("@")>0 ){base = base.split("@")[0];}
       for(var i=0;i<flen;i++){
         path += arr[i+7]+"/";
       } 
@@ -63,10 +65,11 @@ function fullparse(url){
               "name":name,"url":url};
     }else{
       var surl = "";
-      var arr = url.split("/");
-      var flen = arr.length-5;
+      flen = arr.length-5-ix;
       var name = arr[3];
       var base = arr[4];
+      if(url.indexOf("cdn.jsdelivr.net/")>0 
+         && base.indexOf("@")>0 ){base = base.split("@")[0];}
       for(var i=0;i<5;i++){
         surl += arr[i]+"/";
       } 
@@ -75,6 +78,7 @@ function fullparse(url){
         path += "/"+arr[i+5];
       } 
       surl += path;
+      
       parseURL.push(surl.replace("^#","tree/master"));
       parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
@@ -86,9 +90,10 @@ function fullparse(url){
 
 
 function getComponent(url){
-    var mark = jugeUrl(url);
+  console.log((url));  
+    var mark = jugeUrl(url); 
     var Component;
-    var parseURL = [];
+    var parseURL = [];  
     if(mark==1){
       return fullparse(url);
     }else if(mark==2){
@@ -207,8 +212,7 @@ app.get("/", (request, response) => {
 
 //https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg
 
-
-
+var cp = getComponent("https://cdn.jsdelivr.net/gh/XIADENGMA/IMGBED/image/mailhead.jpg");
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     
