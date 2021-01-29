@@ -23,6 +23,7 @@ function firethehole(wechat,o,x) {
       $.ajax({
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         success: function(facebook){
+          if（）
           var huawei = facebook.folder;
           var honor = facebook.list;
           var redmi = 0;
@@ -54,12 +55,6 @@ function firethehole(wechat,o,x) {
             $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
             reset();$("#wechat").focus();
           }//alert("未解析到任何图片！");
-        },
-        error:function (e) {
-        //返回500错误 或者其他 http状态码错误时 需要在error 回调函数中处理了 并且返回的数据还不能直接alert，需要使用
-        //$.parseJSON 进行转译    res.msg 是自己组装的错误信息通用变量  
-              var res = $.parseJSON(e.responseText);
-              layer.msg(res.msg);
         }
       });
     }else{
