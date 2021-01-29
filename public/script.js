@@ -33,7 +33,7 @@ function firethehole(wechat,o,x) {
               var xt="/";
               if(facebook.url.slice(-1)=="/")xt="";
               $("#folders").append(`<div class="fold" title="${facebook.url+xt+win}" id="${facebook.url}">${win}</div>`); 
-            }, (++redmi)*200);
+            }, (++redmi)*30);
           }); 
           var xiaomi = 0;
           $("#pictures").html("");

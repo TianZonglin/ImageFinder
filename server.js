@@ -207,7 +207,12 @@ app.get("/", (request, response) => {
           html += '  <body>';
           html += '    <main>';
           html += '      <section class="pictures" id="pictures">';
-          list.forEach(function(mac){
+          list.folder.forEach(function(win){
+              var xt="/";
+              if(list.url.slice(-1)=="/")xt="";
+              html += `<div class="fold" title="${list.url+xt+win}" id="${list.url}">${win}</div>`; 
+          }); 
+          list.list.forEach(function(mac){
             html += `<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`; 
           }); 
           html += '      </section>';
