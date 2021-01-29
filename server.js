@@ -148,9 +148,9 @@ function resolv(parseURL,jsdURL,url) {
       if(i == 0){
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
+            if(parser==null) break;
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
-            if(jpgs==null)
             if(CheckImgExists(p)){
               //console.log("ppppppp: ",p);
               list.push(p);
@@ -161,11 +161,13 @@ function resolv(parseURL,jsdURL,url) {
             }
         }
         console.log("part1 > "+list.length);
+        if(!list.length) break;
         return {"list":list,"folder":folder,"url":url};
-      }else if(i == 1){ console.log(111111111111111111111111);
-        
+      }else if(i == 1){ 
+        if(items.msg!=null) return items;
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
+            if(parser==null) break;
             var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
@@ -178,10 +180,9 @@ function resolv(parseURL,jsdURL,url) {
         }
         console.log("part2 > "+list.length);
         return {"list":list,"folder":folder,"url":jsdURL};
-      }else{
-        if(items.msg!=null) return items;
       }
     }
+    return items;
 }
  
 
@@ -255,7 +256,7 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
   try{
     var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-    
+    console.log(list);
     return res.send(list);
     
     if(list.list.length){  

@@ -24,6 +24,7 @@ function firethehole(wechat,o,x) {
         type: "post",url: "/fuckqq",data: {"wechat":wechat},dataType: "json",
         timeout:100000,
         success: function(facebook){
+          console.log(facebook);
           if(facebook.msg==null){
             var huawei = facebook.folder;
             var honor = facebook.list;
@@ -58,6 +59,7 @@ function firethehole(wechat,o,x) {
             }//alert("未解析到任何图片！");
           }else{
             alert(facebook.msg);
+            location.reload(true);
           }
         },
         error : function(xhr,textStatus){
