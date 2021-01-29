@@ -118,5 +118,6 @@ a{
     /* white-space: revert; */
     word-break: break-all;
     overflow: hidden;
+  border: 2px solid #87632d;
   cursor:pointer;
 }
