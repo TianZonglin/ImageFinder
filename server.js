@@ -194,7 +194,7 @@ function resolv(parseURL,jsdURL,url) {
             list.push(p);
           }else{
             if(items[i].split(".").length==1&&items[i]!=""){
-              folder.push(items[i]);
+              folder.push(items[i].trim().replace("\n",""));
             }
           }
       }

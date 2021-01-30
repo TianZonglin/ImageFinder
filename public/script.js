@@ -24,7 +24,6 @@ function firethehole(wechat,o,x) {
         type: "post",url: "/fuckqq",
         data: {"wechat":decodeURI(wechat)},dataType: "json",
         success: function(facebook){
-          //console.log(facebook);
           if(facebook.msg==null){
             var huawei = facebook.folder;
             var honor = facebook.list;
@@ -50,7 +49,7 @@ function firethehole(wechat,o,x) {
             if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
             if(x!=2){
               if(JSON.stringify(o).indexOf(wechat)<0)
-                $("#avat").append(`<img class="avat" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
+                if()("#avat").append(`<img class="avat" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
             }
             if(xiaomi == 0){
               $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
