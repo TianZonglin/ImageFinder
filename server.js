@@ -1,11 +1,3 @@
-const express = require("express");
-const app = express();
-var bodyParser = require('body-parser');
-// 创建 application/x-www-form-urlencoded 编码解析
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
- 
- 
-
 /*
  * 功能：常量定义
  */
@@ -134,9 +126,46 @@ function getComponent(url){
 }
 
 
+/// Sqlite部分 ///
 
+const fs = require("fs");
+const dbFile = "./.data/sqlite.db";
+const exists = fs.existsSync(dbFile);
+const sqlite3 = require("sqlite3").verbose();
+const db = new sqlite3.Database(dbFile);
+
+function format(date){
+    var date = new Date(date);//如果date为13位不需要乘1000
+    var Y = date.getFullYear() + '-';
+    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+    var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+    var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+    var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+    return Y+M+D+h+m+s;
+}
+
+/*
+ * 功能：手动操作sqlite，避免自动执行
+ */
+if(0){
+  //db.run("DROP TABLE Seeds");
+  db.serialize(() => {db.run("CREATE TABLE CList (id INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)");});
+}
+if(0){
+  db.all("SELECT count(id) from Seeds", (err, row) => {console.log("count > "+JSON.stringify(row));});
+}
+if(0){
+  //db.run("DELETE FROM CList WHERE url='https://github.com/zhangdo-sheva/imgbed/tree/main/upload'");
+  db.run("DELETE FROM CList WHERE ex1='sen068'");    
+}
+if(0){
+  //db.run("INSERT INTO CList (url,size,ctime) VALUES ('https://github.com/zonelyn/bed','20','"+new Date().getTime()+"')");
+  db.all("select ex1,ex2,size,count(url),max(ctime) from CList group by ex1;", (err, row) => {console.log("count > "+JSON.stringify(row));});  
+}  
 
  
+/// Xpath解析部分 ///
 
 var xpath = require('xpath');
 var path = require('path');
@@ -212,11 +241,8 @@ function resolv(parseURL,jsdURL,url) {
       return {"list":list,"folder":folder,"url":url}
     }else{
       pchild = "string(//div/div[2]/span/a)";
-
       for (var i in parseURL) {
-        //console.log(parseURL[i]);
         var items = getXML(parseURL[i]);
-         
         if(i == 0){
           for (var e in items) {
               var parser = new Dom().parseFromString(items[e].toString());
@@ -224,7 +250,6 @@ function resolv(parseURL,jsdURL,url) {
               var jpgs = xpath.select1(pchild, parser);
               var p = jsdURL+jpgs;
               if(CheckImgExists(p)){
-                //console.log("ppppppp: ",p);
                 list.push(p);
               }else{
                 if(jpgs.split(".").length==1&&jpgs!=""){
@@ -261,13 +286,24 @@ function resolv(parseURL,jsdURL,url) {
 }
  
 
+// Express部分 //
+
+const express = require("express");
+const app = express();
+var bodyParser = require('body-parser');
+// 创建 application/x-www-form-urlencoded 编码解析
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
 
 
-
+/*
+ * 功能：根目录解析
+ * - 不带参数直接返回模板主页
+ * - 带参数则返回单页渲染模板
+ */
 app.get("/", (request, response) => {
     var url = request.query.x;
     if(url != null){
@@ -320,16 +356,13 @@ app.get("/", (request, response) => {
     }
 
 });
- //https://gitee.com/W4j1e/pic/tree/master/img
- //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
-//var cp = getComponent("https://github.com/zonelyn/bed");
-//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-//console.log(">>>>>>>>>>>>> ",list.list.length);
 
 
-
+/*
+ * 功能：核心调用入口
+ * - 复杂逻辑已yi
+ */
 app.post('/fuckqq', urlencodedParser, function (req, res) {
- 
     var url = req.body.wechat; 
     url = encodeURI(url);
     if(url.indexOf("cdn.jsdelivr.net/")>0){
@@ -338,23 +371,17 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
     var cp = getComponent(url);
     try{
       var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-
       if(list.list==null&&list.folder==null){
         return res.send({"msg":"没有子目录且未发现图片资源！"});
       }
       if(list.list.length||list.folder.length){ 
         var base=COMA+cp.name+".png"; if(url.indexOf("gitee.com/")>0) base="https://robohash.org/"+cp.name+".png";
-    
         db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+"')");
       }
       return res.send(list);
-
     }catch(e){
-
       return res.send({"msg":e.message});
     }
-    
-
 })
 
 
@@ -381,41 +408,9 @@ const listener = app.listen(process.env.PORT, () => {
  
 
 
-function format(date){
-    var date = new Date(date);//如果date为13位不需要乘1000
-    var Y = date.getFullYear() + '-';
-    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-    var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
-    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-    var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-    var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
-    return Y+M+D+h+m+s;
-}
 
 
-// init sqlite db
-const dbFile = "./.data/sqlite.db";
-const exists = fs.existsSync(dbFile);
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database(dbFile);
 
- 
-
-if(0){
-  //db.run("DROP TABLE Seeds");
-  db.serialize(() => {db.run("CREATE TABLE CList (id INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)");});
-}
-if(0){
-  db.all("SELECT count(id) from Seeds", (err, row) => {console.log("count > "+JSON.stringify(row));});
-}
-if(0){
-  //db.run("DELETE FROM CList WHERE url='https://github.com/zhangdo-sheva/imgbed/tree/main/upload'");
-  db.run("DELETE FROM CList WHERE ex1='sen068'");    
-}
-if(0){
-  //db.run("INSERT INTO CList (url,size,ctime) VALUES ('https://github.com/zonelyn/bed','20','"+new Date().getTime()+"')");
-  db.all("select ex1,ex2,size,count(url),max(ctime) from CList group by ex1;", (err, row) => {console.log("count > "+JSON.stringify(row));});  
-}  
  
 //console.log(format(new Date().getTime())); 
   
