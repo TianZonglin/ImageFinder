@@ -302,8 +302,8 @@ app.get("/", (request, response) => {
           html += '</html>';
           
           if(list.list.length){  
-            var base=COMA; if(url.indexOf(COMC)>0) base=COMC;
-            db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+cp.name+".png"+"')");
+            var base=COMA+cp.name+".png"; if(url.indexOf(COMC)>0) base="http://www.gravatar.com/avatar/"+cp.name+"@qq.com?s=32&&d=identicon";
+            db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+"')");
           }
           return response.send(html);
     }else{
@@ -334,9 +334,9 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
         return res.send({"msg":"没有子目录且未发现图片资源！"});
       }
       if(list.list.length){  
-        var base=COMA; if(url.indexOf(COMC)>0) base=COMC;
-        console.log(base+cp.name+".png");
-        db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+cp.name+".png"+"')");
+        var base=COMA+cp.name+".png"; if(url.indexOf(COMC)>0) base="http://www.gravatar.com/avatar/"+cp.name+"@qq.com?s=32&&d=identicon";
+    
+        db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+"')");
       }
       return res.send(list);
 
@@ -410,5 +410,4 @@ if(0){
  
 //console.log(format(new Date().getTime())); 
   
-
  
