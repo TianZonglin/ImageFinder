@@ -84,6 +84,7 @@ function fullparse(url){
               "name":name,"url":url};
     }else{
       var surl = "";
+      console.log(arr);
       flen = arr.length-5-ix;
       var name = arr[3];
       var base = arr[4];
@@ -96,7 +97,7 @@ function fullparse(url){
       }
 
       surl += "^#";
-      for(var i=0;i<flen;i++){
+      for(var i=0;i<flen;i++){ 
         path += "/"+arr[i+5];
       } 
       surl += path;
@@ -150,6 +151,7 @@ function getXML(parseURL){
       default: proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
     }
     var s = xpath.select(proot, doc);
+    
     if(s.length>0) return s;
     else return {"msg":"Can't find any images."}
 }
@@ -272,9 +274,11 @@ app.get("/", (request, response) => {
  //https://githu.com/Tilin/tng/img/Cache_32799f853a0e21fe..jpg
  //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
 //typeQR = "gitee";
-var cp = getComponent("https://github.com/zonelyn/bed");
-var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-console.log(">>>>>>>>>>>>> ",list.list.length);
+//var cp = getComponent("https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg");
+typeQR = "gitee";
+var cp = getComponent("https://cdn.jsdelivr.net/gh/zonelyn/bed/01.png");
+//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+console.log(">>>>>>>>>>>>> ",cp);
 
 
 
