@@ -43,8 +43,7 @@ Supported query rules:
 - `v0.5` Add the function of sub-directory view, support upper and lower view operations 
 - `v0.6` Improve front-end operation steps 
 - `v0.7` Add the judgment that the operation returns an exception 
-- `v0.8` Add support for Gitee repo, the rules are the same as Github repo
-- `v0.9` Stable version
+- `v0.8` Add support for Gitee repo, the rules are the same as Github repo (Stable version)
 
 **Todo**
 
