@@ -24,7 +24,7 @@ Take one look then you can get all the points, easy!
 
 **Demo page: [https://xvido.es](https://xvido.es)**
 
-**Gallery mode: [https://xvido.es?x=/zonelyn/imgbed](https://xvido.es?x=/zonelyn/imgbed)**
+**Gallery mode: [https://xvido.es?x=/zonelyn/bed](https://xvido.es?x=/zonelyn/bed)**
 
 
 
