@@ -302,7 +302,7 @@ app.get("/", (request, response) => {
           html += '</html>';
           
           if(list.list.length||list.folder.length){  
-            var base=COMA+cp.name+".png"; if(url.indexOf("gitee.com/")>0) base="http://www.gravatar.com/avatar/"+cp.name+"@qq.com?s=32&&d=identicon";
+            var base=COMA+cp.name+".png"; if(url.indexOf("gitee.com/")>0) base="https://robohash.org/"+cp.name+".png";
             db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+"')");
           }
           return response.send(html);
@@ -333,8 +333,8 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       if(list.list==null&&list.folder==null){
         return res.send({"msg":"没有子目录且未发现图片资源！"});
       }
-      if(list.list.length||list.folder.length){  
-        var base=COMA+cp.name+".png"; if(url.indexOf("gitee.com/")>0) base="https://api.prodless.com/avatar.png";
+      if(list.list.length||list.folder.length){ 
+        var base=COMA+cp.name+".png"; if(url.indexOf("gitee.com/")>0) base="https://robohash.org/"+cp.name+".png";
     
         db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+"')");
       }
@@ -401,7 +401,7 @@ if(0){
 }
 if(0){
   //db.run("DELETE FROM CList WHERE url='https://github.com/zhangdo-sheva/imgbed/tree/main/upload'");
-  db.run("DELETE FROM CList WHERE ex1='lijiangdao'");
+  db.run("DELETE FROM CList WHERE ex1='sen068'");    
 }
 if(0){
   //db.run("INSERT INTO CList (url,size,ctime) VALUES ('https://github.com/zonelyn/bed','20','"+new Date().getTime()+"')");
