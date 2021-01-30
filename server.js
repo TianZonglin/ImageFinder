@@ -164,13 +164,13 @@ function getXML(parseURL){
     }).parseFromString(response);
     var proot;
     if(parseURL.indexOf("gitee.com/")>0)
-      proot = "//*[@id='tree-slider']/div/div[1]/a";
+      proot = "//*[@id='tree-slider']/div/div[1]/a/text()";
     else 
       proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
  
     var s = xpath.select(proot, doc);
     if(s.length>0){
-      console.log(s.toString());
+
       return s;
     }
     else return {"msg":"Can't find any images."}
@@ -180,18 +180,34 @@ function getXML(parseURL){
 
  
 function resolv(parseURL,jsdURL,url) {
+  console.log(parseURL);
     var list=[];
     var folder=[];
     var pchild;
-    if(parseURL.indexOf("gitee.com/")>0){
-      pchild = "string(//div/div/div/div/div)"; 
+    if(parseURL[0].indexOf("gitee.com/")>0){
+      
+      var items = getXML(parseURL[0]).toString().split(",");
+      for(var i in items){
+          var p = jsdURL+items[i];
+          if(CheckImgExists(p)){
+            //console.log("ppppppp: ",p);
+            list.push(p);
+          }else{
+            if(items[i].split(".").length==1&&items[i]!=""){
+              folder.push(items[i]);
+            }
+          }
+      }
+      console.log("partX > list "+list.length);
+      console.log("partX > folder "+folder.length);
+      return {"list":list,"folder":folder,"url":url}
     }else{
       pchild = "string(//div/div[2]/span/a)";
 
       for (var i in parseURL) {
         //console.log(parseURL[i]);
         var items = getXML(parseURL[i]);
-        console.log( xpath.select1(pchild,new Dom().parseFromString(items[e].toString())));
+         
         if(i == 0){
           for (var e in items) {
               var parser = new Dom().parseFromString(items[e].toString());
