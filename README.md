@@ -1,6 +1,6 @@
-# hello-express
+# ImageFinder
 
-A server that serves a webpage, its resources, and some data
+A server that could help you to find more interesting image reposities
 
 
 ## Your Project

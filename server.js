@@ -85,7 +85,6 @@ function fullparse(url){
  * - https://gitee.com/xaoxuu/cdn-assets/raw/master/blog/2019-0829a@2x.jpg
  */
 function giteeparse(url){ 
- 
     var arr = url.split("/"),flen=0,ix=0;
     var name = arr[3];
     var repo = arr[4];
@@ -94,14 +93,12 @@ function giteeparse(url){
       obj = {"parseURL":[url],
               "jsdURL":url.replace("/tree/master","/raw/master")+"/",
               "name":name,"url":url};
-      
     }else if(url.indexOf("raw/master")>0){ 
       if(arr[arr.length-1].indexOf(".")>0) url=url.replace(arr[arr.length-1],"");
       obj = {"parseURL":[url.replace("/raw/master","/tree/master")],
               "jsdURL":url+"/",
               "name":name,"url":url};
     }else{
- 
       obj = {"parseURL":[url.replace(arr[4],arr[4]+"/tree/master")],
               "jsdURL":url.replace(arr[4],arr[4]+"/raw/master")+"/",
               "name":name,"url":url};
