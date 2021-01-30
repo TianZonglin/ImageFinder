@@ -105,31 +105,28 @@ var cp = getComponent("https://gitee.com/W4j1e/pic/img");
 var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
 console.log(list); 
 
-function giteeparse(url){
-
+function giteeparse(url){ 
+ 
     var arr = url.split("/"),flen=0,ix=0;
     var name = arr[3];
     var repo = arr[4];
     var obj;
     if(url.indexOf("tree/master")>0){
-      obj = {"parseURL":url,
+      obj = {"parseURL":[url],
               "jsdURL":url.replace("/tree/master","/raw/master")+"/",
               "name":name,"url":url};
       
     }else if(url.indexOf("raw/master")>0){ 
       url=url.replace(arr[arr.length-1],"");
-      obj = {"parseURL":url.replace("/raw/master","/tree/master"),
+      obj = {"parseURL":[url.replace("/raw/master","/tree/master")],
               "jsdURL":url+"/",
               "name":name,"url":url};
     }else{
  
-      obj = {"parseURL":url.replace(arr[4],arr[4]+"/tree/master"),
+      obj = {"parseURL":[url.replace(arr[4],arr[4]+"/tree/master")],
               "jsdURL":url.replace(arr[4],arr[4]+"/raw/master")+"/",
               "name":name,"url":url};
     }
-  
-  
-    console.log(obj);
     return obj;
 }  
 
@@ -146,13 +143,15 @@ function getComponent(url){
       return fullparse("https://github.com"+url);
     }
 }
+
 var request2 = require('sync-request');
+
 function getXML(parseURL){
   var offline;
     console.log("XML => "+parseURL);
     var response = '';
     try { 
-      
+      console.log(request2('GET', "https://www.baidu.com").getBody());
       response = request2('GET', parseURL).getBody().toString();
       console.log("response-size > "+ response.length);
       //response = request(parseURL, { timeout: timeout, dataType: 'xml' })   
@@ -189,7 +188,7 @@ function resolv(parseURL,jsdURL,url) {
       default: pchild = "string(//div/div[2]/span/a)";
     }
     for (var i in parseURL) {
-      
+      console.log(parseURL[i]);
       var items = getXML(parseURL[i]);
       
       if(i == 0){
