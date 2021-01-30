@@ -27,6 +27,7 @@ var offline = false;
 const COMA="https://github.com/";
 const COMB="https://cdn.jsdelivr.net/";
 const COMC="https://gitee.com/";
+var typeQR="github";
 
 function jugeUrl(zoom) {
     var flag = 0;
@@ -130,7 +131,12 @@ function getXML(parseURL){
             fatalError: function (e) {}
         }
     }).parseFromString(response);
-    var s = xpath.select("//*[contains(@class, 'js-active-navigation-container')]/div", doc);
+    var proot;
+    switch(typeQR){
+      case "gitee": {proot = "";break;}
+      default: proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
+    }
+    var s = xpath.select(proot, doc);
     if(s.length>0) return s;
     else return {"msg":"Can't find any images."}
 }
@@ -141,6 +147,11 @@ function getXML(parseURL){
 function resolv(parseURL,jsdURL,url) {
     var list=[];
     var folder=[];
+    var pchild;
+    switch(typeQR){
+      case "gitee": {pchild = ""; break;}
+      default: pchild = "string(//div/div[2]/span/a)";
+    }
     for (var i in parseURL) {
       
       var items = getXML(parseURL[i]);
@@ -149,7 +160,7 @@ function resolv(parseURL,jsdURL,url) {
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
             if(parser==null) break;
-            var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
+            var jpgs = xpath.select1(pchild, parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
               //console.log("ppppppp: ",p);
@@ -168,7 +179,7 @@ function resolv(parseURL,jsdURL,url) {
         if(items.msg!=null) return items;
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
-            var jpgs = xpath.select1('string(//div/div[2]/span/a)', parser);
+            var jpgs = xpath.select1(pchild, parser);
             var p = jsdURL+jpgs;
             if(CheckImgExists(p)){
               list.push(p);
@@ -245,16 +256,13 @@ app.get("/", (request, response) => {
     }
 
 });
-
- 
+ //https://githu.com/Tilin/tng/img/Cache_32799f853a0e21fe..jpg
+ //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
  
     var url = req.body.wechat;
     url = encodeURI(url);
-    if(url.indexOf("cdn.jsdelivr.net/")>0){
-      url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
-    }
     if(url.indexOf("cdn.jsdelivr.net/")>0){
       url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
     }
