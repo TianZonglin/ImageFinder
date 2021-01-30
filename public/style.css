@@ -4,29 +4,28 @@
   box-sizing: border-box;
 }
 
-html{
-  background-color:#caad00;
+html {
+  background-color: #caad00;
 }
 
 .img {
   max-height: 100px;
   max-width: 100%;
-  margin:0px 10px 10px 0px;
+  margin: 0px 10px 10px 0px;
   border-radius: 10px;
-   box-shadow: 5px 5px 5px rgba(0,0,0,.5);
-   /*考虑浏览器兼容性*/
-   -moz-box-shadow: 5px 5px 5px rgba(0,0,0,.5);
-   -webkit-box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  /*考虑浏览器兼容性*/
+  -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .avat {
   height: 40px;
   border: 2px solid #998857;
-  cursor:pointer;
+  cursor: pointer;
   border-radius: 25em;
   margin-bottom: 4px;
-  margin-right:8px;
-
+  margin-right: 8px;
 }
 
 .fancybox {
@@ -64,7 +63,7 @@ input {
   width: 100%;
   background-color: beige;
   border-radius: 20px;
-  outline:none;
+  outline: none;
 }
 
 .form button {
@@ -76,7 +75,7 @@ input {
   line-height: 1.4em;
   padding: 0.25em 1em;
   max-width: 20ch;
-  outline:none;
+  outline: none;
 }
 
 .form button:hover {
@@ -89,38 +88,37 @@ footer {
   border-top: 1px solid #828282;
 }
 
-a{
-  text-decoration:none;
+a {
+  text-decoration: none;
 }
 
-  .ft{
-      font-size: 12px;
-  }
+.ft {
+  font-size: 12px;
+}
 
-.folders>div{
-    font-size: 12px;
-    font-weight: 600;
-    width: 130px;
-    height: 60px;
-    display: inline-flex;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    border-radius: 10px;
-    background-color: #b99427;
-    box-shadow: 5px 5px 5px rgba(0,0,0,.5);
-    -moz-box-shadow: 5px 5px 5px rgba(0,0,0,.5);
-    -webkit-box-shadow: 5px 5px 5px rgba(0,0,0,.5);
-    color: #5b4b1b;
-    padding: 10px;
-    /* white-space: revert; */
-    word-break: break-all;
-    overflow: hidden;
+.folders > div {
+  font-size: 12px;
+  font-weight: 600;
+  width: 130px;
+  height: 60px;
+  display: inline-flex;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background-color: #b99427;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  color: #5b4b1b;
+  padding: 10px;
+  /* white-space: revert; */
+  word-break: break-all;
+  overflow: hidden;
   border: 2px solid #87632d;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-
-.te{
+.te {
   border: 2px solid #227fff;
   box-shadow: 2px 1px 2px #2196F3;
   /*考虑浏览器兼容性*/
@@ -128,14 +126,14 @@ a{
   -webkit-box-shadow: 2px 1px 2px #2196F3;
 }
 
-.hb{
-  border: 2px solid #ca5d07;;
+.hb {
+  border: 2px solid #ca5d07;
   box-shadow: 2px 1px 2px #d9931d;
   /*考虑浏览器兼容性*/
   -moz-box-shadow: 2px 1px 2px #d9931d;
   -webkit-box-shadow: 2px 1px 2px #d9931d;
 }
 
-.wid{
-  max-width:500px;
+.wid {
+  max-width: 500px;
 }
