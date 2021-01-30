@@ -1,4 +1,3 @@
-
 # ImageFinder
 
 A server that could help you to find more interesting image repositories. Also, it could be an easy way to make a gallery for your image repository. Support users to look images hosted in `Github.com` and `Gitee.com`. You can redeploy this server to build your own service or just USE the demo website directly.
@@ -7,15 +6,15 @@ To redeploy, you need to have a `nodejs` environment at first, then make sure yo
 
 ```sql
 CREATE TABLE CList (
-  id INTEGER PRIMARY KEY AUTOINCREMENT, 
-  url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT
+ )
 ```
 
 Next, things will be very easy: just run & look. Have fun!
 (Don't know how to run a node app? see [document](https://nodejs.org/docs/latest-v13.x/api/synopsis.html))
 
-
-## Description 
+## Description
 
 On the front-end,
 
@@ -25,7 +24,7 @@ On the front-end,
 
 On the back-end,
 
-- *ImageFinder* starts at `server.js`
+- _ImageFinder_ starts at `server.js`
 - involved packages see `package.json`
 
 ## Usage
@@ -35,8 +34,6 @@ Take one look then you can get all the points, easy!
 **Demo page: [https://xvido.es](https://xvido.es)**
 
 **Gallery mode: [https://xvido.es?x=/zonelyn/bed](https://xvido.es?x=/zonelyn/bed)**
-
-
 
 Supported query rules:
 
@@ -50,13 +47,13 @@ Supported query rules:
 
 ## Logs
 
-- `v0.1` Complete basic resolve logic and basic front-end style 
-- `v0.2` Add the function of rendering a separate page, which can be used as a photo album 
-- `v0.3` Introduce sqlite, add recently viewed 
-- `v0.4` Completion of multiple query methods, especially only the image url method 
-- `v0.5` Add the function of sub-directory view, support upper and lower view operations 
-- `v0.6` Improve front-end operation steps 
-- `v0.7` Add the judgment that the operation returns an exception 
+- `v0.1` Complete basic resolve logic and basic front-end style
+- `v0.2` Add the function of rendering a separate page, which can be used as a photo album
+- `v0.3` Introduce sqlite, add recently viewed
+- `v0.4` Completion of multiple query methods, especially only the image url method
+- `v0.5` Add the function of sub-directory view, support upper and lower view operations
+- `v0.6` Improve front-end operation steps
+- `v0.7` Add the judgment that the operation returns an exception
 - `v0.8` Add support for Gitee repo, the rules are the same as Github repo (Stable version)
 
 **Todo**
@@ -68,7 +65,6 @@ Supported query rules:
 ## View
 
 ![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/rfgherdf34234分3.png)
-
 
 **Note:** This may invade the privacy of others, I am NOT responsible for any consequences of misusing this project.
 
