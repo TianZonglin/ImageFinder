@@ -360,7 +360,8 @@ app.get("/", (request, response) => {
 
 /*
  * 功能：核心调用入口
- * - 复杂逻辑已yi
+ * - getComponent()清洗解析链接
+ * - resolv()完成XML->图片链接的逻辑
  */
 app.post('/fuckqq', urlencodedParser, function (req, res) {
     var url = req.body.wechat; 
@@ -385,7 +386,10 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
 })
 
 
-
+/*
+ * 功能：刷新时载入已有用户（都在看）
+ * - 可返回更多数据信息，以供页面分析
+ */
 app.get('/birth', function(req, res){
     db.all("select ex1,ex2,size,url,ctime,count(url),max(ctime) from CList group by ex1;", (err, row) => {
       return res.send(row);
@@ -407,11 +411,3 @@ const listener = app.listen(process.env.PORT, () => {
 
  
 
-
-
-
-
- 
-//console.log(format(new Date().getTime())); 
-  
- 
