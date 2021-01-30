@@ -276,7 +276,6 @@ function resolv(parseURL, jsdURL, url) {
     for (var i in items) {
       var p = jsdURL + items[i];
       if (CheckImgExists(p)) {
-        //console.log("ppppppp: ",p);
         list.push(p);
       } else {
         if (items[i].split(".").length == 1 && items[i] != "") {
@@ -305,8 +304,7 @@ function resolv(parseURL, jsdURL, url) {
             }
           }
         }
-        console.log("part1 > list " + list.length);
-        console.log("part1 > folder " + folder.length);
+        console.log("part1 > ", list.length, folder.length);
         if (!list.length && !folder.length) break;
         return { list: list, folder: folder, url: url };
       } else if (i == 1) {
@@ -323,8 +321,7 @@ function resolv(parseURL, jsdURL, url) {
             }
           }
         }
-        console.log("part2 > " + list.length);
-        console.log("part2 > folder " + folder.length);
+        console.log("part2 > ", list.length, folder.length);
         if (!list.length && !folder.length) break;
         return { list: list, folder: folder, url: jsdURL };
       }
@@ -366,11 +363,12 @@ app.get("/", (request, response) => {
     html += "  <head>";
     html += '    <meta charset="utf-8">';
     html += '    <meta http-equiv="X-UA-Compatible" content="IE=edge">';
+    html += '    <meta name="author" content="cz5h.com">';
     html += '    <meta name="viewport" content="width=device-width, initial-scale=1">';
     html += '    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
     html += '    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" ></script>';
     html += '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />';
-    html += "    <title>偷偷瞄！</title>";
+    html += "    <title>ImageFinder</title>";
     html += '    <link id="favicon" rel="icon" href="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/fc.ico" type="image/x-icon">';
     html += '    <link rel="stylesheet" href="/style.css">';
     html += '    <script src="/script.js" defer></script>';
