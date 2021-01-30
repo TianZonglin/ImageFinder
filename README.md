@@ -1,5 +1,4 @@
-![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130180138.png)
-
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130180449.png)
 
 
 # ImageFinder
