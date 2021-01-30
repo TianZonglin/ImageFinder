@@ -191,7 +191,8 @@ if (0) {
   //db.run("DROP TABLE Seeds");
   db.serialize(() => {
     db.run(
-      "CREATE TABLE CList (id INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)"
+      "CREATE TABLE CList (id INTEGER PRIMARY KEY AUTOINCREMENT," 
+        + "url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)"
     );
   });
 }
