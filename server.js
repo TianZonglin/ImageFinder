@@ -93,17 +93,21 @@ function fullparse(url){
       } 
       if(url.indexOf("cdn.jsdelivr.net/")>0 ){
         if(base.indexOf("@")>0 ){base = base.split("@")[0];}
-        surl = COMA+"/"+name+"/"+base+"/";
+        surl = COMA+name+"/"+base+"/";
       }
-
-      surl += "^#";
-      for(var i=0;i<flen;i++){ 
-        path += "/"+arr[i+5];
-      } 
-      surl += path;
+      if(arr.length>6){
+        surl += "^#";
+        for(var i=0;i<flen;i++){ 
+          path += "/"+arr[i+5];
+        } 
+        surl += path;
       
-      parseURL.push(surl.replace("^#","tree/master"));
-      parseURL.push(surl.replace("^#","tree/main")); 
+        parseURL.push(surl.replace("^#","tree/master"));
+        parseURL.push(surl.replace("^#","tree/main"));  
+      }else{
+        parseURL.push(surl.slice(0,-1));  
+        
+      } 
       return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/",
               "name":name,"url":url.replace("https://cdn.jsdelivr.net/","https://cdn.jsdelivr.net/gh/")
@@ -276,7 +280,7 @@ app.get("/", (request, response) => {
 //typeQR = "gitee";
 //var cp = getComponent("https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg");
 typeQR = "gitee";
-var cp = getComponent("https://cdn.jsdelivr.net/gh/zonelyn/bed/01.png");
+var cp = getComponent("https://cdn.jsdelivr.net/zonelyn/bed/01.png");
 //var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
 console.log(">>>>>>>>>>>>> ",cp);
 
