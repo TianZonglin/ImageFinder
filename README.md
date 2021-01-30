@@ -2,6 +2,7 @@
 
 A server that could help you to find more interesting image repositories. Also, it's an easy way to have a gallery of your image repository.
 
+Support look images hosted in `Github.com` and `Gitee.com`.
 
 ## Description 
 
@@ -22,15 +23,15 @@ Take one look then you can get all the points, easy!
 
 **Demo page:** [**https://xvido.es**](https://xvido.es) 
 
-**Supported query rules:**
+Supported query rules:
 
-- Picture url: https://cdn.jsdelivr.net/gh/name/repo/x.jpg
-- Original link from repo: https://github.com/name/repo
-- Internal directory: https://github.com/name/repo/tree/main/sub
-- Default branch: https://github.com/name/repo/sub
-- Default prefix: /name/repo/sub (Github image bed only)
-- Single page rendering: directly visit [xvido.es](https://xvido.es)?x=url
-- Other image beds: Gitee has been supported, the rules are the same as above
+- `Picture url:` https://cdn.jsdelivr.net/gh/name/repo/x.jpg
+- `Original link from repo:` https://github.com/name/repo
+- `Internal directory:` https://github.com/name/repo/tree/main/sub
+- `Default branch:` https://github.com/name/repo/sub
+- `Default prefix:` /name/repo/sub (Github image bed only)
+- `Single page rendering:` directly visit [xvido.es](https://xvido.es)?x=url
+- `Other image beds:` Gitee has been supported, the rules are the same as above
 
 ## Logs
 
@@ -44,6 +45,6 @@ Take one look then you can get all the points, easy!
 - `v0.8` Add support for Gitee repo, the rules are the same as Github repo
 
 
-Find out more [about Me / cz5h.com](https://www.cz5h.com).
+**Find out more [about Me / cz5h.com](https://www.cz5h.com).**
 
-( ᵔ ᴥ ᵔ )
+**( ᵔ ᴥ ᵔ )**
