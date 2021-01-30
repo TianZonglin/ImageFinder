@@ -1,5 +1,8 @@
 # ImageFinder
 
+  ![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130223331.png)
+
+
 A server that could help you to find more interesting image repositories. Also, it could be an easy way to make a gallery for your image repository. Support users to look images hosted in `Github.com` and `Gitee.com`. You can redeploy this server to build your own service or just USE the demo website directly.
 
 To redeploy, you need to have a `nodejs` environment at first, then make sure you install all packages in `package.json`. Since I used `sqlite` to store some data, you need to manually execute some codes as follows to create a proper table with your sqlite.
