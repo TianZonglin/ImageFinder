@@ -133,7 +133,7 @@ function getXML(parseURL){
     }).parseFromString(response);
     var proot;
     switch(typeQR){
-      case "gitee": {proot = "";break;}
+      case "gitee": {proot = "//*[@id='tree-slider']";break;}
       default: proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
     }
     var s = xpath.select(proot, doc);
@@ -149,7 +149,7 @@ function resolv(parseURL,jsdURL,url) {
     var folder=[];
     var pchild;
     switch(typeQR){
-      case "gitee": {pchild = ""; break;}
+      case "gitee": {pchild = "string(//div/div[1]/a)"; break;}
       default: pchild = "string(//div/div[2]/span/a)";
     }
     for (var i in parseURL) {
@@ -258,6 +258,11 @@ app.get("/", (request, response) => {
 });
  //https://githu.com/Tilin/tng/img/Cache_32799f853a0e21fe..jpg
  //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
+var cp = getComponent("https://github.com/zonelyn/bed");
+var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+console.log(">>>>>>>>>>>>> ",list.length);
+
+
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
  
