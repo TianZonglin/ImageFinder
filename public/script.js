@@ -83,13 +83,13 @@ function firethehole(wechat, o, x) {
             if (JSON.stringify(o).indexOf(wechat) < 0)
               if (wechat.indexOf("gitee.com/") > 0)
                 $("#avat").append(
-                  `<img class="avat te" src="https://robohash.org/${oppo}.png" title="${oppo}" id="${wechat}">`
+                  `<div class="bao te"><img class="avat" src="https://robohash.org/${oppo}.png" title="${oppo}" id="${wechat}"></div>`
                 );
               else
                 $("#avat").append(
-                  `<img class="avat hb" src="${COMA +
+                  `<div class="bao hb"><img class="avat" src="${COMA +
                     "/" +
-                    oppo}.png" title="${oppo}" id="${wechat}">`
+                    oppo}.png" title="${oppo}" id="${wechat}"></div>`
                 );
           }
           if (xiaomi == 0) {
@@ -124,11 +124,11 @@ $(function() {
       for (var mix in vivo) {
         if (vivo[mix].url.indexOf("gitee.com/") > 0)
           $("#avat").append(
-            `<img class="avat te" src="https://robohash.org/${vivo[mix].ex1}.png" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`
+            `<div class="bao te"><img class="avat" src="https://robohash.org/${vivo[mix].ex1}.png" title="${vivo[mix].ex1}" id="${vivo[mix].url}"></div>`
           );
         else
           $("#avat").append(
-            `<img class="avat hb" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`
+            `<div class="bao hb"><img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}"></div>`
           );
       }
     });
