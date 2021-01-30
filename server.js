@@ -54,36 +54,33 @@ function fullparse(url){
     var parseURL = [];
     var arr = url.split("/"),flen=0,ix=0;
   
-    var treeName,cdnName,cdnPath;
+    var treeName,cdnPath;
 
     switch(typeQR){
-      case "gitee": {
-        treeName="";
-        cdnName="tree/master";
-        cdnPath="";
+      case "gitee": 
+        treeName="blob/master";
+        cdnPath="https://gitee.com/"
         break;
-      }
-      default:  {
-        treeName="cdn.jsdelivr.net/";
-        cdnName="tree/master";
-        cdnPath=
-        break;
-      }
+      default:  
+        treeName="tree/master";
+        cdnPath="https://cdn.jsdelivr.net/gh/"; 
     }
     if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
-    if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
+    if(url.indexOf(treeName)>0||url.indexOf("tree/main")>0){
       flen = arr.length-7-ix;
       var name = arr[3];
       var base = arr[4];
       if(url.indexOf("cdn.jsdelivr.net/")>0 
          && base.indexOf("@")>0 ){base = base.split("@")[0];}
+      if(url.indexOf("gitee.com/")>0){
+        arr[5]="raw";}
       for(var i=0;i<flen;i++){
         path += arr[i+7]+"/";
       } 
       parseURL.push(url);
 
       return {"parseURL":parseURL,
-              "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,
+              "jsdURL":cdnPath+name+"/"+base+"/"+path,
               "name":name,"url":url};
     }else{
       var surl = "";
@@ -274,9 +271,9 @@ app.get("/", (request, response) => {
 });
  //https://githu.com/Tilin/tng/img/Cache_32799f853a0e21fe..jpg
  //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
-typeQR = "gitee";
-//var cp = getComponent("https://github.com/zonelyn/bed");
-//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+//typeQR = "gitee";
+var cp = getComponent("https://github.com/zonelyn/bed");
+var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
 console.log(">>>>>>>>>>>>> ",list.list.length);
 
 
