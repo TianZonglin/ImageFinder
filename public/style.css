@@ -121,3 +121,12 @@ a{
   border: 2px solid #87632d;
   cursor:pointer;
 }
+
+
+.te{
+  border: 2px solid red;
+}
+
+.hb{
+  border: 2px solid green;
+}

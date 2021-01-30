@@ -113,7 +113,7 @@ function giteeparse(url){
               "name":name,"url":url};
       
     }else if(url.indexOf("raw/master")>0){ 
-      url=url.replace(arr[arr.length-1],"");
+      if(arr[arr.length-1].indexOf(".")>0) url=url.replace(arr[arr.length-1],"");
       obj = {"parseURL":[url.replace("/raw/master","/tree/master")],
               "jsdURL":url+"/",
               "name":name,"url":url};
