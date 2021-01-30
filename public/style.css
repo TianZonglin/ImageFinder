@@ -135,3 +135,7 @@ a{
   -moz-box-shadow: 2px 1px 2px #d9931d;
   -webkit-box-shadow: 2px 1px 2px #d9931d;
 }
+
+.wid{
+  max-width:500px;
+}
