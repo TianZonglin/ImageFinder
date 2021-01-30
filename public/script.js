@@ -50,8 +50,8 @@ function firethehole(wechat,o,x) {
             if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
             if(x!=2){
               if(JSON.stringify(o).indexOf(wechat)<0)
-                if(wechat.indexOf(COMC)>0) $("#avat").append(`<img class="avat" src="${COMC+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
-                else $("#avat").append(`<img class="avat" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
+                if(wechat.indexOf(COMC)>0) $("#avat").append(`<img class="avat te" src="${COMC+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
+                else $("#avat").append(`<img class="avat hb" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
             }
             if(xiaomi == 0){
               $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
@@ -73,7 +73,9 @@ $(function(){
     fetch("/birth", {})
       .then(res => res.json()).then(vivo => { o = vivo;
         for (var mix in vivo) {
-            $("#avat").append(`<img class="avat" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
+            if(vivo[mix].url.indexOf("gitee.com/")>0) $("#avat").append(`<img class="avat te" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
+            else $("#avat").append(`<img class="avat hb" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
+            
         }
       });
     $(document).on("click",".avat",function(event){$("#wechat").val(this.id);firethehole(this.id,o,1);});
