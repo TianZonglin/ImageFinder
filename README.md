@@ -1,5 +1,3 @@
-![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130180745.png)
-
 
 # ImageFinder
 
@@ -54,7 +52,11 @@ Supported query rules:
 - `Add:` <s>Add support for Gitee image bed!</s>
 - `Fix:` Use more suitable images layout (e.g. waterfall flow)
 
+## View
+
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130180745.png)
+
+Note: 
+
 
 **Find out more [about Me / cz5h.com](https://www.cz5h.com).**
-
-**( ᵔ ᴥ ᵔ )**
