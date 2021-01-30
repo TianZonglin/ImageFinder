@@ -401,7 +401,7 @@ if(0){
 }
 if(0){
   //db.run("DELETE FROM CList WHERE url='https://github.com/zhangdo-sheva/imgbed/tree/main/upload'");
-  db.run("DELETE FROM CList WHERE ex1='gh'");
+  db.run("DELETE FROM CList WHERE ex1='lijiangdao'");
 }
 if(0){
   //db.run("INSERT INTO CList (url,size,ctime) VALUES ('https://github.com/zonelyn/bed','20','"+new Date().getTime()+"')");
