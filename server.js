@@ -96,30 +96,25 @@ function fullparse(url){
       };
     }
 }  
+//https://gitee.com/W4j1e/pic/tree/master/img
+ //https://gitee.com/W4j1e/pic/tree/master/img
+ //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
+
+giteeparse("https://gitee.com/W4j1e/pic/tree/master/img");
 
 function giteeparse(url){
-  
-    var path="";
-    var Component;
-    var parseURL = [];
-    var arr = url.split("/"),flen=0,ix=0;
-  
-    if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
-    if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
-      flen = arr.length-7-ix;
-      var name = arr[3];
-      var base = arr[4];
-      if(url.indexOf("cdn.jsdelivr.net/")>0 
-         && base.indexOf("@")>0 ){base = base.split("@")[0];}
-      for(var i=0;i<flen;i++){
-        path += arr[i+7]+"/";
-      } 
-      parseURL.push(url);
 
-      return {"parseURL":parseURL,
-              "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,
-              "name":name,"url":url};
-    }
+    var arr = url.split("/"),flen=0,ix=0;
+    var name = arr[3];
+    var repo = arr[4];
+    if(url.indexOf("tree/master")<0)url=url.replace(repo,);
+    if(url.indexOf("blob/master")<0)url=url.replace(repo,);
+    
+      
+    }else
+  
+  
+    console.log(name,repo);
 }  
 
 function getComponent(url){
@@ -279,11 +274,11 @@ app.get("/", (request, response) => {
     }
 
 });
- //https://githu.com/Tilin/tng/img/Cache_32799f853a0e21fe..jpg
+ //https://gitee.com/W4j1e/pic/tree/master/img
  //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
-var cp = getComponent("https://github.com/zonelyn/bed");
-var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-console.log(">>>>>>>>>>>>> ",list.list.length);
+//var cp = getComponent("https://github.com/zonelyn/bed");
+//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+//console.log(">>>>>>>>>>>>> ",list.list.length);
 
 
 
