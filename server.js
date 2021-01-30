@@ -54,6 +54,22 @@ function fullparse(url){
     var parseURL = [];
     var arr = url.split("/"),flen=0,ix=0;
   
+    var treeName,cdnName,cdnPath;
+
+    switch(typeQR){
+      case "gitee": {
+        treeName="";
+        cdnName="tree/master";
+        cdnPath="";
+        break;
+      }
+      default:  {
+        treeName="cdn.jsdelivr.net/";
+        cdnName="tree/master";
+        cdnPath=
+        break;
+      }
+    }
     if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
     if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
       flen = arr.length-7-ix;
@@ -258,9 +274,10 @@ app.get("/", (request, response) => {
 });
  //https://githu.com/Tilin/tng/img/Cache_32799f853a0e21fe..jpg
  //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
-var cp = getComponent("https://github.com/zonelyn/bed");
-var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-console.log(">>>>>>>>>>>>> ",list.length);
+typeQR = "gitee";
+//var cp = getComponent("https://github.com/zonelyn/bed");
+//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+console.log(">>>>>>>>>>>>> ",list.list.length);
 
 
 
