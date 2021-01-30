@@ -300,10 +300,12 @@ app.get("/", (request, response) => {
           html += '    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b></footer>';
           html += '  </body>';
           html += '</html>';
-          return response.send(html);
-          if(list.list.length){
-            db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
+          
+          if(list.list.length){  
+            var base=COMA; if(url.indexOf(COMC)>0) base=COMC;
+            db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+cp.name+".png"+"')");
           }
+          return response.send(html);
     }else{
       return response.sendFile(__dirname + "/views/index.html");
     }
@@ -331,11 +333,13 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       if(list.list==null&&list.folder==null){
         return res.send({"msg":"没有子目录且未发现图片资源！"});
       }
+      if(list.list.length){  
+        var base=COMA; if(url.indexOf(COMC)>0) base=COMC;
+        console.log(base+cp.name+".png");
+        db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+cp.name+".png"+"')");
+      }
       return res.send(list);
 
-      if(list.list.length){  
-        db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+"https://github.com/"+cp.name+".png"+"')");
-      }
     }catch(e){
 
       return res.send({"msg":e.message});
