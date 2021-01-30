@@ -57,7 +57,7 @@ Supported query rules:
 
 ## View
 
-![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130180745.png)
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/yjtp.png)
 
 **Note:** This may invade the privacy of others, I am NOT responsible for any consequences of misusing this project.
 
