@@ -26,10 +26,7 @@ html{
   border-radius: 25em;
   margin-bottom: 4px;
   margin-right:8px;
-  box-shadow: 3px 2px 3px rgba(0,0,0,.5);
-  /*考虑浏览器兼容性*/
-  -moz-box-shadow: 3px 2px 3px rgba(0,0,0,.5);
-  -webkit-box-shadow: 3px 2px 3px rgba(0,0,0,.5);
+
 }
 
 .fancybox {
@@ -124,9 +121,17 @@ a{
 
 
 .te{
-  border: 2px solid red;
+  border: 2px solid #227fff;
+  box-shadow: 2px 1px 2px #2196F3;
+  /*考虑浏览器兼容性*/
+  -moz-box-shadow: 2px 1px 2px #2196F3;
+  -webkit-box-shadow: 2px 1px 2px #2196F3;
 }
 
 .hb{
-  border: 2px solid green;
+  border: 2px solid #ca8207;
+  box-shadow: 2px 1px 2px #d9931d;
+  /*考虑浏览器兼容性*/
+  -moz-box-shadow: 2px 1px 2px #d9931d;
+  -webkit-box-shadow: 2px 1px 2px #d9931d;
 }
