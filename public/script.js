@@ -18,6 +18,7 @@ function firethehole(wechat,o,x) {
     $('#spacex').attr('disabled','disabled');
     $('#google').show();
     if(wechat.substr(-1)=="/"){wechat = wechat.slice(0,-1);}
+  console.log(wechat);
     var mark = jugeUrl(wechat);//console.log(mark);
     if(mark>0){
       $.ajax({
@@ -49,7 +50,8 @@ function firethehole(wechat,o,x) {
             if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
             if(x!=2){
               if(JSON.stringify(o).indexOf(wechat)<0)
-                if()("#avat").append(`<img class="avat" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
+                if(wechat.indexOf(COMC)>0) $("#avat").append(`<img class="avat" src="${COMC+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
+                else $("#avat").append(`<img class="avat" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
             }
             if(xiaomi == 0){
               $("#pictures").append("<span style='color: #c93b0e;'>未解析到任何图片！</span>"); 
