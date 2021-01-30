@@ -20,10 +20,30 @@ On the back-end,
 
 Take one look then you can get all the points, easy!
 
+**Demo page:** [**https://xvido.es**](https://xvido.es) 
+
+**Supported query rules:**
+
+- Picture url: https://cdn.jsdelivr.net/gh/name/repo/x.jpg
+- Original link from repo: https://github.com/name/repo
+- Internal directory: https://github.com/name/repo/tree/main/sub
+- Default branch: https://github.com/name/repo/sub
+- Default prefix: /name/repo/sub (Github image bed only)
+- Single page rendering: directly visit [xvido.es](https://xvido.es)?x=url
+- Other image beds: Gitee has been supported, the rules are the same as above
+
+## Logs
+
+- `v0.1` Complete basic analysis logic and basic front-end style 
+- `v0.2` Add the function of rendering a separate page, which can be used as a photo album 
+- `v0.3` Introduce sqlite, add recently viewed 
+- `v0.4` Completion of multiple query methods, especially only the image url method 
+- `v0.5` Add the function of sub-directory view, support upper and lower view operations 
+- `v0.6` Improve front-end operation steps 
+- `v0.7` Add the judgment that the operation returns an exception 
+- `v0.8` Add support for Gitee repo, the rules are the same as Github repo
 
 
-
-
-Find out more [about MeE](https://www.cz5h.com).
+Find out more [about Me / cz5h.com](https://www.cz5h.com).
 
 ( ᵔ ᴥ ᵔ )
