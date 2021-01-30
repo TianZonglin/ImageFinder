@@ -54,37 +54,23 @@ function fullparse(url){
     var parseURL = [];
     var arr = url.split("/"),flen=0,ix=0;
   
-    var treeName,cdnPath;
-
-    switch(typeQR){
-      case "gitee": 
-        treeName="blob/master";
-        cdnPath="https://gitee.com/"
-        break;
-      default:  
-        treeName="tree/master";
-        cdnPath="https://cdn.jsdelivr.net/gh/"; 
-    }
     if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
-    if(url.indexOf(treeName)>0||url.indexOf("tree/main")>0){
+    if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
       flen = arr.length-7-ix;
       var name = arr[3];
       var base = arr[4];
       if(url.indexOf("cdn.jsdelivr.net/")>0 
          && base.indexOf("@")>0 ){base = base.split("@")[0];}
-      if(url.indexOf("gitee.com/")>0){
-        arr[5]="raw";}
       for(var i=0;i<flen;i++){
         path += arr[i+7]+"/";
       } 
       parseURL.push(url);
 
       return {"parseURL":parseURL,
-              "jsdURL":cdnPath+name+"/"+base+"/"+path,
+              "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,
               "name":name,"url":url};
     }else{
       var surl = "";
-      console.log(arr);
       flen = arr.length-5-ix;
       var name = arr[3];
       var base = arr[4];
@@ -93,21 +79,17 @@ function fullparse(url){
       } 
       if(url.indexOf("cdn.jsdelivr.net/")>0 ){
         if(base.indexOf("@")>0 ){base = base.split("@")[0];}
-        surl = COMA+name+"/"+base+"/";
+        surl = COMA+"/"+name+"/"+base+"/";
       }
-      if(arr.length>6){
-        surl += "^#";
-        for(var i=0;i<flen;i++){ 
-          path += "/"+arr[i+5];
-        } 
-        surl += path;
-      
-        parseURL.push(surl.replace("^#","tree/master"));
-        parseURL.push(surl.replace("^#","tree/main"));  
-      }else{
-        parseURL.push(surl.slice(0,-1));  
-        
+
+      surl += "^#";
+      for(var i=0;i<flen;i++){
+        path += "/"+arr[i+5];
       } 
+      surl += path;
+      
+      parseURL.push(surl.replace("^#","tree/master"));
+      parseURL.push(surl.replace("^#","tree/main")); 
       return {"parseURL":parseURL,
               "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+path+"/",
               "name":name,"url":url.replace("https://cdn.jsdelivr.net/","https://cdn.jsdelivr.net/gh/")
@@ -115,7 +97,30 @@ function fullparse(url){
     }
 }  
 
+function giteeparse(url){
+  
+    var path="";
+    var Component;
+    var parseURL = [];
+    var arr = url.split("/"),flen=0,ix=0;
+  
+    if(url.indexOf("cdn.jsdelivr.net/")>0){ix=1;}
+    if(url.indexOf("tree/master")>0||url.indexOf("tree/main")>0){
+      flen = arr.length-7-ix;
+      var name = arr[3];
+      var base = arr[4];
+      if(url.indexOf("cdn.jsdelivr.net/")>0 
+         && base.indexOf("@")>0 ){base = base.split("@")[0];}
+      for(var i=0;i<flen;i++){
+        path += arr[i+7]+"/";
+      } 
+      parseURL.push(url);
 
+      return {"parseURL":parseURL,
+              "jsdURL":"https://cdn.jsdelivr.net/gh/"+name+"/"+base+"/"+path,
+              "name":name,"url":url};
+    }
+}  
 
 function getComponent(url){
   
@@ -155,7 +160,6 @@ function getXML(parseURL){
       default: proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
     }
     var s = xpath.select(proot, doc);
-    
     if(s.length>0) return s;
     else return {"msg":"Can't find any images."}
 }
@@ -277,18 +281,15 @@ app.get("/", (request, response) => {
 });
  //https://githu.com/Tilin/tng/img/Cache_32799f853a0e21fe..jpg
  //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
-//typeQR = "gitee";
-//var cp = getComponent("https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg");
-typeQR = "gitee";
-var cp = getComponent("https://cdn.jsdelivr.net/zonelyn/bed/01.png");
-//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-console.log(">>>>>>>>>>>>> ",cp);
+var cp = getComponent("https://github.com/zonelyn/bed");
+var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+console.log(">>>>>>>>>>>>> ",list.list.length);
 
 
 
 app.post('/fuckqq', urlencodedParser, function (req, res) {
  
-    var url = req.body.wechat;
+    var url = req.body.wechat; 
     url = encodeURI(url);
     if(url.indexOf("cdn.jsdelivr.net/")>0){
       url = url.replace("https://cdn.jsdelivr.net/gh/","https://cdn.jsdelivr.net/");
