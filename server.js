@@ -184,14 +184,14 @@ function resolv(parseURL,jsdURL,url) {
     var folder=[];
     var pchild;
     if(parseURL.indexOf("gitee.com/")>0)
-      pchild = "string(//div[1])"; 
+      pchild = "string(//div/div/div/div/div)"; 
     else
       pchild = "string(//div/div[2]/span/a)";
 
     for (var i in parseURL) {
       //console.log(parseURL[i]);
       var items = getXML(parseURL[i]);
-      console.log( (items[3].toString()));
+      console.log( xpath.select1(pchild,new Dom().parseFromString(items[e].toString())));
       if(i == 0){
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
