@@ -301,8 +301,8 @@ app.get("/", (request, response) => {
           html += '  </body>';
           html += '</html>';
           
-          if(list.list.length){  
-            var base=COMA+cp.name+".png"; if(url.indexOf(COMC)>0) base="http://www.gravatar.com/avatar/"+cp.name+"@qq.com?s=32&&d=identicon";
+          if(list.list.length||list.folder.length){  
+            var base=COMA+cp.name+".png"; if(url.indexOf("gitee.com/")>0) base="http://www.gravatar.com/avatar/"+cp.name+"@qq.com?s=32&&d=identicon";
             db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+"')");
           }
           return response.send(html);
@@ -333,8 +333,8 @@ app.post('/fuckqq', urlencodedParser, function (req, res) {
       if(list.list==null&&list.folder==null){
         return res.send({"msg":"没有子目录且未发现图片资源！"});
       }
-      if(list.list.length){  
-        var base=COMA+cp.name+".png"; if(url.indexOf(COMC)>0) base="http://www.gravatar.com/avatar/"+cp.name+"@qq.com?s=32&&d=identicon";
+      if(list.list.length||list.folder.length){  
+        var base=COMA+cp.name+".png"; if(url.indexOf("gitee.com/")>0) base="https://api.prodless.com/avatar.png";
     
         db.run("INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('"+cp.url+"','"+list.list.length+"','"+new Date().getTime()+"','"+cp.name+"','"+base+"')");
       }

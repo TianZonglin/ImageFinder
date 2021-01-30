@@ -50,7 +50,7 @@ function firethehole(wechat,o,x) {
             if(wechat.indexOf(COMB.substr(8))>0)oppo = wechat.split("/")[4];
             if(x!=2){
               if(JSON.stringify(o).indexOf(wechat)<0)
-                if(wechat.indexOf("gitee.com/")>0) $("#avat").append(`<img class="avat te" src="${COMC+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
+                if(wechat.indexOf("gitee.com/")>0) $("#avat").append(`<img class="avat te" src="https://api.prodless.com/avatar.png" title="${oppo}" id="${wechat}">`);
                 else $("#avat").append(`<img class="avat hb" src="${COMA+"/"+oppo}.png" title="${oppo}" id="${wechat}">`);
             }
             if(xiaomi == 0){
@@ -73,7 +73,7 @@ $(function(){
     fetch("/birth", {})
       .then(res => res.json()).then(vivo => { o = vivo;
         for (var mix in vivo) {
-            if(vivo[mix].url.indexOf("gitee.com/")>0) $("#avat").append(`<img class="avat te" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
+            if(vivo[mix].url.indexOf("gitee.com/")>0) $("#avat").append(`<img class="avat te" src="https://api.prodless.com/avatar.png" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
             else $("#avat").append(`<img class="avat hb" src="${vivo[mix].ex2}" title="${vivo[mix].ex1}" id="${vivo[mix].url}">`);
             
         }
