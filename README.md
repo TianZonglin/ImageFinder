@@ -1,3 +1,6 @@
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130171054.png)
+
+
 # ImageFinder
 
 A server that could help you to find more interesting image repositories. Also, it's an easy way to have a gallery of your image repository.
@@ -25,17 +28,17 @@ Take one look then you can get all the points, easy!
 
 Supported query rules:
 
-- `Picture url:` https://cdn.jsdelivr.net/gh/name/repo/x.jpg
-- `Original link from repo:` https://github.com/name/repo
-- `Internal directory:` https://github.com/name/repo/tree/main/sub
-- `Default branch:` https://github.com/name/repo/sub
-- `Default prefix:` /name/repo/sub (Github image bed only)
-- `Single page rendering:` directly visit [xvido.es](https://xvido.es)?x=url
-- `Other image beds:` Gitee has been supported, the rules are the same as above
+- Picture url: `https://cdn.jsdelivr.net/gh/name/repo/x.jpg`
+- Original link from repo: `https://github.com/name/repo`
+- Internal directory: `https://github.com/name/repo/tree/main/sub`
+- Default branch: `https://github.com/name/repo/sub`
+- Default prefix: `/name/repo/sub` (Github image bed only)
+- Single page rendering: directly visit `xvido.es?x=url`
+- Other image beds: `Gitee` has been supported, the rules are the same as above
 
 ## Logs
 
-- `v0.1` Complete basic analysis logic and basic front-end style 
+- `v0.1` Complete basic resolve logic and basic front-end style 
 - `v0.2` Add the function of rendering a separate page, which can be used as a photo album 
 - `v0.3` Introduce sqlite, add recently viewed 
 - `v0.4` Completion of multiple query methods, especially only the image url method 
@@ -43,6 +46,13 @@ Supported query rules:
 - `v0.6` Improve front-end operation steps 
 - `v0.7` Add the judgment that the operation returns an exception 
 - `v0.8` Add support for Gitee repo, the rules are the same as Github repo
+- `v0.9` Stable version
+
+Todo：
+
+- Bug: Links containing Chinese will cause errors.
+- Add: Add support for Gitee image bed!
+- Fix: Use more suitable picture layout (such as waterfall flow)
 
 
 **Find out more [about Me / cz5h.com](https://www.cz5h.com).**
