@@ -56,7 +56,8 @@ Supported query rules:
 
 ![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130180745.png)
 
-Note: 
+**Note:** This may invade the privacy of others, I am NOT responsible for any consequences of misusing this project.
 
+---
 
 **Find out more [about Me / cz5h.com](https://www.cz5h.com).**
