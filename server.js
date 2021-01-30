@@ -96,25 +96,35 @@ function fullparse(url){
       };
     }
 }  
-//https://gitee.com/W4j1e/pic/tree/master/img
+//https://gitee.com/W4j1e/pic/img
  //https://gitee.com/W4j1e/pic/tree/master/img
- //https://gitee.com/W4j1e/pic/blob/master/img/clip_image002.jpg
+ //https://gitee.com/W4j1e/pic/raw/master/img/clip_image002.jpg
 
-giteeparse("https://gitee.com/W4j1e/pic/tree/master/img");
+//giteeparse("https://gitee.com/W4j1e/pic/tree/master/img");
+var cp = getComponent("https://gitee.com/W4j1e/pic/tree/master/img");
+//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+console.log(cp);
 
 function giteeparse(url){
 
     var arr = url.split("/"),flen=0,ix=0;
     var name = arr[3];
     var repo = arr[4];
-    if(url.indexOf("tree/master")<0)url=url.replace(repo,);
-    if(url.indexOf("blob/master")<0)url=url.replace(repo,);
-    
+    var obj;
+    if(url.indexOf("tree/master")>0){
+      obj = {"parseURL":url,
+              "jsdURL":url.replace("/tree/master","/raw/master")+"/",
+              "name":name,"url":url};
       
-    }else
+    }else if(url.indexOf("raw/master")>0){
+    
+    }else{
+      
+    }
   
   
-    console.log(name,repo);
+    console.log(obj);
+    return obj;
 }  
 
 function getComponent(url){
