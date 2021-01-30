@@ -101,9 +101,9 @@ function fullparse(url){
  //https://gitee.com/W4j1e/pic/raw/master/img/clip_image002.jpg
 
 //giteeparse("https://gitee.com/W4j1e/pic/tree/master/img");
-var cp = getComponent("https://gitee.com/W4j1e/pic/tree/master/img");
-//var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-console.log(cp);
+var cp = getComponent("https://gitee.com/W4j1e/pic/img");
+var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
+console.log(list); 
 
 function giteeparse(url){
 
@@ -116,10 +116,16 @@ function giteeparse(url){
               "jsdURL":url.replace("/tree/master","/raw/master")+"/",
               "name":name,"url":url};
       
-    }else if(url.indexOf("raw/master")>0){
-    
+    }else if(url.indexOf("raw/master")>0){ 
+      url=url.replace(arr[arr.length-1],"");
+      obj = {"parseURL":url.replace("/raw/master","/tree/master"),
+              "jsdURL":url+"/",
+              "name":name,"url":url};
     }else{
-      
+ 
+      obj = {"parseURL":url.replace(arr[4],arr[4]+"/tree/master"),
+              "jsdURL":url.replace(arr[4],arr[4]+"/raw/master")+"/",
+              "name":name,"url":url};
     }
   
   
@@ -132,7 +138,9 @@ function getComponent(url){
     var mark = jugeUrl(url);  
     var Component;
     var parseURL = [];  
-    if(mark==1){
+  
+    if(mark==1){ 
+      if(url.indexOf("gitee.com/")>0)return giteeparse(url); 
       return fullparse(url);
     }else if(mark==2){
       return fullparse("https://github.com"+url);
