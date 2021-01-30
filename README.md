@@ -1,7 +1,7 @@
 
 # ImageFinder
 
-A server that could help you to find more interesting image repositories. Also, it's an easy way to have a gallery of your image repository.
+A server that could help you to find more interesting image repositories. Also, it could be an easy way to make a gallery for your image repository.
 
 Support look images hosted in `Github.com` and `Gitee.com`.
 
@@ -22,7 +22,11 @@ On the back-end,
 
 Take one look then you can get all the points, easy!
 
-**Demo page:** [**https://xvido.es**](https://xvido.es) 
+**Demo page: [https://xvido.es](https://xvido.es)**
+
+**Gallery mode: [https://xvido.es?x=/zonelyn/imgbed](https://xvido.es?x=/zonelyn/imgbed)**
+
+
 
 Supported query rules:
 
