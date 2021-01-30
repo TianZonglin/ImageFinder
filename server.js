@@ -164,13 +164,13 @@ function getXML(parseURL){
     }).parseFromString(response);
     var proot;
     if(parseURL.indexOf("gitee.com/")>0)
-      proot = "//*[@id='tree-slider']/div";
+      proot = "//*[@id='tree-slider']/div/div[1]/a/@title";
     else 
       proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
  
     var s = xpath.select(proot, doc);
     if(s.length>0){
-      //console.log(s.toString());
+      console.log(s.toString());
       return s;
     }
     else return {"msg":"Can't find any images."}
@@ -183,54 +183,56 @@ function resolv(parseURL,jsdURL,url) {
     var list=[];
     var folder=[];
     var pchild;
-    if(parseURL.indexOf("gitee.com/")>0)
-      pchild = "string(//div/div/div/div/div)"; 
-    else
+    if(parseURL.indexOf("gitee.com/")>0){
+      var items = getXML(parseURL[0]);
+      console.log(items);
+    } 
+    else{
       pchild = "string(//div/div[2]/span/a)";
-
-    for (var i in parseURL) {
-      //console.log(parseURL[i]);
-      var items = getXML(parseURL[i]);
-      console.log( xpath.select1(pchild,new Dom().parseFromString(items[e].toString())));
-      if(i == 0){
-        for (var e in items) {
-            var parser = new Dom().parseFromString(items[e].toString());
-            if(parser==null) break;
-            var jpgs = xpath.select1(pchild, parser);
-            var p = jsdURL+jpgs;
-            if(CheckImgExists(p)){
-              //console.log("ppppppp: ",p);
-              list.push(p);
-            }else{
-              if(jpgs.split(".").length==1&&jpgs!=""){
-                folder.push(jpgs);
+      for (var i in parseURL) {
+        //console.log(parseURL[i]);
+        var items = getXML(parseURL[i]);
+        console.log( xpath.select1(pchild,new Dom().parseFromString(items[e].toString())));
+        if(i == 0){
+          for (var e in items) {
+              var parser = new Dom().parseFromString(items[e].toString());
+              if(parser==null) break;
+              var jpgs = xpath.select1(pchild, parser);
+              var p = jsdURL+jpgs;
+              if(CheckImgExists(p)){
+                //console.log("ppppppp: ",p);
+                list.push(p);
+              }else{
+                if(jpgs.split(".").length==1&&jpgs!=""){
+                  folder.push(jpgs);
+                }
               }
-            }
-        }
-        console.log("part1 > list "+list.length);
-        console.log("part1 > folder "+folder.length);
-        if(!list.length&&!folder.length) break;
-        return {"list":list,"folder":folder,"url":url};
-      }else if(i == 1){ 
-        if(items.msg!=null) return items;
-        for (var e in items) {
-            var parser = new Dom().parseFromString(items[e].toString());
-            var jpgs = xpath.select1(pchild, parser);
-            var p = jsdURL+jpgs;
-            if(CheckImgExists(p)){
-              list.push(p);
-            }else{
-              if(jpgs.split(".").length==1&&jpgs!=""){
-                folder.push(jpgs);
+          }
+          console.log("part1 > list "+list.length);
+          console.log("part1 > folder "+folder.length);
+          if(!list.length&&!folder.length) break;
+          return {"list":list,"folder":folder,"url":url};
+        }else if(i == 1){ 
+          if(items.msg!=null) return items;
+          for (var e in items) {
+              var parser = new Dom().parseFromString(items[e].toString());
+              var jpgs = xpath.select1(pchild, parser);
+              var p = jsdURL+jpgs;
+              if(CheckImgExists(p)){
+                list.push(p);
+              }else{
+                if(jpgs.split(".").length==1&&jpgs!=""){
+                  folder.push(jpgs);
+                }
               }
-            }
+          }
+          console.log("part2 > "+list.length);
+          console.log("part2 > folder "+folder.length);
+          if(!list.length&&!folder.length) break;
+          return {"list":list,"folder":folder,"url":jsdURL};
         }
-        console.log("part2 > "+list.length);
-        console.log("part2 > folder "+folder.length);
-        if(!list.length&&!folder.length) break;
-        return {"list":list,"folder":folder,"url":jsdURL};
       }
-    }
+    }  
     return items;
 }
  
