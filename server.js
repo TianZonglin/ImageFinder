@@ -147,7 +147,7 @@ function getXML(parseURL){
     console.log("XML => "+parseURL);
     var response = '';
     try { 
-      console.log(request2('GET', "https://www.baidu.com").getBody());
+      //console.log(request2('GET', "https://www.baidu.com").getBody());
       response = request2('GET', parseURL).getBody().toString();
       console.log("response-size > "+ response.length);
       //response = request(parseURL, { timeout: timeout, dataType: 'xml' })   
@@ -163,12 +163,16 @@ function getXML(parseURL){
         }
     }).parseFromString(response);
     var proot;
-    switch(typeQR){
-      case "gitee": {proot = "//*[@id='tree-slider']";break;}
-      default: proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
-    }
+    if(parseURL.indexOf("gitee.com/")>0)
+      proot = "//*[@id='tree-slider']/div";
+    else 
+      proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
+ 
     var s = xpath.select(proot, doc);
-    if(s.length>0) return s;
+    if(s.length>0){
+      //console.log(s.toString());
+      return s;
+    }
     else return {"msg":"Can't find any images."}
 }
 
@@ -179,14 +183,15 @@ function resolv(parseURL,jsdURL,url) {
     var list=[];
     var folder=[];
     var pchild;
-    switch(typeQR){
-      case "gitee": {pchild = "string(//div/div[1]/a)"; break;}
-      default: pchild = "string(//div/div[2]/span/a)";
-    }
+    if(parseURL.indexOf("gitee.com/")>0)
+      pchild = "string(//div[1]/a)"; 
+    else
+      pchild = "string(//div/div[2]/span/a)";
+
     for (var i in parseURL) {
-      console.log(parseURL[i]);
+      //console.log(parseURL[i]);
       var items = getXML(parseURL[i]);
-      
+      console.log(items.length);
       if(i == 0){
         for (var e in items) {
             var parser = new Dom().parseFromString(items[e].toString());
