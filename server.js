@@ -100,11 +100,7 @@ function fullparse(url){
  //https://gitee.com/W4j1e/pic/tree/master/img
  //https://gitee.com/W4j1e/pic/raw/master/img/clip_image002.jpg
 
-//giteeparse("https://gitee.com/W4j1e/pic/tree/master/img");
-var cp = getComponent("https://gitee.com/W4j1e/pic/img");
-var list = resolv(cp.parseURL,cp.jsdURL,cp.url);
-console.log(list); 
-
+ 
 function giteeparse(url){ 
  
     var arr = url.split("/"),flen=0,ix=0;
