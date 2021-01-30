@@ -5,8 +5,10 @@ A server that could help you to find more interesting image repositories. Also, 
 
 To redeploy, you need to have a `nodejs` environment at first, then make sure you install all packages in `package.json` .Since I used `sqlite` to store some data, you need to manually execute some codes as follows to create a proper table with your sqlite.
 
-```
-
+```sql
+CREATE TABLE CList (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)
 ```
 
 
