@@ -1,62 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A cool thing made by CZ5H.COM">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="cz5h.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A cool thing made by CZ5H.COM" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css"
+    />
     <title>偷偷瞄！</title>
-    <link id="favicon" rel="icon" href="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/fc.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/style.css">
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/fc.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/style.css" />
     <script src="/script.js" defer></script>
   </head>
   <body>
     <header><h1>偷偷看看别人都存了什么！</h1></header>
-    <main><div class="wid">
-      <span style="color: #b42b00;font-weight: 600;">警告：切勿在公共图床存储身份证、银行交易截图等私密信息，本站点仅供学习使用。（当前版本：稳定版v0.8）</span></div>
+    <main>
+      <div class="wid">
+        <span style="color: #b42b00;font-weight: 600;"
+          >警告：切勿在公共图床存储身份证、银行交易截图等私密信息，本站点仅供学习使用。（当前版本：稳定版v0.8）</span
+        >
+      </div>
       <p>输入受害人信息（Github / Gitee）：</p>
       <div class="form" autocomplete="off">
         <label>
-          <span style="font-size:12px;">例如：复制仓库原链 https://github.com/zonelyn/bed，或者<span style="color:#c93b0e">复制一张图片地址</span>，支持@版本 https://cdn.jsdelivr.net/gh/zonelyn/bed/01.png</span><br>
-          <input id="wechat" type="text" maxlength="100" required placeholder="请输入正确的图床/图片地址！">
+          <span style="font-size:12px;"
+            >例如：复制仓库原链 https://github.com/zonelyn/bed，或者<span
+              style="color:#c93b0e"
+              >复制一张图片地址</span
+            >，支持@版本 https://cdn.jsdelivr.net/gh/zonelyn/bed/01.png</span
+          ><br />
+          <input
+            id="wechat"
+            type="text"
+            maxlength="100"
+            required
+            placeholder="请输入正确的图床/图片地址！"
+          />
         </label>
         <div>
           <button type="button" id="spacex">偷瞄一眼</button>
-          <img class="load" id="google" style="height: 23px;margin:0px;display:none;" src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/ff.gif"/>
-        </div> 
+          <img
+            class="load"
+            id="google"
+            style="height: 23px;margin:0px;display:none;"
+            src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/ff.gif"
+          />
+        </div>
       </div>
-      <br>
+      <br />
       <div class="form" autocomplete="off">
-        <label><span style="font-size:12px;">大家都在看：<span style="color:#ca5d07;">Github</span> & <span style="color:#005be4">Gitee</span></span></label>
-        <div id="avat"></div> 
-      </div><br>
-      <section class="folders" id="folders"></section><br>
+        <label
+          ><span style="font-size:12px;"
+            >大家都在看：<span style="color:#ca5d07;">Github</span> &
+            <span style="color:#005be4">Gitee</span></span
+          ></label
+        >
+        <div id="avat"></div>
+      </div>
+      <br />
+      <section class="folders" id="folders"></section>
+      <br />
       <section class="pictures" id="pictures"></section>
     </main>
-     <footer>
-       <div class="ft">
-         <span><b>当前支持查询的方式：</b></span><br> 
-          <span> 图片地址: https://cdn.jsdelivr.net/gh/name/repo/x.jpg</span><br>
-          <span> 仓库原链: https://github.com/name/repo</span><br>
-          <span> 内部目录: https://github.com/name/repo/tree/main/sub</span><br>
-          <span> 缺省分支: https://github.com/name/repo/sub</span><br>
-          <span> 缺省前缀: /name/repo/sub (仅限Github图床)</span> <br>
-         <span> 单页渲染: 直接访问 xvido.es?x=url</span> <br>
-         <span> 其他图床: <u>已支持Gitee，规则同上</u></span> <br><br>
-       <div class="wid"><span><b>更新：</b><br> 基础解析,样式调整[v0.1]<b>-></b>渲染独立页面,伪相册[v0.2]<b>-></b>引入sqlite,添加最近查看[v0.3]<b>-></b>补全多种查询方式/只需一个图片地址[v0.4]
-         <b>-></b>添加<span style="color:#9c27b0">子目录</span>支持及上下层查看操作![v0.5]<b>-></b>完善显示逻辑[v0.6]<b>-></b>添加异常判断[v0.7]<b>-></b>同等支持Gitee仓库,样式区分[v0.8]</span><br></div>
-          <br>
-         <span><b>Todo：</b></span><br> 
-          <span><s> Bug: 中文目录名出错。</s></span><br>
-         <span> <s>Add: 添加对Gitee图床的支持！</s></span><br>
-         <span> Fix: 更适合的图片排版</span><br>
-        <br><br> </div>
-   <b><a style="color:#664c00"  href="https://www.cz5h.com" target="_blank">Copyright × CZ5H.COM「2021」</a></b></footer><br>
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <div style="display:none"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>
+    <footer>
+      <div class="ft">
+        <span><b>当前支持查询的方式：</b></span
+        ><br />
+        <span> 图片地址: https://cdn.jsdelivr.net/gh/name/repo/x.jpg</span
+        ><br />
+        <span> 仓库原链: https://github.com/name/repo</span><br />
+        <span> 内部目录: https://github.com/name/repo/tree/main/sub</span><br />
+        <span> 缺省分支: https://github.com/name/repo/sub</span><br />
+        <span> 缺省前缀: /name/repo/sub (仅限Github图床)</span> <br />
+        <span> 单页渲染: 直接访问 xvido.es?x=url</span> <br />
+        <span> 其他图床: <u>已支持Gitee，规则同上</u></span> <br /><br />
+        <div class="wid">
+          <span
+            ><b>更新：</b><br />
+            基础解析,样式调整[v0.1]<b>-></b>渲染独立页面,伪相册[v0.2]<b>-></b>引入sqlite,添加最近查看[v0.3]<b>-></b>补全多种查询方式/只需一个图片地址[v0.4]
+            <b>-></b>添加<span style="color:#9c27b0">子目录</span
+            >支持及上下层查看操作![v0.5]<b>-></b>完善显示逻辑[v0.6]<b>-></b>添加异常判断[v0.7]<b>-></b>同等支持Gitee仓库,样式区分[v0.8]</span
+          ><br />
+        </div>
+
+        <br />
+        <span><b>Todo：</b></span
+        ><br />
+        <span><s> Bug: 中文目录名出错。</s></span
+        ><br />
+        <span> <s>Add: 添加对Gitee图床的支持！</s></span
+        ><br />
+        <span> Fix: 更适合的图片排版</span><br />
+        <br /><br />
+      </div>
+      <b
+        ><a style="color:#664c00" href="https://www.cz5h.com" target="_blank"
+          >Copyright × CZ5H.COM「2021」</a
+        ></b
+      >
+    </footer>
+    <br />
+    <script
+      async
+      src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+    ></script>
+    <div style="display:none">
+      <span id="busuanzi_container_site_pv"
+        >本站总访问量<span id="busuanzi_value_site_pv"></span>次</span
+      >
+    </div>
   </body>
 </html>
-
