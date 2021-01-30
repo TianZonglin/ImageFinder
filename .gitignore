@@ -4,6 +4,7 @@ logs
 .glitch-assets
 .gitignore
 package-lock.json
+shrinkwrap.yaml
 
 *.log
 npm-debug.log*
