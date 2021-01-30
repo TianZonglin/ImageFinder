@@ -164,7 +164,7 @@ function getXML(parseURL){
     }).parseFromString(response);
     var proot;
     if(parseURL.indexOf("gitee.com/")>0)
-      proot = "//*[@id='tree-slider']/div/div[1]/a/@title";
+      proot = "//*[@id='tree-slider']/div/div[1]/a";
     else 
       proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
  
@@ -184,11 +184,10 @@ function resolv(parseURL,jsdURL,url) {
     var folder=[];
     var pchild;
     if(parseURL.indexOf("gitee.com/")>0){
-      var items = getXML(parseURL[0]);
-      console.log(items);
-    } 
-    else{
+      pchild = "string(//div/div/div/div/div)"; 
+    }else{
       pchild = "string(//div/div[2]/span/a)";
+
       for (var i in parseURL) {
         //console.log(parseURL[i]);
         var items = getXML(parseURL[i]);
@@ -232,7 +231,7 @@ function resolv(parseURL,jsdURL,url) {
           return {"list":list,"folder":folder,"url":jsdURL};
         }
       }
-    }  
+    }
     return items;
 }
  
