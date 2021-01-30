@@ -48,11 +48,11 @@ Supported query rules:
 - `v0.8` Add support for Gitee repo, the rules are the same as Github repo
 - `v0.9` Stable version
 
-Todo：
+**Todo**
 
-- Bug: Links containing Chinese will cause errors.
-- Add: Add support for Gitee image bed!
-- Fix: Use more suitable picture layout (such as waterfall flow)
+- `Bug:` <s>Links containing Chinese will cause errors.</s>
+- `Add:` <s>Add support for Gitee image bed!</s>
+- `Fix:` Use more suitable images layout (e.g. waterfall flow)
 
 
 **Find out more [about Me / cz5h.com](https://www.cz5h.com).**
