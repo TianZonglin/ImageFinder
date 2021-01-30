@@ -137,4 +137,11 @@ a {
 .wid {
   max-width: 500px;
 }
+.github-widget{
+  max-width:500px;
+  border-radius:10px;
+}
+.github-widget *{
+  background: #e3e39d !important;
+}
  
