@@ -15,10 +15,6 @@ Next, things will be very easy: just run & look. Have fun!
 (Don't know how to run a node app? see [document](https://nodejs.org/docs/latest-v13.x/api/synopsis.html))
 
 
-
-
-- Node envir
-
 ## Description 
 
 On the front-end,
