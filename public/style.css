@@ -195,15 +195,17 @@ a {
 
 .left{
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   max-width: 500px;
-   
   float:left;
 }
 
 @media (min-width: 600px) {
   .left{
-    margin-right:20px;
-    margin-bottom: 10px;
+    margin-right:15px;
+    margin-bottom: 0px;
+  }
+.movebar {
+  margin-bottom: 0px;
   }
 }
