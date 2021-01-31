@@ -118,6 +118,7 @@ function firethehole(wechat, o, x) {
   }
 }
 $(function() {
+  //$("footer").css("margin-top",$(".left").css("height"));
   $(".nstSlider").nstSlider({
     crossable_handles: false,
     left_grip_selector: ".leftGrip",

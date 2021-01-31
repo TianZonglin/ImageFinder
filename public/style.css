@@ -97,7 +97,7 @@ input {
 }
 
 footer {
-  margin-top: 1em;
+  margin-top: 20px;
   padding-top: 1.5em;
   border-top: 1px solid #b4966a;
 }
@@ -154,6 +154,7 @@ a {
 }
 .movebar {
   margin-top: 15px;
+  margin-bottom: 20px;
   height: 110px;
   border-radius: 10px;
   background-color: #e3e39d;
@@ -190,4 +191,12 @@ a {
   border: 2px solid #9c7130;
   height: 9px;
   top: -2px;
+}
+
+.left{
+  position: relative;
+  margin-right:30px;
+  max-width: 500px;
+  height: 610px;  
+  float:left;
 }
