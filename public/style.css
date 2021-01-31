@@ -29,6 +29,11 @@ html {
   overflow:hidden;
 }
 
+.s{
+  float:left;
+  display:inline-block;
+}
+
 .avat {
   border: 0px;
   height: 45px;
@@ -146,6 +151,7 @@ a {
 
 .wid {
   max-width: 500px;
+ 
 }
 .movebar {
   margin-top: 15px;
