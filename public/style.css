@@ -20,14 +20,13 @@ html {
 
 .bao {
   height: 43px;
-  width:43px;
+  width: 43px;
   border-radius: 25em;
   margin-bottom: 4px;
   margin-right: 8px;
-  padding:1px 0px 0px 1px;
-  display:inline-block;
+  padding: 1px 0px 0px 1px;
+  display: inline-block;
 }
-
 
 .avat {
   border: 0px;
@@ -104,7 +103,7 @@ a {
 .ft {
   font-size: 12px;
 }
- 
+
 .folders > div {
   font-size: 12px;
   font-weight: 600;
@@ -148,4 +147,15 @@ a {
   max-width: 500px;
 }
 
- 
+.nstSlider {
+  max-width: 500px;
+  width: 100%;
+  height: 24.5px;
+  background: #c39552;
+  border: 2px solid #9c7130;
+}
+    background: #e8c867;
+    /* border: 1px solid red; */
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
