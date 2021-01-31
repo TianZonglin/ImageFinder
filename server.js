@@ -414,7 +414,8 @@ app.get("/", (request, response) => {
       '<a style="float:left;" href="https://github.com/TianZonglin/ImageFinder"target="_blank">';
     html +=
       '<img height="22"src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/icons8-github-48.png"/></a></footer><br><br><br>';
-    '<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?d79d9c89060190dc75cbf0073c6f34c4";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div style="display:none"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>'
+    html += '<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?d79d9c89060190dc75cbf0073c6f34c4";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();</script>';
+    html += '<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div style="display:none"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>';
     html += "  </body>";
     html += "</html>";
     if (list.list.length || list.folder.length) {
