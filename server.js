@@ -191,8 +191,8 @@ if (0) {
   //db.run("DROP TABLE Seeds");
   db.serialize(() => {
     db.run(
-      "CREATE TABLE CList (id INTEGER PRIMARY KEY AUTOINCREMENT," 
-        + "url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)"
+      "CREATE TABLE CList (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)"
     );
   });
 }
@@ -365,23 +365,34 @@ app.get("/", (request, response) => {
     html += '    <meta charset="utf-8">';
     html += '    <meta http-equiv="X-UA-Compatible" content="IE=edge">';
     html += '    <meta name="author" content="cz5h.com">';
-    html += '    <meta name="viewport" content="width=device-width, initial-scale=1">';
-    html += '    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
-    html += '    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" ></script>';
-    html += '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />';
-    html += '    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nstslider/1.0.13/jquery.nstSlider.min.js"></script>';
-    html += '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nstslider/1.0.13/jquery.nstSlider.min.css"/>';
+    html +=
+      '    <meta name="viewport" content="width=device-width, initial-scale=1">';
+    html +=
+      '    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
+    html +=
+      '    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" ></script>';
+    html +=
+      '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />';
+    html +=
+      '    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nstslider/1.0.13/jquery.nstSlider.min.js"></script>';
+    html +=
+      '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nstslider/1.0.13/jquery.nstSlider.min.css"/>';
     html += "    <title>ImageFinder</title>";
-    html += '    <link id="favicon" rel="icon" href="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/fc.ico" type="image/x-icon">';
+    html +=
+      '    <link id="favicon" rel="icon" href="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/fc.ico" type="image/x-icon">';
     html += '    <link rel="stylesheet" href="/style.css">';
     html += '    <script src="/script.js" defer></script>';
     html += "  </head>";
     html += "  <body>";
     html += "    <main style=''>";
-    html += '    <div class="movebar"><span class="ft">调节图片大小(px)：</span><div class="nstSlider"data-range_min="20"data-range_max="300"data-cur_min="40"data-cur_max="80">';
-    html += '    <div class="bar"></div><div class="leftGrip"></div><div class="rightGrip"></div></div><div style="margin-top: 25px;">';
-    html += '    <span style="float:left;"class="ft">min-width(<span id="maxw"></span>)</span>';
-    html += '    <span style="float:right;"class="ft">(<span id="minw"></span>)max-width</span></div></div>';
+    html +=
+      '    <div class="movebar"><span class="ft">调节图片大小(px)：</span><div class="nstSlider"data-range_min="20"data-range_max="300"data-cur_min="40"data-cur_max="80">';
+    html +=
+      '    <div class="bar"></div><div class="leftGrip"></div><div class="rightGrip"></div></div><div style="margin-top: 25px;">';
+    html +=
+      '    <span style="float:left;"class="ft">min-width(<span id="maxw"></span>)</span>';
+    html +=
+      '    <span style="float:right;"class="ft">(<span id="minw"></span>)max-width</span></div></div>';
     html += '<section class="folders" id="folders">';
     list.folder.forEach(function(win) {
       var xt = "/";
@@ -397,7 +408,8 @@ app.get("/", (request, response) => {
     });
     html += "      </section>";
     html += "    </main>";
-    html += '    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b></footer>';
+    html +=
+      '    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b></footer>';
     html += "  </body>";
     html += "</html>";
     if (list.list.length || list.folder.length) {

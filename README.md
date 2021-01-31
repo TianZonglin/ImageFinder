@@ -58,7 +58,7 @@ Supported query rules:
 - `v0.6` Improve front-end operation steps
 - `v0.7` Add the judgment that the operation returns an exception
 - `v0.8` Add support for Gitee repo, the rules are the same as Github repo (Stable version)
-- `v0.9` Create slider tool (`nstSlider.js` to change the size of pictures smoothly.
+- `v0.9` Create slider tool (`nstSlider.js`) to change the size of pictures smoothly.
 
 **Todo**
 
