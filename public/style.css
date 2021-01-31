@@ -19,20 +19,21 @@ html {
 }
 
 .bao {
-  height: 43px;
-  width: 43px;
-  border-radius: 25em;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
   margin-bottom: 4px;
   margin-right: 8px;
   padding: 1px 0px 0px 1px;
   display: inline-block;
+  overflow:hidden;
 }
 
 .avat {
   border: 0px;
-  height: 37px;
+  height: 42px;
   cursor: pointer;
-  border-radius: 25em;
+  border-radius: 40px;
   filter: blur(3px);
 }
 
@@ -146,35 +147,43 @@ a {
 .wid {
   max-width: 500px;
 }
-
-.nstSlider .leftGrip, .nstSlider .rightGrip {
-    position: absolute;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    width: 20px;
-    height: 20px;
-    top: -8px;
-    background: #e8c867;
-    border: 2px solid #9c7130;
+.movebar {
+  margin-top: 15px;
+  height: 110px;
+  border-radius: 10px;
+  background-color: #e3e39d;
+  padding: 16px;
+  max-width: 500px;
+ 
+}
+.nstSlider .leftGrip,
+.nstSlider .rightGrip {
+  position: absolute;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  top: -8px;
+  background: #e8c867;
+  border: 2px solid #9c7130;
 }
 .nstSlider {
-    max-width: 500px;
-    width: 100%;
-    top: 10;
-    top: 20px;
-    height: 9px;
-    background: #d7aa68;
-    border: 2px solid #9c7130;
-    border-radius: 30px;
+  max-width: 500px;
+  width: 100%;
+  top: 13px;
+  height: 9px;
+  background: #d7aa68;
+  border: 2px solid #9c7130;
+  border-radius: 30px;
 }
 .nstSlider .bar {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    position: absolute;
-    background: #e8c867;
-    border: 2px solid #9c7130;
-    height: 9px;
-    top: -2px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  position: absolute;
+  background: #e8c867;
+  border: 2px solid #9c7130;
+  height: 9px;
+  top: -2px;
 }
