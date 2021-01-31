@@ -2,7 +2,10 @@
 
 * {
   box-sizing: border-box;
+  outline: none;
 }
+
+ 
 
 html {
   background-color: #caad00;
