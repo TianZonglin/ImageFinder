@@ -1,7 +1,7 @@
 # ImageFinder
 
 [![Author](https://img.shields.io/badge/author-XPoet-orange.svg)](https://github.com/XPoet)
-[![Release](https://img.shields.io/github/release/XPoet/picx.svg)](https://github.com/XPoet/picx/releases)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/TianZonglin/ImageFinder?style=plastic)
 [![License](https://img.shields.io/github/license/XPoet/picx.svg)](https://github.com/XPoet/picx/blob/master/LICENSE)
 
 ![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131041449.png)
