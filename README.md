@@ -64,6 +64,7 @@ Supported query rules:
 - `v0.0.7` Add the judgment that the operation returns an exception
 - `v0.0.8` Add support for Gitee repo, the rules are the same as Github repo (Stable version)
 - `v0.0.9` Create slider tool (`nstSlider.js`) to change the size of pictures smoothly.
+- `v0.1.0` Kill the blank space by new layout.
 
 **Todo**
 
