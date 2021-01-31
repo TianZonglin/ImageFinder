@@ -1,6 +1,6 @@
 # ImageFinder
 
-[![Author]](https://img.shields.io/badge/Author-TianZonglin-green)](https://github.com/TianZonglin)
+[![Author](https://img.shields.io/badge/Author-TianZonglin-green)](https://github.com/TianZonglin)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/TianZonglin/ImageFinder)
 ![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m787087225-950e39e5cd6e3d6c5c9be0cb)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TianZonglin/ImageFinder)
