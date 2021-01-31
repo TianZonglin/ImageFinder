@@ -409,7 +409,11 @@ app.get("/", (request, response) => {
     html += "      </section>";
     html += "    </main>";
     html +=
-      '    <footer><b><a style="color:#664c00" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b> <a style="float:right;" href="https://github.com/TianZonglin/ImageFinder"target="_blank"><img height="42"src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/icons8-github-48.png"/></a></footer>';
+      '    <footer><b><a style="color:#664c00;float:left;" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b>';
+    html +=
+      '<a style="float:left;" href="https://github.com/TianZonglin/ImageFinder"target="_blank">';
+    html +=
+      '<img height="22"src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/icons8-github-48.png"/></a></footer>';
     html += "  </body>";
     html += "</html>";
     if (list.list.length || list.folder.length) {
