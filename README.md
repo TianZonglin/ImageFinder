@@ -74,7 +74,7 @@ Supported query rules:
 
 ## View
 
-![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131044052.png)
+![](https://i.loli.net/2021/01/31/6ziBduAOTIsRbDe.png)
 
 
 
