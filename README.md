@@ -68,7 +68,8 @@ Supported query rules:
 
 ## View
 
-![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/QQ截图20210131041029.jpg)
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131044052.png)
+
 
 
 **Note:** This may invade the privacy of others, I am NOT responsible for any consequences of misusing this project.
