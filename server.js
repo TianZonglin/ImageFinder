@@ -375,7 +375,7 @@ app.get("/", (request, response) => {
     html += '    <script src="/script.js" defer></script>';
     html += "  </head>";
     html += "  <body>";
-    html += "    <main>";
+    html += "    <main style='text-align:center;'>";
     html += '<section class="folders" id="folders">';
     list.folder.forEach(function(win) {
       var xt = "/";
