@@ -21,11 +21,10 @@ function jugeUrl(zoom) {
   }
   return flag;
 }
-$("#nstSlider").hide();
 function reset() {
   $("#wechat").removeAttr("readonly");
   $("#spacex").removeAttr("disabled");
-  $("#nstSlider").hide();
+  $(".nstSlider").toggle();
   $("#google").hide();
 }
 function firethehole(wechat, o, x) {
@@ -44,7 +43,7 @@ function firethehole(wechat, o, x) {
       dataType: "json",
       success: function(facebook) {
         if (facebook.msg == null) {
-          $("#nstSlider").show();
+          $(".nstSlider").toggle();
           var huawei = facebook.folder;
           var honor = facebook.list;
           var redmi = 0;
