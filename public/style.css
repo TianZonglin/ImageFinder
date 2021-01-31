@@ -26,12 +26,12 @@ html {
   margin-right: 8px;
   padding: 1px 0px 0px 1px;
   display: inline-block;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.s{
-  float:left;
-  display:inline-block;
+.s {
+  float: left;
+  display: inline-block;
 }
 
 .avat {
@@ -151,7 +151,6 @@ a {
 
 .wid {
   max-width: 500px;
- 
 }
 .movebar {
   margin-top: 15px;
@@ -160,7 +159,6 @@ a {
   background-color: #e3e39d;
   padding: 16px;
   max-width: 500px;
- 
 }
 .nstSlider .leftGrip,
 .nstSlider .rightGrip {
