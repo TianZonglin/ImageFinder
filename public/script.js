@@ -21,10 +21,10 @@ function jugeUrl(zoom) {
   }
   return flag;
 }
+
 function reset() {
   $("#wechat").removeAttr("readonly");
   $("#spacex").removeAttr("disabled");
-  $(".nstSlider").toggle();
   $("#google").hide();
 }
 function firethehole(wechat, o, x) {
@@ -35,7 +35,7 @@ function firethehole(wechat, o, x) {
     wechat = wechat.slice(0, -1);
   }
   var mark = jugeUrl(wechat); //console.log(mark);
-  if (mark > 0) {
+  if (mark > 0) { $(".movebar").show();
     $.ajax({
       type: "post",
       url: "/fuckqq",
@@ -43,7 +43,7 @@ function firethehole(wechat, o, x) {
       dataType: "json",
       success: function(facebook) {
         if (facebook.msg == null) {
-          $(".nstSlider").toggle();
+          
           var huawei = facebook.folder;
           var honor = facebook.list;
           var redmi = 0;
@@ -101,17 +101,21 @@ function firethehole(wechat, o, x) {
             reset();
             $("#wechat").focus();
           }
+          
         } else {
+ 
           alert(facebook.msg);
           reset();
           $("#wechat").focus();
         }
       },
       error: function(xhr, textStatus) {
+ 
         console.log(xhr, textStatus);
       }
     });
   } else {
+ 
     if (mark == 0) alert("格式错误，请按页面底部规则检查！");
     reset();
     $("#wechat").focus();
@@ -124,6 +128,9 @@ $(function() {
     right_grip_selector: ".rightGrip",
     value_bar_selector: ".bar",
     value_changed_callback: function(cause, leftValue, rightValue) {
+ 
+      $("#minw").text(rightValue);
+      $("#maxw").text(leftValue);
       $(".img").css("max-height", rightValue);
       $(".img").css("min-height", leftValue);
       if (rightValue < 70) $("img").css("margin", "2px");
