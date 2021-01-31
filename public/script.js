@@ -133,8 +133,8 @@ $(function() {
       $("#maxw").text(leftValue);
       $(".img").css("max-height", rightValue);
       $(".img").css("min-height", leftValue);
-      if (rightValue < 70) $("img").css("margin", "2px");
-      else $(".img").css("margin", "5px");
+      if (rightValue < 70) $("img").css("margin", "5px 5px 0px 0px");
+      else $(".img").css("margin", "9px 9px 0px 0px");
       if (rightValue < 60) $("img").css("border-radius", "3px");
       else $(".img").css("border-radius", "10px");
     }
