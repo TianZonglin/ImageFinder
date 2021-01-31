@@ -116,6 +116,20 @@ function firethehole(wechat, o, x) {
   }
 }
 $(function() {
+  $(".nstSlider").nstSlider({
+    crossable_handles: false,
+    left_grip_selector: ".leftGrip",
+    right_grip_selector: ".rightGrip",
+    value_bar_selector: ".bar",
+    value_changed_callback: function(cause, leftValue, rightValue) {
+      $(".img").css("max-height", rightValue);
+      $(".img").css("min-height", leftValue);
+      if (rightValue < 70) $("img").css("margin", "2px");
+      else $(".img").css("margin", "5px");
+      if (rightValue < 60) $("img").css("border-radius", "3px");
+      else $(".img").css("border-radius", "10px");
+    }
+  });
   var o; //headsup();
   fetch("/birth", {})
     .then(res => res.json())
