@@ -1,9 +1,10 @@
 # ImageFinder
 
-[![Author](https://img.shields.io/badge/author-XPoet-orange.svg)](https://github.com/XPoet)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/TianZonglin/ImageFinder?style=plastic)
+![Author](https://img.shields.io/badge/Author-TianZonglin-green)](https://github.com/TianZonglin)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/TianZonglin/ImageFinder)
 ![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m787087225-950e39e5cd6e3d6c5c9be0cb)
-[![License](https://img.shields.io/github/license/XPoet/picx.svg)](https://github.com/XPoet/picx/blob/master/LICENSE)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TianZonglin/ImageFinder)
+![GitHub last commit](https://img.shields.io/github/last-commit/TianZonglin/ImageFinder)
 
 ![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131041449.png)
 
