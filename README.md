@@ -1,7 +1,7 @@
 # ImageFinder
 
-  ![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210130223331.png)
 
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131041449.png)
 
 A server that could help you to find more interesting image repositories. Also, it could be an easy way to make a gallery for your image repository. Support users to look images hosted in `Github.com` and `Gitee.com`. You can redeploy this server to build your own service or just USE the demo website directly.
 
@@ -51,13 +51,14 @@ Supported query rules:
 ## Logs
 
 - `v0.1` Complete basic resolve logic and basic front-end style
-- `v0.2` Add the function of rendering a separate page, which can be used as a photo album
-- `v0.3` Introduce sqlite, add recently viewed
+- `v0.2` Add the function of rendering a single page, which can be used as a photo album
+- `v0.3` Introduce `sqlite3`, add the module of `recent view`
 - `v0.4` Completion of multiple query methods, especially only the image url method
-- `v0.5` Add the function of sub-directory view, support upper and lower view operations
+- `v0.5` Add the function of `sub-directory` view, support upper and lower view operations
 - `v0.6` Improve front-end operation steps
 - `v0.7` Add the judgment that the operation returns an exception
 - `v0.8` Add support for Gitee repo, the rules are the same as Github repo (Stable version)
+- `v0.9` Use `nstSlider.js` to change the size of pictures smoothly.
 
 **Todo**
 
@@ -67,7 +68,7 @@ Supported query rules:
 
 ## View
 
-![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/93c923c3232.png)
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/QQ截图20210131041029.jpg)
 
 
 **Note:** This may invade the privacy of others, I am NOT responsible for any consequences of misusing this project.
