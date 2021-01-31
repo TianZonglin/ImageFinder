@@ -167,5 +167,5 @@ $(function() {
   $("#pictures").on("focusin", function() {
     $("a.fancybox").fancybox({});
   });
-  console.log("[v0.9] made by cz5h.com");
+  console.log("[v0.1.0] made by cz5h.com");
 });
