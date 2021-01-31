@@ -1,10 +1,10 @@
 # ImageFinder
 
-[![Author](https://img.shields.io/badge/Author-TianZonglin-green)](https://github.com/TianZonglin)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/TianZonglin/ImageFinder)
-![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m787087225-950e39e5cd6e3d6c5c9be0cb)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TianZonglin/ImageFinder)
-![GitHub last commit](https://img.shields.io/github/last-commit/TianZonglin/ImageFinder)
+[![Author](https://img.shields.io/badge/Author-TianZonglin-green)](https://github.com/TianZonglin?style=plastic)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/TianZonglin/ImageFinder?style=plastic)
+![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m787087225-950e39e5cd6e3d6c5c9be0cb?style=plastic)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TianZonglin/ImageFinder?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/TianZonglin/ImageFinder?style=plastic)
 
 ![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131041449.png)
 
