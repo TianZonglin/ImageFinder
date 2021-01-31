@@ -195,8 +195,15 @@ a {
 
 .left{
   position: relative;
-  margin-right:30px;
+  margin-bottom: 30px;
   max-width: 500px;
-  height: 610px;  
+   
   float:left;
+}
+
+@media (min-width: 600px) {
+  .left{
+    margin-right:20px;
+    margin-bottom: 10px;
+  }
 }
