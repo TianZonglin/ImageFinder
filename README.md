@@ -39,9 +39,9 @@ On the back-end,
 
 Take one look then you can get all the points, easy!
 
-**Demo page: [https://xvido.es](https://aim.photos)**
+**Demo page: [https://aim.photos](https://aim.photos)**
 
-**Gallery mode: [https://xvido.es?x=/zonelyn/bed](https://aim.photos?x=/zonelyn/bed)**
+**Gallery mode: [https://aim.photos?x=/zonelyn/bed](https://aim.photos?x=/zonelyn/bed)**
 
 Supported query rules:
 
