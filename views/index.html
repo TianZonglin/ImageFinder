@@ -27,6 +27,13 @@
     />
     <link rel="stylesheet" href="/style.css" />
     <script src="/script.js" defer></script>
+    <script>
+      if (location.protocol != "https:") {
+        location.href =
+          "https:" +
+          window.location.href.substring(window.location.protocol.length);
+      }
+    </script>
   </head>
   <body>
     <header><h1>偷偷看看别人都存了什么！</h1></header>
@@ -34,7 +41,8 @@
       <div class="wid">
         <div style="width:84%;float:left">
           <span style="color: #b42b00;font-weight: 600;"
-            >警告：切勿在公共图床存储身份证、银行交易截图等私密信息，本站点仅供学习使用。( 当前版本 v0.1.0 )</span
+            >警告：切勿在公共图床存储身份证、银行交易截图等私密信息，本站点仅供学习使用。(
+            当前版本 v0.1.0 )</span
           >
         </div>
         <div style="float:right;margin-right: -5px;">
@@ -46,70 +54,70 @@
         </div>
         <div style="clear:both"></div>
       </div>
-      
+
       <p style="margin-bottom: 0px;">输入查询信息 ( Github / Gitee )</p>
       <div class="left">
         <div style="visibility:hidden">#</div>
-      <div class="form" autocomplete="off">
-        <label>
-          <span style="font-size:12px;"
-            >例如：复制仓库原链 https://github.com/zonelyn/bed，或者<span
-              style="color:#c93b0e"
-              >复制一张图片地址</span
-            >，支持@版本 https://cdn.jsdelivr.net/gh/zonelyn/bed/01.png</span
-          ><br />
-          <input
-            id="wechat"
-            type="text"
-            maxlength="100"
-            required
-            placeholder="请输入正确的图床/图片地址！"
-          />
-        </label>
-        <div>
-          <button type="button" id="spacex">偷瞄一眼</button>
-          <img
-            class="load"
-            id="google"
-            style="height: 23px;margin:0px;display:none;"
-            src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/ff.gif"
-          />
+        <div class="form" autocomplete="off">
+          <label>
+            <span style="font-size:12px;"
+              >例如：复制仓库原链 https://github.com/zonelyn/bed，或者<span
+                style="color:#c93b0e"
+                >复制一张图片地址</span
+              >，支持@版本 https://cdn.jsdelivr.net/gh/zonelyn/bed/01.png</span
+            ><br />
+            <input
+              id="wechat"
+              type="text"
+              maxlength="100"
+              required
+              placeholder="请输入正确的图床/图片地址！"
+            />
+          </label>
+          <div>
+            <button type="button" id="spacex">偷瞄一眼</button>
+            <img
+              class="load"
+              id="google"
+              style="height: 23px;margin:0px;display:none;"
+              src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/ff.gif"
+            />
+          </div>
         </div>
-      </div>
-      <br />
-      <div class="form" autocomplete="off">
-        <label
-          ><span style="font-size:12px;"
-            >大家都在看：<span style="color:#ca5d07;">Github</span> &
-            <span style="color:#005be4">Gitee</span></span
-          ></label
-        >
-        <div id="avat"></div>
-      </div>
-      <div class="movebar">
-        <span class="ft">调节图片大小(px)：</span>
-        <div
-          class="nstSlider"
-          data-range_min="20"
-          data-range_max="300"
-          data-cur_min="40"
-          data-cur_max="80"
-        >
-          <div class="bar"></div>
-          <div class="leftGrip"></div>
-          <div class="rightGrip"></div>
-        </div>
-        <div style="margin-top: 25px;">
-          <span style="float:left;" class="ft"
-            >min-width(<span id="maxw"></span>)</span
+        <br />
+        <div class="form" autocomplete="off">
+          <label
+            ><span style="font-size:12px;"
+              >大家都在看：<span style="color:#ca5d07;">Github</span> &
+              <span style="color:#005be4">Gitee</span></span
+            ></label
           >
-          <span style="float:right;" class="ft"
-            >(<span id="minw"></span>)max-width</span
+          <div id="avat"></div>
+        </div>
+        <div class="movebar">
+          <span class="ft">调节图片大小(px)：</span>
+          <div
+            class="nstSlider"
+            data-range_min="20"
+            data-range_max="300"
+            data-cur_min="40"
+            data-cur_max="80"
           >
+            <div class="bar"></div>
+            <div class="leftGrip"></div>
+            <div class="rightGrip"></div>
+          </div>
+          <div style="margin-top: 25px;">
+            <span style="float:left;" class="ft"
+              >min-width(<span id="maxw"></span>)</span
+            >
+            <span style="float:right;" class="ft"
+              >(<span id="minw"></span>)max-width</span
+            >
+          </div>
         </div>
       </div>
-      </div>
-      
+
       <section class="folders" id="folders"></section>
       <br />
       <section class="pictures" id="pictures"></section>
