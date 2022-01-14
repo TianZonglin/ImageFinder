@@ -82,4 +82,4 @@ Supported query rules:
 
 ---
 
-**Find out more [about Me / cz5h.com](https://www.cz5h.com).**
+**Find out more. [程序萌 / cxmoe.com](https://www.cxmoe.com).**
