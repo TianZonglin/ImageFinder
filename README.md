@@ -6,7 +6,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TianZonglin/ImageFinder?style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/TianZonglin/ImageFinder?style=plastic)
 
-![](https://cdn.jsdelivr.net/gh/TianZonglin/ImageFinder/finder.jpg)
+![](https://cdn.jsdelivr.net/gh/TianZonglin/ImageFinder/demo.jpg)
 
 A server that could help you to find more interesting image repositories. Also, it could be an easy way to make a gallery for your image repository. Support users to look images hosted in `Github.com` and `Gitee.com`. You can redeploy this server to build your own service or just USE the demo website directly.
 
