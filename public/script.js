@@ -117,6 +117,8 @@ function firethehole(wechat, o, x) {
     $("#wechat").focus();
   }
 }
+
+ 
 $(function() {
   $("footer").css("margin-top","20px");
   $(".nstSlider").nstSlider({
@@ -129,12 +131,13 @@ $(function() {
       $("#maxw").text(leftValue);
       $(".img").css("max-height", rightValue);
       $(".img").css("min-height", leftValue);
-      if (rightValue < 70) $("img").css("margin", "1px 5px 2px 0px;");
+      if (rightValue < 70) $(".img").css("margin", "1px 5px 2px 0px;");
       else $(".img").css("margin", "1px 10px 7px 0px;");
-      if (rightValue < 60) $("img").css("border-radius", "3px");
+      if (rightValue < 60) $(".img").css("border-radius", "3px");
       else $(".img").css("border-radius", "10px");
     }
   });
+ 
   var o; //headsup();
   fetch("/birth", {})
     .then(res => res.json())
@@ -168,4 +171,17 @@ $(function() {
     $("a.fancybox").fancybox({});
   });
   console.log("[v0.1.0] made by cz5h.com");
+  
+    // 获取按钮元素
+  const button = document.getElementById('spacex');
+
+  // 监听键盘事件
+  document.addEventListener('keydown', function(event) {
+    // 检查按下的键是否是回车键
+    if (event.key === 'Enter') {
+      // 触发按钮的点击事件
+      button.click();
+    }
+  });
+  
 });

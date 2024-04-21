@@ -3,7 +3,7 @@
  */
 const COMA = "https://github.com/";
 const COMB = "https://cdn.jsdelivr.net/";
-const COMC = "https://gitee.com/";
+const COMC = "https://gitee.com/"; 
 
 /*
  * 功能：判断链接是否合法 and 是否是缺省状态
@@ -22,12 +22,13 @@ function jugeUrl(zoom) {
   } else if (
     zoom.indexOf(COMA) < 0 &&
     zoom.substr(0, 1) == "/" &&
-    zoom.split("/").length >= 3
+    zoom.split("/").length >= 3 
   ) {
     flag = 2;
   }
   return flag;
 }
+
 
 /*
  * 功能：判断图片链接是否合法
@@ -152,7 +153,8 @@ function getComponent(url) {
   var Component;
   var parseURL = [];
   if (mark == 1) {
-    if (url.indexOf("gitee.com/") > 0) return giteeparse(url);
+    if (url.indexOf("gitee.com/") > 0) 
+      return giteeparse(url);
     return fullparse(url);
   } else if (mark == 2) {
     return fullparse("https://github.com" + url);
@@ -188,8 +190,8 @@ function format(date) {
  * 功能：手动操作sqlite，避免自动执行
  */
 if (0) {
-  //db.run("DROP TABLE Seeds");
-  db.serialize(() => {
+  //db.run("DROP TABLE Seeds"); 
+  db.serialize(() => {      
     db.run(
       "CREATE TABLE CList (id INTEGER PRIMARY KEY AUTOINCREMENT," +
         "url TEXT, hot TEXT, size TEXT, ctime TEXT, ex1 TEXT, ex2 TEXT, ex3 TEXT, ex4 TEXT)"
@@ -234,7 +236,8 @@ function getXML(parseURL) {
     response = request2("GET", parseURL)
       .getBody()
       .toString();
-    console.log("response-size > " + response.length);
+    console.log("response-size ---> " + response.length);
+    //console.log(response);
   } catch (err) {
     return {
       msg: err.message
@@ -250,14 +253,19 @@ function getXML(parseURL) {
       fatalError: function(e) {}
     }
   }).parseFromString(response);
+  console.log(response);
   var proot;
   if (parseURL.indexOf("gitee.com/") > 0)
     proot = "//*[@id='tree-slider']/div/div[1]/a/text()";
-  else proot = "//*[contains(@class, 'js-active-navigation-container')]/div";
+  else 
+    proot = "//*[contains(@class, 'react-directory-truncate')]/a";
   var s = xpath.select(proot, doc);
+  console.log(s); //[]
   if (s.length > 0) {
     return s;
-  } else return { msg: "Can't find any images." };
+  } 
+  else 
+    return { msg: "Can't find any images." }; 
 }
 
 /*
@@ -271,6 +279,7 @@ function resolv(parseURL, jsdURL, url) {
   var folder = [];
   var pchild;
   if (parseURL[0].indexOf("gitee.com/") > 0) {
+    /*
     var items = getXML(parseURL[0])
       .toString()
       .split(",");
@@ -286,45 +295,58 @@ function resolv(parseURL, jsdURL, url) {
     }
     console.log("partX > list " + list.length);
     console.log("partX > folder " + folder.length);
+    */
     return { list: list, folder: folder, url: url };
   } else {
-    pchild = "string(//div/div[2]/span/a)";
+    pchild = "string(//*)";  //github 现在包括 small big 两套显示元素
+    //console.log(parseURL);
     for (var i in parseURL) {
-      var items = getXML(parseURL[i]);
+      console.log(i);
+      var items = getXML(parseURL[i].replace("/tree/master","").replace("/tree/main",""));
       if (i == 0) {
         for (var e in items) {
           var parser = new Dom().parseFromString(items[e].toString());
-          if (parser == null) break;
-          var jpgs = xpath.select1(pchild, parser);
-          var p = jsdURL + jpgs;
-          if (CheckImgExists(p)) {
-            list.push(p);
-          } else {
-            if (jpgs.split(".").length == 1 && jpgs != "") {
-              folder.push(jpgs);
+          //console.log(parser);
+          if (parser != null) {
+            var jpgs = xpath.select1(pchild, parser);
+            var p = jsdURL + jpgs;
+            if (CheckImgExists(p)) {
+              list.push(p);
+            } else {
+              if (jpgs.split(".").length == 1 && jpgs != "") {
+                folder.push(jpgs);
+              }
             }
           }
         }
-        console.log("part1 > ", list.length, folder.length);
-        if (!list.length && !folder.length) break;
-        return { list: list, folder: folder, url: url };
+        list = list.filter((item, index) => item !== list[index + 1]);
+        folder = folder.filter((item, index) => item !== folder[index + 1]);
+        if (!list.length && !folder.length) {
+          console.log("result is blank");
+        }
+        else
+          return { list: list, folder: folder, url: url };
       } else if (i == 1) {
-        if (items.msg != null) return items;
-        for (var e in items) {
-          var parser = new Dom().parseFromString(items[e].toString());
-          var jpgs = xpath.select1(pchild, parser);
-          var p = jsdURL + jpgs;
-          if (CheckImgExists(p)) {
-            list.push(p);
-          } else {
-            if (jpgs.split(".").length == 1 && jpgs != "") {
-              folder.push(jpgs);
+        console.log("this is i=1");
+        if (items.msg == null) {
+          for (var e in items) {
+            var parser = new Dom().parseFromString(items[e].toString());
+            var jpgs = xpath.select1(pchild, parser);
+            var p = jsdURL + jpgs;
+            if (CheckImgExists(p)) {
+              list.push(p);
+            } else {
+              if (jpgs.split(".").length == 1 && jpgs != "") {
+                folder.push(jpgs);
+              }
             }
           }
         }
-        console.log("part2 > ", list.length, folder.length);
-        if (!list.length && !folder.length) break;
-        return { list: list, folder: folder, url: jsdURL };
+        list = list.filter((item, index) => item !== list[index + 1]);
+        folder = folder.filter((item, index) => item !== folder[index + 1]);
+        if (!list.length && !folder.length) {}
+        else
+          return { list: list, folder: folder, url: jsdURL };
       }
     }
   }
@@ -340,7 +362,16 @@ var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
 app.use(express.static("public"));
+
+let ejs = require("ejs");
+ 
 
 /*
  * 功能：根目录解析
@@ -350,6 +381,10 @@ app.use(express.static("public"));
 app.get("/", (request, response) => {
   var url = request.query.x;
   if (url != null) {
+    var exg = new RegExp('^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$');
+    if(exg.test(url)){
+      url= new Buffer(url, 'base64').toString();
+    }
     if (url.indexOf("cdn.jsdelivr.net/") > 0) {
       url = url.replace(
         "https://cdn.jsdelivr.net/gh/",
@@ -358,66 +393,8 @@ app.get("/", (request, response) => {
     }
     var cp = getComponent(url);
     var list = resolv(cp.parseURL, cp.jsdURL, cp.url);
-    var html = "";
-    html += "<!DOCTYPE html>";
-    html += '<html lang="en">';
-    html += "  <head>";
-    html += '    <meta charset="utf-8">';
-    html += '    <meta http-equiv="X-UA-Compatible" content="IE=edge">';
-    html += '    <meta name="author" content="cz5h.com">';
-    html +=
-      '    <meta name="viewport" content="width=device-width, initial-scale=1">';
-    html +=
-      '    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
-    html +=
-      '    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" ></script>';
-    html +=
-      '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />';
-    html +=
-      '    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nstslider/1.0.13/jquery.nstSlider.min.js"></script>';
-    html +=
-      '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nstslider/1.0.13/jquery.nstSlider.min.css"/>';
-    html += "    <title>ImageFinder</title>";
-    html +=
-      '    <link id="favicon" rel="icon" href="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/fc.ico" type="image/x-icon">';
-    html += '    <link rel="stylesheet" href="/style.css">';
-    html += '    <script src="/script.js" defer></script>';
-    html += "  </head>";
-    html += "  <body>";
-    html += "    <main style=''>";
-    html +=
-      '    <div class="movebar"><span class="ft">调节图片大小(px)：</span><div class="nstSlider"data-range_min="20"data-range_max="300"data-cur_min="40"data-cur_max="80">';
-    html +=
-      '    <div class="bar"></div><div class="leftGrip"></div><div class="rightGrip"></div></div><div style="margin-top: 25px;">';
-    html +=
-      '    <span style="float:left;"class="ft">min-width(<span id="maxw"></span>)</span>';
-    html +=
-      '    <span style="float:right;"class="ft">(<span id="minw"></span>)max-width</span></div></div>';
-    html += '<section class="folders" id="folders">';
-    list.folder.forEach(function(win) {
-      var xt = "/";
-      if (list.url.slice(-1) == "/") xt = "";
-      html += `<div class="fold" title="${list.url + xt + win}" id="${
-        list.url
-      }">${win}</div>`;
-    });
-    html += "</section><br>";
-    html += '      <section class="pictures" id="pictures">';
-    list.list.forEach(function(mac) {
-      html += `<a class="fancybox" rel="group" href="${mac}"><img class="img" src="${mac}"/></a>`;
-    });
-    html += "      </section>";
-    html += "    </main>";
-    html +=
-      '    <footer><b><a style="color:#664c00;float:left;" href="https://www.cz5h.com" target="_blank">@CZ5H.COM「2021」</a></b>';
-    html +=
-      '<a style="float:left;" href="https://github.com/TianZonglin/ImageFinder"target="_blank">';
-    html +=
-      '<img height="22"src="https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/icons8-github-48.png"/></a></footer><br><br><br>';
-    html += '<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?d79d9c89060190dc75cbf0073c6f34c4";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();</script>';
-    html += '<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div style="display:none"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>';
-    html += "  </body>";
-    html += "</html>";
+
+    
     if (list.list.length || list.folder.length) {
       var base = COMA + cp.name + ".png";
       if (url.indexOf("gitee.com/") > 0)
@@ -436,10 +413,50 @@ app.get("/", (request, response) => {
           "')"
       );
     }
-    return response.send(html);
-  } else {
-    return response.sendFile(__dirname + "/views/index.html");
-  }
+    
+    return response.render('/app/views/gallery', { list: list });
+  } else{ 
+    url = request.query.things;
+    if (url != null) {
+      var exg = new RegExp('^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$');
+      if(exg.test(url)){
+        url= new Buffer(url, 'base64').toString();
+      }
+      if (url.indexOf("cdn.jsdelivr.net/") > 0) {
+        url = url.replace(
+          "https://cdn.jsdelivr.net/gh/",
+          "https://cdn.jsdelivr.net/"
+        );
+      }
+      var cp = getComponent(url);
+      var list = resolv(cp.parseURL, cp.jsdURL, cp.url);
+
+
+      if (list.list.length || list.folder.length) { 
+        var base = COMA + cp.name + ".png";
+        if (url.indexOf("gitee.com/") > 0)
+          base = "https://robohash.org/" + cp.name + ".png";
+        db.run(
+          "INSERT INTO CList (url,size,ctime,ex1,ex2) VALUES ('" +
+            cp.url +
+            "','" +
+            list.list.length +
+            "','" +
+            new Date().getTime() + 
+            "','" +
+            cp.name +
+            "','" + 
+            base +
+            "')"
+        );
+      }
+      return response.render('/app/views/things', { list: list });
+    }
+  } 
+  
+  return response.sendFile(__dirname + "/views/index.html");
+  
+
 });
 
 /*
@@ -449,6 +466,12 @@ app.get("/", (request, response) => {
  */
 app.post("/fuckqq", urlencodedParser, function(req, res) {
   var url = req.body.wechat;
+  
+  var exg = new RegExp('^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$');
+  if(exg.test(url)){
+    url= new Buffer(url, 'base64').toString();
+  }
+ 
   url = encodeURI(url);
   if (url.indexOf("cdn.jsdelivr.net/") > 0) {
     url = url.replace(
@@ -456,11 +479,14 @@ app.post("/fuckqq", urlencodedParser, function(req, res) {
       "https://cdn.jsdelivr.net/"
     );
   }
+  
+
+  
   var cp = getComponent(url);
   try {
     var list = resolv(cp.parseURL, cp.jsdURL, cp.url);
     if (list.list == null && list.folder == null) {
-      return res.send({ msg: "没有子目录且未发现图片资源！" });
+      return res.send({ msg: "Github已不支持抓取二级目录！" });
     }
     if (list.list.length || list.folder.length) {
       var base = COMA + cp.name + ".png";

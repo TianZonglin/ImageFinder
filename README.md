@@ -6,7 +6,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TianZonglin/ImageFinder?style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/TianZonglin/ImageFinder?style=plastic)
 
-![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131041449.png)
+![](https://cdn.jsdelivr.net/gh/TianZonglin/ImageFinder/finder.jpg)
 
 A server that could help you to find more interesting image repositories. Also, it could be an easy way to make a gallery for your image repository. Support users to look images hosted in `Github.com` and `Gitee.com`. You can redeploy this server to build your own service or just USE the demo website directly.
 
@@ -37,21 +37,17 @@ On the back-end,
 
 ## Usage
 
-Take one look then you can get all the points, easy!
-
-**Demo page: [https://aim.photos](https://aim.photos)**
-
-**Gallery mode: [https://aim.photos?x=/zonelyn/bed](https://aim.photos?x=/zonelyn/bed)**
-
 Supported query rules:
 
 - Picture url: `https://cdn.jsdelivr.net/gh/name/repo/x.jpg`
 - Original link from repo: `https://github.com/name/repo`
-- Internal directory: `https://github.com/name/repo/tree/main/sub`
-- Default branch: `https://github.com/name/repo/sub`
-- Default prefix: `/name/repo/sub` (Github image bed only)
-- Single page rendering: directly visit `xvido.es?x=url`
-- Other image beds: `Gitee` has been supported, the rules are the same as above
+- ~~Internal directory: `https://github.com/name/repo/tree/main/sub`~~
+- ~~Default branch: `https://github.com/name/repo/sub`~~
+- ~~Default prefix: `/name/repo/sub` (Github image bed only)~~
+- ~~Single page rendering: directly visit `xvido.es?x=url`~~
+- ~~Other image beds: `Gitee` has been supported, the rules are the same as above~~
+
+✖ Since the policy of Github and Gitee has changed, some functions are disactive now :(
 
 ## Logs
 
@@ -76,10 +72,10 @@ Supported query rules:
 
 ![](https://i.loli.net/2021/01/31/6ziBduAOTIsRbDe.png)
 
-
+![](https://cdn.jsdelivr.net/gh/TianZonglin/tuchuang/img/20210131041449.png)
 
 **Note:** This may invade the privacy of others, I am NOT responsible for any consequences of misusing this project.
 
 ---
 
-**Find out more. [程序萌 / cxmoe.com](https://www.cxmoe.com).**
+Find out more. [cxmoe.com](https://www.cxmoe.com).
